@@ -21,12 +21,12 @@ public class AppTest {
     public UserService userService;
     @Test
     public void test() {
-        try {
+        /*try {
             //userService.register("santiago", "lopez", "santiago@mail.com", "1234", "USER", "Carrera 123", "img", 10000000);
-            userService.login("santi@mail.com", "1234");
+            //userService.login("santi@mail.com", "1234");
         } catch (UserServiceException e) {
             e.printStackTrace();
-        }
+        }*/
         ;
     }
 }

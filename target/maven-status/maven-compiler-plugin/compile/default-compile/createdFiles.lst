@@ -1,0 +1,13 @@
+edu\escuelaing\arsw\App.class
+edu\escuelaing\arsw\services\IUserServices.class
+edu\escuelaing\arsw\services\impl\ProductService.class
+edu\escuelaing\arsw\persistence\ProductPersistence.class
+edu\escuelaing\arsw\Exceptions\UserServiceException.class
+edu\escuelaing\arsw\model\Product.class
+edu\escuelaing\arsw\Exceptions\ProductServiceException.class
+edu\escuelaing\arsw\model\User.class
+edu\escuelaing\arsw\controllers\Controller.class
+edu\escuelaing\arsw\Exceptions\UserPersistenceException.class
+edu\escuelaing\arsw\persistence\UserPersistence.class
+edu\escuelaing\arsw\services\impl\UserService.class
+edu\escuelaing\arsw\services\IProductService.class
