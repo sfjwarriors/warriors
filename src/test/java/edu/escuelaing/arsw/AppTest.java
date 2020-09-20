@@ -1,38 +1,32 @@
 package edu.escuelaing.arsw;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+
+import edu.escuelaing.arsw.Exceptions.UserServiceException;
+import edu.escuelaing.arsw.persistence.UserPersistence;
+import edu.escuelaing.arsw.services.impl.UserService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class AppTest {
+    @Autowired
+    public UserService userService;
+    @Test
+    public void test() {
+        try {
+            //userService.register("santiago", "lopez", "santiago@mail.com", "1234", "USER", "Carrera 123", "img", 10000000);
+            userService.login("santi@mail.com", "1234");
+        } catch (UserServiceException e) {
+            e.printStackTrace();
+        }
+        ;
     }
 }

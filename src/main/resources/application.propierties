@@ -1,0 +1,13 @@
+port=4444
+spring.main.banner-mode=off
+logging.level.org.springframework=ERROR
+spring.jpa.hibernate.ddl-auto=none
+spring.datasource.driverClassName = org.postgresql.Driver
+spring.datasource.initialization-mode=always
+spring.datasource.platform=postgres
+spring.datasource.url=jdbc:postgresql://ec2-34-235-62-201.compute-1.amazonaws.com:5432/decme2ohg2joh9?user=urchkuxwqxasdj&password=70217135b93822e6050ccebc55733dd5052371ff8f82f750d4f8e489a60b6388
+spring.datasource.username=urchkuxwqxasdj
+spring.datasource.password=70217135b93822e6050ccebc55733dd5052371ff8f82f750d4f8e489a60b6388
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
