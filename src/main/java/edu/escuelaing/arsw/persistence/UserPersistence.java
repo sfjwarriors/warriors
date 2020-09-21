@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 
 @Repository
 public interface UserPersistence extends CrudRepository<User, Long>{
-    public User findByEmail(String email) throws UserPersistenceException;
+    //public User findByEmail(String email);
 }

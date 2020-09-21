@@ -2,16 +2,15 @@ package edu.escuelaing.arsw.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="user", schema = "public")
+@Data
+@Table(name="User", schema = "public")
 public class User {
     @Id
     @Column(name = "id")
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "name")
     private String name;
@@ -30,10 +29,12 @@ public class User {
     @Column(name = "cash")
     private long cash;
 
-    public User() {
+    public User(){
+
     }
 
     public User(String name, String lastName, String email, String password, String rol, String address, String image, long cash) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;

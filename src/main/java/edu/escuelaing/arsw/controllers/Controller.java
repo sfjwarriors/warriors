@@ -19,6 +19,7 @@ public class Controller {
     public ResponseEntity<?> getAllCinemas() {
         String s = "";
         try {
+            //userService.register("santiago", "lopez", "santiago@mail.com", "1234", "USER", "Carrera 123", "img", 10000000);
             userService.login("santi@mail.com", "1234");
             s+="funciono";
         } catch (UserServiceException e) {

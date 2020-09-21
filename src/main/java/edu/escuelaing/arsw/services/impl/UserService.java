@@ -23,14 +23,19 @@ public class UserService implements IUserServices {
         try {
             Pbkdf2PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder("salt");
             System.out.println("hello");
-            User user = userPersistence.findByEmail(email);
+            Iterable<User> users = userPersistence.findAll();
+            System.out.println(users);
+            for(User u:users){
+                System.out.println(u.toString());
+            }
+            /*User user = userPersistence.findByEmail(email);
             System.out.println(user.toString());
             login = passwordEncoder.matches(password,user.getPassword());
             System.out.println(login);
             if (!login) {
                 throw new UserServiceException("The passwords doesn't match");
-            }
-        } catch (UserPersistenceException e) {
+            }*/
+        } catch (Exception e) {
             throw new UserServiceException("Email doesn't found");
         }
     }

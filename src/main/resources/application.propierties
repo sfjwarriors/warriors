@@ -1,4 +1,4 @@
-port=4444
+port=5432
 spring.main.banner-mode=off
 logging.level.org.springframework=ERROR
 spring.jpa.hibernate.ddl-auto=none
@@ -9,5 +9,5 @@ spring.datasource.url=jdbc:postgresql://ec2-34-235-62-201.compute-1.amazonaws.co
 spring.datasource.username=urchkuxwqxasdj
 spring.datasource.password=70217135b93822e6050ccebc55733dd5052371ff8f82f750d4f8e489a60b6388
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-spring.jpa.show-sql=false
+spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
