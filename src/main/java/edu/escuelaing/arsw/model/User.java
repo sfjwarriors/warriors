@@ -6,11 +6,11 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name="User", schema = "public")
+@Table(name="user", schema = "public")
 public class User {
     @Id
     @Column(name = "id")
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "name")
     private String name;
@@ -127,6 +127,8 @@ public class User {
                 ", password='" + password + '\'' +
                 ", rol='" + rol + '\'' +
                 ", address='" + address + '\'' +
+                ", image='" + image + '\'' +
+                ", cash=" + cash +
                 '}';
     }
 }

@@ -1,10 +1,8 @@
 package edu.escuelaing.arsw.services.impl;
 
-import edu.escuelaing.arsw.Exceptions.UserPersistenceException;
 import edu.escuelaing.arsw.Exceptions.UserServiceException;
 import edu.escuelaing.arsw.model.User;
 import edu.escuelaing.arsw.persistence.UserPersistence;
-import edu.escuelaing.arsw.services.IUserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService implements IUserServices {
+public class UserService implements edu.escuelaing.arsw.services.UserService {
     @Autowired
     private UserPersistence userPersistence;
 
@@ -21,18 +19,15 @@ public class UserService implements IUserServices {
     public void login(String email, String password) throws UserServiceException {
         boolean login = false;
         try {
+
             Pbkdf2PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder("salt");
-            System.out.println("hello");
             Iterable<User> users = userPersistence.findAll();
             System.out.println(users);
-            for(User u:users){
-                System.out.println(u.toString());
-            }
-            /*User user = userPersistence.findByEmail(email);
+            User user = userPersistence.findByEmail(email);
             System.out.println(user.toString());
             login = passwordEncoder.matches(password,user.getPassword());
             System.out.println(login);
-            if (!login) {
+            /*if (!login) {
                 throw new UserServiceException("The passwords doesn't match");
             }*/
         } catch (Exception e) {
@@ -56,7 +51,7 @@ public class UserService implements IUserServices {
     public void register(String name, String lastName, String email, String password, String rol, String address, String image, long cash) throws UserServiceException {
         Pbkdf2PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder("salt");
         password = passwordEncoder.encode(password);
-        System.out.println(password);
+        //System.out.println(password);
         User user = new User(name,  lastName, email, password, rol, address, image, cash);
         try{
             userPersistence.save(user);

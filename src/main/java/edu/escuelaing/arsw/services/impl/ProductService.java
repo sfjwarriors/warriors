@@ -2,12 +2,11 @@ package edu.escuelaing.arsw.services.impl;
 
 import edu.escuelaing.arsw.Exceptions.ProductServiceException;
 import edu.escuelaing.arsw.persistence.ProductPersistence;
-import edu.escuelaing.arsw.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductService implements IProductService {
+public class ProductService implements edu.escuelaing.arsw.services.ProductService {
     @Autowired
     private ProductPersistence productPersistence;
 

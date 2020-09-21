@@ -1,13 +1,17 @@
-port=5432
+#spring.datasource.url=jdbc:postgres://dimhznegsfuaat:7f2f4849d92762f347cd5ad233f48f10432aef708d68085daed3f53c262cdcc8@ec2-52-44-166-58.compute-1.amazonaws.com:5432/d14k1er2nsf7t0
+#spring.datasource.username=dimhznegsfuaat
+#spring.datasource.password=7f2f4849d92762f347cd5ad233f48f10432aef708d68085daed3f53c262cdcc8
+#spring.datasource.driver-class-name=ec2-52-44-166-58.compute-1.amazonaws.com
+port=4444
 spring.main.banner-mode=off
 logging.level.org.springframework=ERROR
 spring.jpa.hibernate.ddl-auto=none
 spring.datasource.driverClassName = org.postgresql.Driver
 spring.datasource.initialization-mode=always
 spring.datasource.platform=postgres
-spring.datasource.url=jdbc:postgresql://ec2-34-235-62-201.compute-1.amazonaws.com:5432/decme2ohg2joh9?user=urchkuxwqxasdj&password=70217135b93822e6050ccebc55733dd5052371ff8f82f750d4f8e489a60b6388
-spring.datasource.username=urchkuxwqxasdj
-spring.datasource.password=70217135b93822e6050ccebc55733dd5052371ff8f82f750d4f8e489a60b6388
+spring.datasource.url=jdbc:postgresql://ec2-52-44-166-58.compute-1.amazonaws.com:5432/d14k1er2nsf7t0?user=dimhznegsfuaat&password=7f2f4849d92762f347cd5ad233f48f10432aef708d68085daed3f53c262cdcc8
+spring.datasource.username=dimhznegsfuaat
+spring.datasource.password=7f2f4849d92762f347cd5ad233f48f10432aef708d68085daed3f53c262cdcc8
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-spring.jpa.show-sql=true
+spring.jpa.show-sql=false
 spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true

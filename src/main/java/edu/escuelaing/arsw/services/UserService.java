@@ -6,7 +6,7 @@ import edu.escuelaing.arsw.model.User;
 import java.util.List;
 import java.util.Optional;
 
-public interface IUserServices {
+public interface UserService {
     public void login(String email, String password) throws UserServiceException;
     public void changePassword(String oldPassword, String newPassword, String confirmPassword) throws UserServiceException;
     public void changeProfilePhoto(String image) throws UserServiceException;
