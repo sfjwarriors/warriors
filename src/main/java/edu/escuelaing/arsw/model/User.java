@@ -6,22 +6,22 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="users", schema = "public")
+@Table(name="user", schema = "public")
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @Column(length = 25, updatable = true)
+    @Column(name = "name")
     private String name;
-    @Column(length = 25, updatable = true)
+    @Column(name = "lastname")
     private String lastName;
-    @Column(length = 50, unique = true, updatable = false)
+    @Column(name = "email")
     private String email;
-    @Column(nullable = false)
+    @Column(name = "password")
     private String password;
     @Column(name = "rol")
     private String rol;
-    @Column(length = 25, updatable = true)
+    @Column(name = "address")
     private String address;
     @Column(name = "image")
     private String image;

@@ -1,34 +1,36 @@
 package edu.escuelaing.arsw.controllers;
 
 import edu.escuelaing.arsw.Exceptions.UserServiceException;
+import edu.escuelaing.arsw.model.User;
 import edu.escuelaing.arsw.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@RequestMapping(value = "/")
 public class Controller {
     @Autowired
     public UserService userService;
 
-    @GetMapping("hello")
-    public ResponseEntity<?> getAllCinemas() {
-        String s = "";
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody User user) {
         try {
-            userService.register("santiago", "lopez", "santiago1@mail.com", "1234", "USER", "Carrera 123", "img", 10000000);
-            userService.register("juan", "munoz", "juan1@mail.com", "1234", "USER", "Carrera 567", "img1", 2000000);
-            userService.login("santiago1@mail.com", "1234");
-            s+="funciono";
+            userService.login(user.getEmail(), user.getPassword());
+            return new ResponseEntity<>("Success", HttpStatus.ACCEPTED);
         } catch (UserServiceException e) {
-            s+="no funciono";
-            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<>(s, HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
+        try {
+            userService.register(user.getName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getRol(), user.getAddress(), user.getImage(), user.getCash());
+            return new ResponseEntity<>("Success", HttpStatus.CREATED);
+        } catch (UserServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
     }
 
 }
