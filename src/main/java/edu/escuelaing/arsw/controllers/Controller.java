@@ -9,11 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(value = "/")
 public class Controller {
     @Autowired
     public UserService userService;
 
-    @PostMapping("/login")
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    //@PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
         try {
             userService.login(user.getEmail(), user.getPassword());
@@ -23,7 +25,8 @@ public class Controller {
         }
     }
 
-    @PostMapping("/register")
+    @RequestMapping(value = "register", method = RequestMethod.POST)
+    //@PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) {
         try {
             userService.register(user.getName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getRol(), user.getAddress(), user.getImage(), user.getCash());
