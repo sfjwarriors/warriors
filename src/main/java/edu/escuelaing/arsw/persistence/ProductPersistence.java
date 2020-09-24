@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.CrudRepository;
 
 @Repository
-public interface ProductPersistence extends CrudRepository<Product, Integer> {
+public interface ProductPersistence extends CrudRepository<Product, Long> {
 
 }

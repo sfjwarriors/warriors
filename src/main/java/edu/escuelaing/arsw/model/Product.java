@@ -1,27 +1,25 @@
 package edu.escuelaing.arsw.model;
 
-import lombok.Data;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "product", schema = "public")
-public class Product {
+public class Product implements Serializable{
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @Column(name = "name")
+    @Column(length = 25,unique = true, updatable = true)
     private String name;
-    @Column(name = "description")
+    @Column(length = 25, updatable = true)
     private String descrtiption;
-    @Column(name = "price")
+    
+    @Column(length = 25, updatable = true)
     private long price;
     @Column(name = "image")
     private String image;
-    @Column(name = "status")
+    
+    @Column(length = 25, updatable = true)
     private String status;
 
     public Product() {

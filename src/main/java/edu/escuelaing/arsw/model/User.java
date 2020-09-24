@@ -1,28 +1,27 @@
 package edu.escuelaing.arsw.model;
 
-import lombok.Data;
+
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Data
-@Table(name="user", schema = "public")
-public class User {
+@Table(name="users", schema = "public")
+public class User implements Serializable {
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @Column(name = "name")
+    @Column(length = 25, updatable = true)
     private String name;
-    @Column(name = "lastname")
+    @Column(length = 25, updatable = true)
     private String lastName;
-    @Column(name = "email")
+    @Column(length = 50, unique = true, updatable = false)
     private String email;
-    @Column(name = "password")
+    @Column(nullable = false)
     private String password;
     @Column(name = "rol")
     private String rol;
-    @Column(name = "address")
+    @Column(length = 25, updatable = true)
     private String address;
     @Column(name = "image")
     private String image;
