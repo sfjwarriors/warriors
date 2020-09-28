@@ -1,14 +1,29 @@
 package edu.escuelaing.arsw.services.impl;
 
 import edu.escuelaing.arsw.Exceptions.ProductServiceException;
-//import edu.escuelaing.arsw.persistence.ProductPersistence;
+import edu.escuelaing.arsw.Exceptions.UserServiceException;
+import edu.escuelaing.arsw.model.Product;
+import edu.escuelaing.arsw.persistence.ProductPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductService implements edu.escuelaing.arsw.services.ProductService {
-   
-    //private ProductPersistence productPersistence;
+
+    @Autowired
+    private ProductPersistence productPersistence;
+
+    @Override
+    public void register(String name, String description, long price, String image) throws ProductServiceException {
+        Product product = new Product(name, description, price, image);
+        try{
+            productPersistence.save(product);
+        }catch (IllegalArgumentException e){
+            throw new ProductServiceException("The product couldn't be registred");
+        }
+    }
 
     @Override
     public void updateProductStatus(long idProduct, String status) throws ProductServiceException {
@@ -38,5 +53,15 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
     @Override
     public void orderProducct(long idProduct, long idUser) {
 
+    }
+
+    @Override
+    public Iterable<Product> findAll() throws ProductServiceException {
+        try {
+            return productPersistence.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ProductServiceException("There aren't Products");
+        }
     }
 }

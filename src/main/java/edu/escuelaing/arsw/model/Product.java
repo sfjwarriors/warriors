@@ -9,29 +9,27 @@ public class Product implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @Column(length = 25,unique = true, updatable = true)
+    @Column(name = "name")
     private String name;
-    @Column(length = 25, updatable = true)
-    private String descrtiption;
-    
-    @Column(length = 25, updatable = true)
+    @Column(name = "description")
+    private String description;
+    @Column(name = "price")
     private long price;
     @Column(name = "image")
     private String image;
-    
-    @Column(length = 25, updatable = true)
-    private String status;
+    //@Column(length = 25, updatable = true)
+    //private String status;
 
     public Product() {
     }
 
-    public Product(long id, String name, String descrtiption, long price, String image, String status) {
-        this.id = id;
+    public Product(String name, String description, long price, String image) {
+        //this.id = id;
         this.name = name;
-        this.descrtiption = descrtiption;
+        this.description = description;
         this.price = price;
         this.image = image;
-        this.status = status;
+        //this.status = status;
     }
 
     public long getId() {
@@ -50,12 +48,12 @@ public class Product implements Serializable{
         this.name = name;
     }
 
-    public String getDescrtiption() {
-        return descrtiption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescrtiption(String descrtiption) {
-        this.descrtiption = descrtiption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getPrice() {
@@ -74,11 +72,22 @@ public class Product implements Serializable{
         this.image = image;
     }
 
-    public String getStatus() {
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                '}';
+    }
+
+    /*public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }
+    }*/
 }
