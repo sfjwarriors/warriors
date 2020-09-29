@@ -4,6 +4,7 @@ package edu.escuelaing.arsw.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="user", schema = "public")
@@ -27,7 +28,11 @@ public class User implements Serializable {
     private String image;
     @Column(name = "cash")
     private long cash;
-
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_User")
+    private List<Order> orders;
+    
     public User(){
 
     }

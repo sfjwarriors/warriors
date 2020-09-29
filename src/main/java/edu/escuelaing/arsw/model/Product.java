@@ -9,27 +9,28 @@ public class Product implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @Column(name = "name")
+    @Column(length = 25,unique = true, updatable = true)
     private String name;
-    @Column(name = "description")
+    @Column(length = 25, updatable = true)
     private String description;
-    @Column(name = "price")
+    
+    @Column(length = 25, updatable = true)
     private long price;
     @Column(name = "image")
     private String image;
-    //@Column(length = 25, updatable = true)
-    //private String status;
+    
+    @Column(length = 25, updatable = true)
+    private String status;
 
     public Product() {
     }
 
     public Product(String name, String description, long price, String image) {
-        //this.id = id;
+       
         this.name = name;
         this.description = description;
         this.price = price;
         this.image = image;
-        //this.status = status;
     }
 
     public long getId() {
@@ -52,7 +53,7 @@ public class Product implements Serializable{
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescrtiption(String description) {
         this.description = description;
     }
 
@@ -72,22 +73,11 @@ public class Product implements Serializable{
         this.image = image;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", image='" + image + '\'' +
-                '}';
-    }
-
-    /*public String getStatus() {
+    public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }*/
+    }
 }
