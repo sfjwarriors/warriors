@@ -6,6 +6,7 @@
 package edu.escuelaing.arsw.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -26,25 +27,55 @@ public class Service implements Serializable {
     private long price;
     @Column(length = 25, updatable = true)
     private String status;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_Order_Services")
+    private List<Order> orders;
 
     public long getIdService() {
         return idService;
+    }
+
+    public void setIdService(long idService) {
+        this.idService = idService;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getPrice() {
         return price;
     }
 
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
     public String getStatus() {
         return status;
     }
-    
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }
