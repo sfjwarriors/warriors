@@ -46,9 +46,9 @@ public class Controller {
     public ResponseEntity<?> findAllProducts() {
         try {
             Iterable<Product> productList = productService.findAll();
-            for (Product p: productList) {
+            /*for (Product p: productList) {
                 System.out.println(p.toString());
-            }
+            }*/
             return new ResponseEntity<>(productList, HttpStatus.FOUND);
         } catch (ProductServiceException e) {
             e.printStackTrace();
