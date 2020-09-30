@@ -16,8 +16,8 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
     private ProductPersistence productPersistence;
 
     @Override
-    public void register(String name, String description, long price, String image) throws ProductServiceException {
-        Product product = new Product(name, description, price, image);
+    public void register(String name, String description, long price, String image, String status, long fk_mechanic_product) throws ProductServiceException {
+        Product product = new Product(name, description, price, image, status, fk_mechanic_product);
         try{
             productPersistence.save(product);
         }catch (IllegalArgumentException e){

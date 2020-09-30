@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7fb6a88-2f2e-4d63-bbd4-b09cfabd5554" name="Default Changelist" comment="">
+    <list default="true" id="ae3687d6-017b-453e-b115-f73feebfc9be" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/model/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/model/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/model/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/services/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/services/impl/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/escuelaing/arsw/services/impl/ProductService.java" afterDir="false" />
     </list>
@@ -27,7 +28,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="1hygyOj96MC1NxdM4o2GeYQeu4Q" />
+  <component name="ProjectId" id="1iAGPDXSO67F75ZZGxtAdd1I46Z" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -35,6 +36,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -59,79 +61,50 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f7fb6a88-2f2e-4d63-bbd4-b09cfabd5554" name="Default Changelist" comment="" />
-      <created>1600989000829</created>
+      <changelist id="ae3687d6-017b-453e-b115-f73feebfc9be" name="Default Changelist" comment="" />
+      <created>1601342959596</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1600989000829</updated>
+      <updated>1601342959596</updated>
     </task>
-    <task id="LOCAL-00001" summary="Login">
-      <created>1600989224197</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1600989224197</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Login">
-      <created>1600989317036</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1600989317036</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Login">
-      <created>1600989344147</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1600989344147</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Login">
-      <created>1600989991584</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1600989991584</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1601311980584">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601343478523">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1601311980584" />
-    <state x="395" y="0" key="CommitChangelistDialog2" timestamp="1600989989741">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1601343478523" />
+    <state x="838" y="100" key="#com.intellij.ide.util.MemberChooser" timestamp="1601345966040">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="395" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1600989989741" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1601312999076">
+    <state x="838" y="100" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1601345966040" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1601349100732">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601312999076" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1601312999076">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601349100732" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1601349100732">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601312999076" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1601312999076">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601349100732" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1601349100732">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601312999076" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1601312999076">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601349100732" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1601349100732">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601312999076" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1600989348257">
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601349100732" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1601350937892">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600989348257" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1601312858661">
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1601350937892" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601391825086">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1601312858661" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1601391825086" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1601343885653">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1601343885653" />
   </component>
 </project>

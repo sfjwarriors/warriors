@@ -55,14 +55,11 @@ public class Controller {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
-    
-
-
 
     @RequestMapping(value = "registerproduct", method = RequestMethod.POST)
     public ResponseEntity<?> registerProduct(@RequestBody Product product) {
         try {
-            productService.register(product.getName(), product.getDescription(), product.getPrice(), product.getImage());
+            productService.register(product.getName(), product.getDescription(), product.getPrice(), product.getImage(), product.getStatus(), product.getFk_mechanic_product());
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
         } catch (ProductServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
