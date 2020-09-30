@@ -16,13 +16,13 @@
 El objetivo de la aplicación es conectar a proveedores de servicios automotrices y a sus clientes para que los clientes puedan consumir sus productos y servicios desde la comodidad de sus casas, la aplicación permitirá ver todos los proveedores y los servicios y productos que ofrecen. La aplicación permitirá que cuando se pida un servicio se chatee con el proveedor para ultimar detalles o para aclarar cualquier duda que tenga el cliente.
 
 ## Diagrama de clases:
-![Diagrama de clases](https://i.ibb.co/n3VTRDV/diagrama-De-Clases.png)
+![Diagrama de clases](img/classes.jpg)
 
 ## Diagrama de Base de Datos:
-![Diagrama de base de datos](https://i.ibb.co/kGnZsnB/modelo-Base-De-Datos.png)
+![Diagrama de base de datos](img/ER.jpg)
 
 ## Diagrama de Componentes:
-![Diagrama de componentes](https://i.ibb.co/qr7tQtT/modelo-C-C.png)
+![Diagrama de componentes](img/components.jpg)
 
 ## Historias de Usuario:
 ![Diagrama casos de uso Mecanico](https://i.ibb.co/XsQ2dTm/historia-Mecanico.png)
