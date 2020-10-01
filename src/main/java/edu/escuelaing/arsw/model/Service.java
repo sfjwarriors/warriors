@@ -19,7 +19,7 @@ public class Service implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long idService;
-    @Column(length = 25,unique = true, updatable = true)
+    @Column(length = 100,unique = true, updatable = true)
     private String name;
     @Column(length = 300, updatable = true)
     private String description;
@@ -28,8 +28,8 @@ public class Service implements Serializable {
     @Column(length = 25, updatable = true)
     private String status;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "FK_Order_Services")
-    private List<Order> orders;
+    @JoinColumn(name = "fk_services_cart")
+    private List<Cart> carts;
 
     public long getIdService() {
         return idService;
@@ -71,11 +71,4 @@ public class Service implements Serializable {
         this.status = status;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 }

@@ -1,14 +1,11 @@
 package edu.escuelaing.arsw.model;
 
-
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
-@Entity
-@Table(name="user", schema = "public")
-public class User implements Serializable {
+/*@Entity
+@Table(name = "superuser", schema = "public")
+public class SuperUser {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
@@ -26,24 +23,17 @@ public class User implements Serializable {
     private String address;
     @Column(name = "image")
     private String image;
-    @Column(name = "cash")
-    private long cash;
-    @Column (length = 10)
-    private long cellphone;
-    
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_user")
-    private List<Order> orders;
-
+    private List<User> users;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_store")
-    private List<Store> store;
-    
-    public User(){
+    @JoinColumn(name = "fk_mechanic")
+    private List<Mechanic> mechanics;
 
+    public SuperUser() {
     }
 
-    public User(String name, String lastName, String email, String password, String rol, String address, String image, long cash, long cellphone) {
+    public SuperUser(String name, String lastName, String email, String password, String rol, String address, String image) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -51,16 +41,6 @@ public class User implements Serializable {
         this.rol = rol;
         this.address = address;
         this.image = image;
-        this.cash = cash;
-        this.cellphone = cellphone;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -119,36 +99,5 @@ public class User implements Serializable {
         this.image = image;
     }
 
-    public long getCash() {
-        return cash;
-    }
 
-    public void setCash(long cash) {
-        this.cash = cash;
-    }
-
-    public long getCellphone() {
-        return cellphone;
-    }
-
-    public void setCellphone(int cellphone) {
-        this.cellphone = cellphone;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", rol='" + rol + '\'' +
-                ", address='" + address + '\'' +
-                ", image='" + image + '\'' +
-                ", cash=" + cash +
-                ", cellphone=" + cellphone +
-                ", orders=" + orders +
-                '}';
-    }
-}
+}*/

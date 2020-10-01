@@ -44,10 +44,10 @@ public class UserService implements edu.escuelaing.arsw.services.UserService {
     }
 
     @Override
-    public void register(String name, String lastName, String email, String password, String rol, String address, String image, long cash) throws UserServiceException {
+    public void register(String name, String lastName, String email, String password, String rol, String address, String image, long cash, long cellphone) throws UserServiceException {
         Pbkdf2PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder("salt");
         password = passwordEncoder.encode(password);
-        User user = new User(name,  lastName, email, password, rol, address, image, cash);
+        User user = new User(name,  lastName, email, password, rol, address, image, cash, cellphone);
         try{
             userPersistence.save(user);
         }catch (IllegalArgumentException e){

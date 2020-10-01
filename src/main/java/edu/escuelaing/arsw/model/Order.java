@@ -33,9 +33,12 @@ public class Order implements Serializable {
     @Column
     private String status;
 
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "FK_Order_Product")
-//    private List<Long> orders;
+    @Column
+    private long fk_mechanic_order;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_order_cart")
+    private List<Cart> carts;
 
     public long getIdOrder() { return idOrder; }
 

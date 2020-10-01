@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping(value = "/")
 public class Controller {
@@ -35,7 +33,7 @@ public class Controller {
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public ResponseEntity<?> registerUser(@RequestBody User user) {
         try {
-            userService.register(user.getName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getRol(), user.getAddress(), user.getImage(), user.getCash());
+            userService.register(user.getName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getRol(), user.getAddress(), user.getImage(), 0, user.getCellphone());
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
         } catch (UserServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);

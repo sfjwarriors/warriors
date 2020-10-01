@@ -22,11 +22,9 @@ public class Product implements Serializable{
     private String status;
     @Column(name = "fk_mechanic_product")
     private long fk_mechanic_product;
-    //@Column(name = "fk_mechanic_product")
-    //private long idMechanic;
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "FK_Order_Product")
-//    private List<Order> orders;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_product_cart")
+    private List<Cart> carts;
 
     public Product() {
     }
@@ -95,12 +93,4 @@ public class Product implements Serializable{
     public void setFk_mechanic_product(long fk_mechanic_product) {
         this.fk_mechanic_product = fk_mechanic_product;
     }
-
-    /*public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }*/
 }

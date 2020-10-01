@@ -34,7 +34,7 @@ public class AppTest {
     @Test
     public void deberiaRegistrar() {
         try {
-            userService.register("santiago", "lopez", "santiago@mail.com", "1234", "USER", "Carrera 123", "img", 10000000);
+            userService.register("santiago", "lopez", "santiago@mail.com", "1234", "USER", "Carrera 123", "img", 10000000, 32454234);
         } catch (UserServiceException e) {
             e.printStackTrace();
         }

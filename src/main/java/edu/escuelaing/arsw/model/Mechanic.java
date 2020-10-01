@@ -9,16 +9,13 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
-/**
- *
- * @author rojas
- */
+/*
 @Entity
 @Table(name="mechanics", schema = "public")
-public class Mechanic implements Serializable{
+public class Mechanic extends SuperUser implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long idMechanic;
+    private long id;
     @Column(length = 50, updatable = true)
     private String name;
     @Column(length = 50, name = "lastname")
@@ -31,8 +28,13 @@ public class Mechanic implements Serializable{
     private String storeName;
     @Column (length = 10)
     private int cellphone;
-    
-    
+
+    public Mechanic(String name, String lastName, String email, String password, String rol, String address, String image, String storeName, int cellphone) {
+        super(name, lastName, email, password, rol, address, image);
+        this.storeName = storeName;
+        this.cellphone = cellphone;
+    }
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "FK_Mechanic_Product")
     private List<Product> products;
@@ -45,7 +47,7 @@ public class Mechanic implements Serializable{
     @JoinColumn(name = "FK_Mechanic_Order")
     private List<Order> orders;
 
-    public long getIdMechanic() {
+    /*public long getIdMechanic() {
         return idMechanic;
     }
 
@@ -84,12 +86,4 @@ public class Mechanic implements Serializable{
     public List<Service> getServices() {
         return services;
     }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-    
-    
-   
-    
-}
+}*/
