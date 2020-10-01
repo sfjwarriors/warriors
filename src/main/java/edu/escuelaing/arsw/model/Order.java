@@ -34,7 +34,7 @@ public class Order implements Serializable {
     private String status;
 
     @Column
-    private long fk_mechanic_order;
+    private long fk_store;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_order_cart")

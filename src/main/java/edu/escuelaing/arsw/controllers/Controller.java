@@ -47,7 +47,7 @@ public class Controller {
             /*for (Product p: productList) {
                 System.out.println(p.toString());
             }*/
-            return new ResponseEntity<>(productList, HttpStatus.FOUND);
+            return new ResponseEntity<>(productList, HttpStatus.ACCEPTED);
         } catch (ProductServiceException e) {
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -57,7 +57,7 @@ public class Controller {
     @RequestMapping(value = "registerproduct", method = RequestMethod.POST)
     public ResponseEntity<?> registerProduct(@RequestBody Product product) {
         try {
-            productService.register(product.getName(), product.getDescription(), product.getPrice(), product.getImage(), product.getStatus(), product.getFk_mechanic_product());
+            productService.register(product.getName(), product.getDescription(), product.getPrice(), product.getImage(), product.getStatus(), product.getFk_store_product());
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
         } catch (ProductServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);

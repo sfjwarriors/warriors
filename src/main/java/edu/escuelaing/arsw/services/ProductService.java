@@ -8,7 +8,7 @@ import edu.escuelaing.arsw.model.User;
 import java.util.List;
 
 public interface ProductService {
-    public void register(String name, String description, long price, String image, String status, long fk_mechanic_product) throws ProductServiceException;
+    public void register(String name, String description, long price, String image, String status, long fk_store_product) throws ProductServiceException;
     public void updateProductStatus(long idProduct, String status) throws ProductServiceException;
     public void updateProductName(long idProduct, String name) throws ProductServiceException;
     public void updateProductDescription(long idProduct, String description) throws ProductServiceException;

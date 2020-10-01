@@ -20,8 +20,8 @@ public class Product implements Serializable{
     private String image;
     @Column(length = 25, updatable = true)
     private String status;
-    @Column(name = "fk_mechanic_product")
-    private long fk_mechanic_product;
+    @Column(name = "fk_store_product")
+    private long fk_store_product;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_product_cart")
     private List<Cart> carts;
@@ -29,13 +29,13 @@ public class Product implements Serializable{
     public Product() {
     }
 
-    public Product(String name, String description, long price, String image, String status, long fk_mechanic_product) {
+    public Product(String name, String description, long price, String image, String status, long fk_store_product) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.image = image;
         this.status = status;
-        this.fk_mechanic_product = fk_mechanic_product;
+        this.fk_store_product = fk_store_product;
     }
 
     public long getId() {
@@ -86,11 +86,11 @@ public class Product implements Serializable{
         this.status = status;
     }
 
-    public long getFk_mechanic_product() {
-        return fk_mechanic_product;
+    public long getFk_store_product() {
+        return fk_store_product;
     }
 
-    public void setFk_mechanic_product(long fk_mechanic_product) {
-        this.fk_mechanic_product = fk_mechanic_product;
+    public void setFk_store_product(long fk_store_product) {
+        this.fk_store_product = fk_store_product;
     }
 }

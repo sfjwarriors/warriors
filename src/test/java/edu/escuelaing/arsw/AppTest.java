@@ -1,9 +1,11 @@
 package edu.escuelaing.arsw;
 
 
+import edu.escuelaing.arsw.Exceptions.ProductServiceException;
 import edu.escuelaing.arsw.Exceptions.UserServiceException;
 import edu.escuelaing.arsw.persistence.UserPersistence;
-import edu.escuelaing.arsw.services.impl.UserService;
+import edu.escuelaing.arsw.services.ProductService;
+import edu.escuelaing.arsw.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +31,15 @@ public class AppTest {
     private UserService userService;
 
     @Autowired
+    private ProductService productService;
+
+    @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void deberiaRegistrar() {
         try {
-            userService.register("santiago", "lopez", "santiago@mail.com", "1234", "USER", "Carrera 123", "img", 10000000, 32454234);
+            userService.register("santiago", "lopez", "santiago@mail.com", "1234", "MECA", "Carrera 123", "img", 10000000, 32454234);
         } catch (UserServiceException e) {
             e.printStackTrace();
         }
@@ -49,18 +54,35 @@ public class AppTest {
         }
     }
 
+    @Test
+    public void deberiaCrearProducto() {
+        try {
+            productService.register("Aceite", "Aceite Mobil", 50000, "image aceite", "available", 1);
+        } catch (ProductServiceException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    public void deberiaObtenerTodosProductos() {
+        try {
+            mockMvc.perform(
+                    MockMvcRequestBuilders.get("/findproducts")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(""))
+                    .andExpect(status().isAccepted());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 //    @Test
-//    public void deberiaObtenerTodosProductos() {
+//    public void deberiaListarProductos() {
 //        try {
-//            mockMvc.perform(
-//                    MockMvcRequestBuilders.get("/findproducts")
-//                            .contentType(MediaType.APPLICATION_JSON)
-//                            .content(""))
-//                    .andExpect(status().isAccepted());
-//        } catch (Exception e) {
+//            productService.findAll();
+//        } catch (ProductServiceException e) {
 //            e.printStackTrace();
 //        }
 //    }
-
-
 }

@@ -12,10 +12,15 @@ public class Store {
     @Column(length = 50, updatable = true)
     private String storeName;
     @Column
-    private long fk_mecanico_store;
+    private long fk_mechanic;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_mecanico")
+    @JoinColumn(name = "fk_store")
     private List<Order> orders;
-
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_store_product")
+    private List<Product> products;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_store_service")
+    private List<Service> services;
 
 }
