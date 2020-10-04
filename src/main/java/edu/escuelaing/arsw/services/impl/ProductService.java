@@ -16,8 +16,8 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
     private ProductPersistence productPersistence;
 
     @Override
-    public void register(String name, String description, long price, String image, String status, long fk_store_product) throws ProductServiceException {
-        Product product = new Product(name, description, price, image, status, fk_store_product);
+    public void register(String name, String description, long price, String image, String status, long fkStoreProduct) throws ProductServiceException {
+        Product product = new Product(name, description, price, image, status, fkStoreProduct);
         try{
             productPersistence.save(product);
         }catch (IllegalArgumentException e){
@@ -62,6 +62,15 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
         } catch (Exception e) {
             e.printStackTrace();
             throw new ProductServiceException("There aren't Products");
+        }
+    }
+
+    @Override
+    public List<Product> findByStatusAndFkStoreProduct(String status, Long fkStoreProduct) throws ProductServiceException {
+        try{
+            return productPersistence.findByStatusAndFkStoreProduct(status, fkStoreProduct);
+        }catch (NullPointerException e){
+            throw new ProductServiceException("Product doesn't found");
         }
     }
 }

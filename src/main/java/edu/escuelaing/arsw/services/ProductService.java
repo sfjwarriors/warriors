@@ -16,4 +16,5 @@ public interface ProductService {
     public void deleteProduct(long idProduct) throws ProductServiceException;
     public void orderProducct(long idProduct, long idUser) throws ProductServiceException;
     public Iterable<Product> findAll() throws ProductServiceException;
+    public List <Product> findByStatusAndFkStoreProduct(String status, Long fkStoreProduct) throws ProductServiceException;
 }

@@ -40,6 +40,7 @@ public class AppTest {
     public void deberiaRegistrar() {
         try {
             userService.register("santiago", "lopez", "santiago@mail.com", "1234", "MECA", "Carrera 123", "img", 10000000, 32454234);
+            userService.register("juan", "munoz", "juan@mail.com", "1234", "MECA", "Carrera 130", "img", 10000000, 32454432);
         } catch (UserServiceException e) {
             e.printStackTrace();
         }
@@ -57,8 +58,19 @@ public class AppTest {
     @Test
     public void deberiaCrearProducto() {
         try {
-            productService.register("Aceite", "Aceite Mobil", 50000, "image aceite", "available", 1);
+//            productService.register("Aceite", "Aceite Mobil", 50000, "image aceite", "available", 25);
+            productService.register("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", 26);
         } catch (ProductServiceException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void deberiaCrearStore() {
+        try {
+            userService.registerStore("donde Alan Brito", 23);
+            userService.registerStore("Serviteca", 24);
+        } catch (UserServiceException e) {
             e.printStackTrace();
         }
     }

@@ -24,20 +24,20 @@ public class Order implements Serializable {
     @Column
     private Date date;
     
-    @Column (name = "delivery_date")
+    @Column (name = "deliveryDate")
     private Date deliveryDate;
     
-    @Column (name = "total_value")
+    @Column (name = "totalValue")
     private int totalValue;
     
     @Column
     private String status;
 
     @Column
-    private long fk_store;
+    private long fkStore;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_order_cart")
+    @JoinColumn(name = "fkOrderCart")
     private List<Cart> carts;
 
     public long getIdOrder() { return idOrder; }

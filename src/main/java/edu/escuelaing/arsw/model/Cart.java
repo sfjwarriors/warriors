@@ -10,11 +10,11 @@ public class Cart implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     @Column
-    private long fk_product_cart;
+    private long fkProductCart;
     @Column
-    private long fk_order_cart;
+    private long fkOrderCart;
     @Column
-    private long fk_services_cart;
+    private long fkServicesCart;
 
     public Cart() {
     }

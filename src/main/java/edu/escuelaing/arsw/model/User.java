@@ -32,11 +32,11 @@ public class User implements Serializable {
     private long cellphone;
     
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_user")
+    @JoinColumn(name = "fkUser")
     private List<Order> orders;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_mechanic")
+    @JoinColumn(name = "fkMechanic")
     private List<Store> store;
     
     public User(){

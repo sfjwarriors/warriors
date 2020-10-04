@@ -10,7 +10,7 @@ public class Product implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @Column(length = 25, unique = true, updatable = true)
+    @Column(length = 25, updatable = true)
     private String name;
     @Column(length = 250, updatable = true)
     private String description;
@@ -20,22 +20,22 @@ public class Product implements Serializable{
     private String image;
     @Column(length = 25, updatable = true)
     private String status;
-    @Column(name = "fk_store_product")
-    private long fk_store_product;
+    @Column(name = "fkStoreProduct")
+    private long fkStoreProduct;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_product_cart")
+    @JoinColumn(name = "fkProductCart")
     private List<Cart> carts;
 
     public Product() {
     }
 
-    public Product(String name, String description, long price, String image, String status, long fk_store_product) {
+    public Product(String name, String description, long price, String image, String status, long fkStoreProduct) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.image = image;
         this.status = status;
-        this.fk_store_product = fk_store_product;
+        this.fkStoreProduct = fkStoreProduct;
     }
 
     public long getId() {
@@ -86,11 +86,11 @@ public class Product implements Serializable{
         this.status = status;
     }
 
-    public long getFk_store_product() {
-        return fk_store_product;
+    public long getFkStoreProduct() {
+        return fkStoreProduct;
     }
 
-    public void setFk_store_product(long fk_store_product) {
-        this.fk_store_product = fk_store_product;
+    public void setFkStoreProduct(long fkStoreProduct) {
+        this.fkStoreProduct = fkStoreProduct;
     }
 }

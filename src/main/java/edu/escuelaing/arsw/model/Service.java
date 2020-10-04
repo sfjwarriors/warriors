@@ -27,18 +27,18 @@ public class Service implements Serializable {
     private long price;
     @Column(length = 25, updatable = true)
     private String status;
-    @Column(name = "fk_store_service")
-    private long fk_store_service;
+    @Column(name = "fkStoreService")
+    private long fkStoreService;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_services_cart")
+    @JoinColumn(name = "fkServicesCart")
     private List<Cart> carts;
 
-    public Service(String name, String description, long price, String status, long fk_store_service) {
+    public Service(String name, String description, long price, String status, long fkStoreService) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.status = status;
-        this.fk_store_service = fk_store_service;
+        this.fkStoreService = fkStoreService;
     }
 
     public long getIdService() {
@@ -81,12 +81,12 @@ public class Service implements Serializable {
         this.status = status;
     }
 
-    public long getFk_store_service() {
-        return fk_store_service;
+    public long getFkStoreService() {
+        return fkStoreService;
     }
 
-    public void setFk_store_service(long fk_store_service) {
-        this.fk_store_service = fk_store_service;
+    public void setFkStoreService(long fkStoreService) {
+        this.fkStoreService = fkStoreService;
     }
 
     @Override
@@ -97,7 +97,7 @@ public class Service implements Serializable {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", status='" + status + '\'' +
-                ", fk_store_service=" + fk_store_service +
+                ", fkStoreService=" + fkStoreService +
                 ", carts=" + carts +
                 '}';
     }
