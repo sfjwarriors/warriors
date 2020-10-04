@@ -56,9 +56,9 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
     }
 
     @Override
-    public Iterable<Product> findAll() throws ProductServiceException {
+    public List<Product> findAll() throws ProductServiceException {
         try {
-            return productPersistence.findAll();
+            return (List<Product>) productPersistence.findAll();
         } catch (Exception e) {
             e.printStackTrace();
             throw new ProductServiceException("There aren't Products");

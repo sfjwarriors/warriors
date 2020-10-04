@@ -1,5 +1,6 @@
 package edu.escuelaing.arsw.services.impl;
 
+import edu.escuelaing.arsw.Exceptions.ProductServiceException;
 import edu.escuelaing.arsw.Exceptions.UserServiceException;
 import edu.escuelaing.arsw.model.Product;
 import edu.escuelaing.arsw.model.Store;
@@ -23,17 +24,21 @@ public class UserService implements edu.escuelaing.arsw.services.UserService {
     private StorePersistence storePersistence;
 
     @Override
-    public void login(String email, String password) throws UserServiceException {
+    public boolean login(String email, String password) throws UserServiceException {
         boolean login = false;
         try {
             Pbkdf2PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder("salt");
             User user = userPersistence.findByEmail(email);
             login = passwordEncoder.matches(password,user.getPassword());
-            System.out.println("Se logueo: "+login);
             if (!login) {
                 throw new UserServiceException("Incorrect password");
             }
+            return login;
         } catch (NullPointerException e) {
+            /*if (e.getMessage()==null) {
+                login = false;
+                return login;
+            }*/
             throw new UserServiceException("Email doesn't found");
         }
     }
@@ -64,7 +69,12 @@ public class UserService implements edu.escuelaing.arsw.services.UserService {
 
     @Override
     public List<User> findAll() throws UserServiceException {
-        return null;
+        try {
+            return (List<User>) userPersistence.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new UserServiceException("There aren't Users");
+        }
     }
 
     @Override

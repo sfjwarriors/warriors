@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    public void login(String email, String password) throws UserServiceException;
+    public boolean login(String email, String password) throws UserServiceException;
     public void changePassword(String oldPassword, String newPassword, String confirmPassword) throws UserServiceException;
     public void changeProfilePhoto(String image) throws UserServiceException;
     public void updateCash(int moneySpent) throws UserServiceException;

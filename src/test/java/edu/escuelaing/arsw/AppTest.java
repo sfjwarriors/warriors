@@ -2,9 +2,11 @@ package edu.escuelaing.arsw;
 
 
 import edu.escuelaing.arsw.Exceptions.ProductServiceException;
+import edu.escuelaing.arsw.Exceptions.StoreServiceException;
 import edu.escuelaing.arsw.Exceptions.UserServiceException;
 import edu.escuelaing.arsw.persistence.UserPersistence;
 import edu.escuelaing.arsw.services.ProductService;
+import edu.escuelaing.arsw.services.StoreService;
 import edu.escuelaing.arsw.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +18,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.junit.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -34,13 +41,19 @@ public class AppTest {
     private ProductService productService;
 
     @Autowired
+    private StoreService storeService;
+
+    @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void deberiaRegistrar() {
         try {
+            assertEquals(0 ,userService.findAll().size());
             userService.register("santiago", "lopez", "santiago@mail.com", "1234", "MECA", "Carrera 123", "img", 10000000, 32454234);
+            assertEquals(1 ,userService.findAll().size());
             userService.register("juan", "munoz", "juan@mail.com", "1234", "MECA", "Carrera 130", "img", 10000000, 32454432);
+            assertEquals(2 ,userService.findAll().size());
         } catch (UserServiceException e) {
             e.printStackTrace();
         }
@@ -49,17 +62,37 @@ public class AppTest {
     @Test
     public void deberiaHacerLogin() {
         try {
-            userService.login("santi@mail.com", "1234");
-        } catch (UserServiceException e) {
+            assertEquals(true, userService.login("santiago@mail.com", "1234"));
+        } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    public void noDeberiaHacerLoginIncorrectEmail() {
+        try {
+            userService.login("santi@mail.com", "154234");
+        } catch (Exception e) {
+            assertEquals("Email doesn't found", e.getMessage());
+        }
+    }
+
+    @Test
+    public void noDeberiaHacerLoginIncorrectPassword() {
+        try {
+            userService.login("santiago@mail.com", "154asf4");
+        } catch (Exception e) {
+            assertEquals("Incorrect password", e.getMessage());
         }
     }
 
     @Test
     public void deberiaCrearProducto() {
         try {
-//            productService.register("Aceite", "Aceite Mobil", 50000, "image aceite", "available", 25);
+            assertEquals(0, productService.findAll().size());
             productService.register("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", 26);
+            assertEquals(1, productService.findAll().size());
         } catch (ProductServiceException e) {
             e.printStackTrace();
         }
@@ -68,9 +101,10 @@ public class AppTest {
     @Test
     public void deberiaCrearStore() {
         try {
-            userService.registerStore("donde Alan Brito", 23);
+            assertEquals(0, storeService.findAll().size());
             userService.registerStore("Serviteca", 24);
-        } catch (UserServiceException e) {
+            assertEquals(1, storeService.findAll().size());
+        } catch (StoreServiceException | UserServiceException e) {
             e.printStackTrace();
         }
     }
@@ -79,11 +113,12 @@ public class AppTest {
     @Test
     public void deberiaObtenerTodosProductos() {
         try {
-            mockMvc.perform(
+            assertEquals(2, productService.findAll());
+            /*mockMvc.perform(
                     MockMvcRequestBuilders.get("/findproducts")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(""))
-                    .andExpect(status().isAccepted());
+                    .andExpect(status().isAccepted());*/
         } catch (Exception e) {
             e.printStackTrace();
         }
