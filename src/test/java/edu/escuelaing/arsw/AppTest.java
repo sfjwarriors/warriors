@@ -2,29 +2,22 @@ package edu.escuelaing.arsw;
 
 
 import edu.escuelaing.arsw.Exceptions.ProductServiceException;
+import edu.escuelaing.arsw.Exceptions.ServicioServiceException;
 import edu.escuelaing.arsw.Exceptions.StoreServiceException;
 import edu.escuelaing.arsw.Exceptions.UserServiceException;
-import edu.escuelaing.arsw.persistence.UserPersistence;
 import edu.escuelaing.arsw.services.ProductService;
+import edu.escuelaing.arsw.services.ServicioService;
 import edu.escuelaing.arsw.services.StoreService;
 import edu.escuelaing.arsw.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.junit.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Unit test for simple App.
@@ -42,6 +35,9 @@ public class AppTest {
 
     @Autowired
     private StoreService storeService;
+
+    @Autowired
+    private ServicioService servicioService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -91,7 +87,7 @@ public class AppTest {
     public void deberiaCrearProducto() {
         try {
             assertEquals(0, productService.findAll().size());
-            productService.register("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", 26);
+            productService.register("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", 32);
             assertEquals(1, productService.findAll().size());
         } catch (ProductServiceException e) {
             e.printStackTrace();
@@ -99,11 +95,23 @@ public class AppTest {
     }
 
     @Test
+    public void deberiaCrearServicio() {
+        try {
+//            assertEquals(0, servicioService.findAll().size());
+            servicioService.register("Cambio de Aceitee", "Imagen Aceite Mobil", "Cambio de aceite para carro", 100000, "available", 35);
+//            assertEquals(1, servicioService.findAll().size());
+        } catch (ServicioServiceException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void deberiaCrearStore() {
         try {
-            assertEquals(0, storeService.findAll().size());
-            userService.registerStore("Serviteca", 24);
             assertEquals(1, storeService.findAll().size());
+            userService.registerStore("Donde Alan Brito", 31);
+            assertEquals(2, storeService.findAll().size());
+
         } catch (StoreServiceException | UserServiceException e) {
             e.printStackTrace();
         }

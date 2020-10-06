@@ -6,9 +6,11 @@ import edu.escuelaing.arsw.model.Product;
 import edu.escuelaing.arsw.model.Store;
 import edu.escuelaing.arsw.persistence.StorePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class StoreService implements edu.escuelaing.arsw.services.StoreService {
     @Autowired
     StorePersistence storePersistence;

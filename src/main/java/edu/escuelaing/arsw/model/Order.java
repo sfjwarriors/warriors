@@ -15,7 +15,7 @@ import javax.persistence.*;
  * @author rojas
  */
 @Entity
-@Table(name="orders", schema = "public")
+@Table(name="order", schema = "public")
 public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

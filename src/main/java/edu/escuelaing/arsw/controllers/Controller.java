@@ -1,17 +1,21 @@
 package edu.escuelaing.arsw.controllers;
 
 import edu.escuelaing.arsw.Exceptions.ProductServiceException;
+import edu.escuelaing.arsw.Exceptions.ServicioServiceException;
 import edu.escuelaing.arsw.Exceptions.UserServiceException;
 import edu.escuelaing.arsw.model.Product;
+import edu.escuelaing.arsw.model.Servicio;
 import edu.escuelaing.arsw.model.Store;
 import edu.escuelaing.arsw.model.User;
 import edu.escuelaing.arsw.services.ProductService;
+import edu.escuelaing.arsw.services.ServicioService;
 import edu.escuelaing.arsw.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/")
@@ -19,9 +23,12 @@ public class Controller {
     @Autowired
     public UserService userService;
 
+
+    @Autowired
+    public ServicioService servicioService;
+
     @Autowired
     public ProductService productService;
-
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody User user) {
         try {
@@ -45,12 +52,20 @@ public class Controller {
     @RequestMapping(value = "findproducts", method = RequestMethod.GET)
     public ResponseEntity<?> findAllProducts() {
         try {
-            Iterable<Product> productList = productService.findAll();
-            /*for (Product p: productList) {
-                System.out.println(p.toString());
-            }*/
+            List<Product> productList = productService.findAll();
             return new ResponseEntity<>(productList, HttpStatus.ACCEPTED);
         } catch (ProductServiceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "findservices", method = RequestMethod.GET)
+    public ResponseEntity<?> findAllServices() {
+        try {
+            List<Servicio> servicios = servicioService.findAll();
+            return new ResponseEntity<>(servicios, HttpStatus.ACCEPTED);
+        } catch (ServicioServiceException e) {
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -60,12 +75,21 @@ public class Controller {
     public ResponseEntity<?> findProductsByStatus(@PathVariable String status, @PathVariable Long fkStoreProduct) {
         System.out.println(status + fkStoreProduct + "findProductsByStatus");
         try {
-            Iterable<Product> productList = productService.findByStatusAndFkStoreProduct(status, fkStoreProduct);
-            for (Product p: productList) {
-                System.out.println(p.toString());
-            }
+            List<Product> productList = productService.findByStatusAndFkStoreProduct(status, fkStoreProduct);
             return new ResponseEntity<>(productList, HttpStatus.ACCEPTED);
         } catch (ProductServiceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "findservicesbyStatus/{status}/{fkStoreService}", method = RequestMethod.GET)
+    public ResponseEntity<?> findServicesByStatus(@PathVariable String status, @PathVariable Long fkStoreService) {
+        System.out.println(status + fkStoreService + "findProductsByStatus");
+        try {
+            List<Servicio> servicioList = servicioService.findByStatusAndFkStoreService(status, fkStoreService);
+            return new ResponseEntity<>(servicioList, HttpStatus.ACCEPTED);
+        } catch (ServicioServiceException e) {
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -81,6 +105,16 @@ public class Controller {
         }
     }
 
+    @RequestMapping(value = "registerservice", method = RequestMethod.POST)
+    public ResponseEntity<?> registerService(@RequestBody Servicio servicio) {
+        try {
+            servicioService.register(servicio.getName(), servicio.getImage(), servicio.getDescription(), servicio.getPrice(), servicio.getStatus(), servicio.getFkStoreService());
+            return new ResponseEntity<>("Success", HttpStatus.CREATED);
+        } catch (ServicioServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
     @RequestMapping(value = "registerstore", method = RequestMethod.POST)
     public ResponseEntity<?> registerProduct(@RequestBody Store store) {
         try {
@@ -90,4 +124,26 @@ public class Controller {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
     }
+
+    @RequestMapping(value = "updateproduct", method = RequestMethod.POST)
+    public ResponseEntity<?> updateProduct(@RequestBody Product product) {
+        try {
+            productService.updateProduct(product);
+            return new ResponseEntity<>("Success", HttpStatus.CREATED);
+        } catch (ProductServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
+    @RequestMapping(value = "updateservice", method = RequestMethod.POST)
+    public ResponseEntity<?> updateService(@RequestBody Servicio servicio) {
+        try {
+            servicioService.updateService(servicio);
+            return new ResponseEntity<>("Success", HttpStatus.CREATED);
+        } catch (ServicioServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
+
 }

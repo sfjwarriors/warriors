@@ -1,13 +1,13 @@
 package edu.escuelaing.arsw.services.impl;
 
 import edu.escuelaing.arsw.Exceptions.ProductServiceException;
-import edu.escuelaing.arsw.Exceptions.UserServiceException;
 import edu.escuelaing.arsw.model.Product;
 import edu.escuelaing.arsw.persistence.ProductPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService implements edu.escuelaing.arsw.services.ProductService {
@@ -26,22 +26,12 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
     }
 
     @Override
-    public void updateProductStatus(long idProduct, String status) throws ProductServiceException {
-
-    }
-
-    @Override
-    public void updateProductName(long idProduct, String name) throws ProductServiceException {
-
-    }
-
-    @Override
-    public void updateProductDescription(long idProduct, String description) throws ProductServiceException {
-
-    }
-
-    @Override
-    public void updateProductPrice(long idProduct, long price) throws ProductServiceException {
+    public void updateProduct(Product product) throws ProductServiceException {
+        try{
+            productPersistence.save(product);
+        }catch (NullPointerException e){
+            throw new ProductServiceException("The product couldn't be update");
+        }
 
     }
 
@@ -50,10 +40,11 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
 
     }
 
-    @Override
-    public void orderProducct(long idProduct, long idUser) {
 
-    }
+//    @Override
+//    public void orderProduct(long idProduct, long idUser) {
+//
+//    }
 
     @Override
     public List<Product> findAll() throws ProductServiceException {

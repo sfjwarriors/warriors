@@ -14,13 +14,15 @@ import javax.persistence.*;
  * @author rojas
  */
 @Entity
-@Table(name="services", schema = "public")
-public class Service implements Serializable {
+@Table(name="servicio", schema = "public")
+public class Servicio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long idService;
-    @Column(length = 100,unique = true, updatable = true)
+    private long id;
+    @Column(length = 100, updatable = true)
     private String name;
+    @Column(name = "image")
+    private String image;
     @Column(length = 300, updatable = true)
     private String description;
     @Column(length = 25, updatable = true)
@@ -33,20 +35,25 @@ public class Service implements Serializable {
     @JoinColumn(name = "fkServicesCart")
     private List<Cart> carts;
 
-    public Service(String name, String description, long price, String status, long fkStoreService) {
+    public Servicio(){
+
+    }
+
+    public Servicio(String name, String image, String description, long price, String status, long fkStoreService) {
         this.name = name;
+        this.image = image;
         this.description = description;
         this.price = price;
         this.status = status;
         this.fkStoreService = fkStoreService;
     }
 
-    public long getIdService() {
-        return idService;
+    public long getId() {
+        return id;
     }
 
-    public void setIdService(long idService) {
-        this.idService = idService;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -85,6 +92,14 @@ public class Service implements Serializable {
         return fkStoreService;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public void setFkStoreService(long fkStoreService) {
         this.fkStoreService = fkStoreService;
     }
@@ -92,7 +107,7 @@ public class Service implements Serializable {
     @Override
     public String toString() {
         return "Service{" +
-                "idService=" + idService +
+                "idService=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +

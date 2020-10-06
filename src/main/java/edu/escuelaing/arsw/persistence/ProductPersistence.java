@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface ProductPersistence extends CrudRepository<Product, Long> {
     public List<Product> findByStatusAndFkStoreProduct(String status, Long fkStoreProduct);
-//    public List<Product> findByStatusAndPrice(String status, Long price);
+
+
 }

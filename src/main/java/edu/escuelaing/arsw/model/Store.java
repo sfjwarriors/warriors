@@ -21,7 +21,10 @@ public class Store {
     private List<Product> products;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fkStoreService")
-    private List<Service> services;
+    private List<Servicio> servicios;
+
+    public Store() {
+    }
 
     public Store(String storeName, long fkMechanic) {
         this.storeName = storeName;
@@ -68,11 +71,11 @@ public class Store {
         this.products = products;
     }
 
-    public List<Service> getServices() {
-        return services;
+    public List<Servicio> getServicios() {
+        return servicios;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setServicios(List<Servicio> servicios) {
+        this.servicios = servicios;
     }
 }

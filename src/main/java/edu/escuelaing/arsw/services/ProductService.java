@@ -8,13 +8,10 @@ import edu.escuelaing.arsw.model.User;
 import java.util.List;
 
 public interface ProductService {
-    public void register(String name, String description, long price, String image, String status, long fk_store_product) throws ProductServiceException;
-    public void updateProductStatus(long idProduct, String status) throws ProductServiceException;
-    public void updateProductName(long idProduct, String name) throws ProductServiceException;
-    public void updateProductDescription(long idProduct, String description) throws ProductServiceException;
-    public void updateProductPrice(long idProduct, long price) throws ProductServiceException;
+    public void register(String name, String description, long price, String image, String status, long fkStoreProduct) throws ProductServiceException;
+    public void updateProduct(Product product) throws ProductServiceException;
     public void deleteProduct(long idProduct) throws ProductServiceException;
-    public void orderProducct(long idProduct, long idUser) throws ProductServiceException;
+//    public void orderProduct(long idProduct, long idUser) throws ProductServiceException;
     public List<Product> findAll() throws ProductServiceException;
     public List <Product> findByStatusAndFkStoreProduct(String status, Long fkStoreProduct) throws ProductServiceException;
 }
