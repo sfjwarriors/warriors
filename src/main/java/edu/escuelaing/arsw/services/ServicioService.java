@@ -2,10 +2,12 @@ package edu.escuelaing.arsw.services;
 
 import edu.escuelaing.arsw.Exceptions.ServicioServiceException;
 import edu.escuelaing.arsw.model.Servicio;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
 
+@Service
 public interface ServicioService {
     public void register(String name, String image, String description, long price, String status, long fkStoreService) throws ServicioServiceException;
     public void updateService(Servicio service) throws ServicioServiceException;

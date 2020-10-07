@@ -4,9 +4,11 @@ import edu.escuelaing.arsw.Exceptions.ProductServiceException;
 import edu.escuelaing.arsw.Exceptions.UserServiceException;
 import edu.escuelaing.arsw.model.Product;
 import edu.escuelaing.arsw.model.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ProductService {
     public void register(String name, String description, long price, String image, String status, long fkStoreProduct) throws ProductServiceException;
     public void updateProduct(Product product) throws ProductServiceException;

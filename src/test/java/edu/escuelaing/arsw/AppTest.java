@@ -109,7 +109,7 @@ public class AppTest {
     public void deberiaCrearStore() {
         try {
             assertEquals(1, storeService.findAll().size());
-            userService.registerStore("Donde Alan Brito", 31);
+            storeService.registerStore("Donde Alan Brito", 31);
             assertEquals(2, storeService.findAll().size());
 
         } catch (StoreServiceException | UserServiceException e) {
