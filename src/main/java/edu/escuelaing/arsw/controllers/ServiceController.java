@@ -1,5 +1,6 @@
 package edu.escuelaing.arsw.controllers;
 
+import edu.escuelaing.arsw.Exceptions.ProductServiceException;
 import edu.escuelaing.arsw.Exceptions.ServicioServiceException;
 import edu.escuelaing.arsw.model.Servicio;
 import edu.escuelaing.arsw.services.ServicioService;
@@ -54,6 +55,16 @@ public class ServiceController {
         try {
             servicioService.updateService(servicio);
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
+        } catch (ServicioServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
+    @RequestMapping(value = "{idService}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteProduct(@PathVariable long idService) {
+        try {
+            servicioService.deleteService(idService);
+            return new ResponseEntity<>("Success", HttpStatus.ACCEPTED);
         } catch (ServicioServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }

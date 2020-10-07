@@ -64,4 +64,14 @@ public class ProductController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
     }
+
+    @RequestMapping(value = "{idProduct}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteProduct(@PathVariable long idProduct) {
+        try {
+            productService.deleteProduct(idProduct);
+            return new ResponseEntity<>("Success", HttpStatus.ACCEPTED);
+        } catch (ProductServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
 }

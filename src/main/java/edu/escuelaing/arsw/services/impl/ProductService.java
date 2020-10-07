@@ -37,7 +37,11 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
 
     @Override
     public void deleteProduct(long idProduct) throws ProductServiceException {
-
+        try {
+            productPersistence.deleteById(idProduct);
+        } catch (Exception e) {
+            throw new ProductServiceException("The product couldn't be deleted or doesn't exist");
+        }
     }
 
 

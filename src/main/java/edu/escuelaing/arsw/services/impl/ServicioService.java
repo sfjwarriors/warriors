@@ -36,7 +36,11 @@ public class ServicioService implements edu.escuelaing.arsw.services.ServicioSer
 
     @Override
     public void deleteService(long idService) throws ServicioServiceException {
-
+        try {
+            servicioPersistence.deleteById(idService);
+        } catch (Exception e) {
+            throw new ServicioServiceException("The service couldn't be deleted or doesn't exist");
+        }
     }
 
    @Override

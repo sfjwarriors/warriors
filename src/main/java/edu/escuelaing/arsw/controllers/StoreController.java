@@ -34,6 +34,8 @@ public class StoreController {
         }
     }
 
+
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> registerProduct(@RequestBody Store store) {
         try {
