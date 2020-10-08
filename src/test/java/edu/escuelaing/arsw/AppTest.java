@@ -14,10 +14,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * Unit test for simple App.
@@ -25,6 +28,12 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {App.class})
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
+//@TestPropertySource(properties = {
+//		"spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.H2Dialect",
+//		"spring.datasource.url=jdbc:h2:mem:testdb",
+//		"spring.datasource.username=test",
+//		"spring.datasource.password=test", "spring.datasource.driverClassName=org.h2.Driver"})
 public class AppTest {
 
     @Autowired
@@ -42,24 +51,25 @@ public class AppTest {
     @Autowired
     private MockMvc mockMvc;
 
-//    @Test
-//    public void deberiaRegistrar() {
-//        try {
+    @Test
+    public void deberiaRegistrar() {
+        try {
 //            assertEquals(0 ,userService.findAll().size());
-//            userService.register("santiago", "lopez", "santiago@mail.com", "1234", "MECA", "Carrera 123", "img", 10000000, 32454234);
+            userService.register("santiago", "lopez", "santiago@mail.com", "1234", "MECA", "Carrera 123", "img", 10000000, 32454234);
 //            assertEquals(1 ,userService.findAll().size());
-//            userService.register("juan", "munoz", "juan@mail.com", "1234", "MECA", "Carrera 130", "img", 10000000, 32454432);
+            userService.register("juan", "munoz", "juan@mail.com", "1234", "MECA", "Carrera 130", "img", 10000000, 32454432);
 //            assertEquals(2 ,userService.findAll().size());
-//        } catch (UserServiceException e) {
-//            e.printStackTrace();
-//        }
-//    }
+        } catch (UserServiceException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void deberiaHacerLogin() {
         try {
-            assertEquals(true, userService.login("santiago@mail.com", "1234"));
+            assertEquals(true, userService.login("felipe@mail.com", "felipe456"));
         } catch (Exception e) {
+            fail();
             e.printStackTrace();
         }
     }
@@ -87,7 +97,7 @@ public class AppTest {
     public void deberiaCrearStore() {
         try {
             assertEquals(0, storeService.findAll().size());
-            storeService.registerStore("Donde Alan Brito", 39);
+            storeService.registerStore("Donde Alan Brito", 96);
             assertEquals(1, storeService.findAll().size());
         } catch (StoreServiceException | UserServiceException e) {
             e.printStackTrace();
@@ -98,9 +108,9 @@ public class AppTest {
     public void deberiaCrearProducto() {
         try {
             assertEquals(0, productService.findAll().size());
-            productService.register("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", 44);
+            productService.register("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", storeService.findAll().get(0).getId());
             assertEquals(1, productService.findAll().size());
-        } catch (ProductServiceException e) {
+        } catch (ProductServiceException | StoreServiceException e) {
             e.printStackTrace();
         }
     }
@@ -109,9 +119,9 @@ public class AppTest {
     public void deberiaCrearServicio() {
         try {
             assertEquals(0, servicioService.findAll().size());
-            servicioService.register("Cambio de Aceitee", "Imagen Aceite Mobil", "Cambio de aceite para carro", 100000, "available", 44);
+            servicioService.register("Cambio de Aceitee", "Imagen Aceite Mobil", "Cambio de aceite para carro", 100000, "available", storeService.findAll().get(0).getId());
             assertEquals(1, servicioService.findAll().size());
-        } catch (ServicioServiceException e) {
+        } catch (ServicioServiceException | StoreServiceException e) {
             e.printStackTrace();
         }
     }

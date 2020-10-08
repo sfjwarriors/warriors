@@ -19,7 +19,7 @@ import javax.persistence.*;
 public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long idOrder;
+    private long id;
         
     @Column
     private Date date;
@@ -40,7 +40,7 @@ public class Order implements Serializable {
     @JoinColumn(name = "fkOrderCart")
     private List<Cart> carts;
 
-    public long getIdOrder() { return idOrder; }
+    public long getId() { return id; }
 
     public Date getFecha() {
         return date;

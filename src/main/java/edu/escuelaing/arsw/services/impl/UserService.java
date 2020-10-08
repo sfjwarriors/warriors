@@ -20,9 +20,6 @@ public class UserService implements edu.escuelaing.arsw.services.UserService {
     @Autowired
     private UserPersistence userPersistence;
 
-    @Autowired
-    private StorePersistence storePersistence;
-
     @Override
     public boolean login(String email, String password) throws UserServiceException {
         boolean login = false;
