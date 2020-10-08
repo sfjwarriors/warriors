@@ -25,6 +25,9 @@ El objetivo de la aplicación es conectar a proveedores de servicios automotrice
 ## Diagrama de Componentes:
 ![Diagrama de componentes](img/components.jpg)
 
+##Diagrama de Despliegue:
+![Diagrama de despliegue](https://i.ibb.co/KqJmsq6/despliegue.png)
+
 ## Historias de Usuario:
 ![Diagrama casos de uso Mecanico](https://i.ibb.co/XsQ2dTm/historia-Mecanico.png)
 * Como mecanico 
