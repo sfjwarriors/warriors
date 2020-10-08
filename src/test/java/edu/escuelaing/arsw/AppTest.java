@@ -9,8 +9,11 @@ import edu.escuelaing.arsw.services.ProductService;
 import edu.escuelaing.arsw.services.ServicioService;
 import edu.escuelaing.arsw.services.StoreService;
 import edu.escuelaing.arsw.services.UserService;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.jupiter.api.Order;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,11 +32,7 @@ import static org.junit.Assert.fail;
 @SpringBootTest(classes = {App.class})
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-//@TestPropertySource(properties = {
-//		"spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.H2Dialect",
-//		"spring.datasource.url=jdbc:h2:mem:testdb",
-//		"spring.datasource.username=test",
-//		"spring.datasource.password=test", "spring.datasource.driverClassName=org.h2.Driver"})
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AppTest {
 
     @Autowired
@@ -52,7 +51,7 @@ public class AppTest {
     private MockMvc mockMvc;
 
     @Test
-    public void deberiaRegistrar() {
+    public void T1deberiaRegistrar() {
         try {
             assertEquals(0 ,userService.findAll().size());
             userService.register("santiago", "lopez", "santiago@mail.com", "1234", "MECA", "Carrera 123", "img", 10000000, 32454234);
@@ -65,7 +64,7 @@ public class AppTest {
     }
 
     @Test
-    public void deberiaHacerLogin() {
+    public void T2deberiaHacerLogin() {
         try {
             assertEquals(true, userService.login("juan@mail.com", "1234"));
         } catch (Exception e) {
@@ -75,7 +74,7 @@ public class AppTest {
 
 
     @Test
-    public void noDeberiaHacerLoginIncorrectEmail() {
+    public void T3noDeberiaHacerLoginIncorrectEmail() {
         try {
             userService.login("santi@mail.com", "154234");
         } catch (Exception e) {
@@ -84,7 +83,7 @@ public class AppTest {
     }
 
     @Test
-    public void noDeberiaHacerLoginIncorrectPassword() {
+    public void T4noDeberiaHacerLoginIncorrectPassword() {
         try {
             userService.login("santiago@mail.com", "154asf4");
         } catch (Exception e) {
@@ -93,10 +92,11 @@ public class AppTest {
     }
 
     @Test
-    public void deberiaCrearStore() {
+    public void T5deberiaCrearStore() {
         try {
             assertEquals(0, storeService.findAll().size());
             storeService.registerStore("Donde Alan Brito", 1);
+            System.out.println(storeService.findAll().get(0).getId());
             assertEquals(1, storeService.findAll().size());
         } catch (StoreServiceException | UserServiceException e) {
             e.printStackTrace();
@@ -104,10 +104,10 @@ public class AppTest {
     }
 
     @Test
-    public void deberiaCrearProducto() {
+    public void T6deberiaCrearProducto() {
         try {
             assertEquals(0, productService.findAll().size());
-            productService.register("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", 1);
+            productService.register("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", 3);
             assertEquals(1, productService.findAll().size());
         } catch (ProductServiceException e) {
             e.printStackTrace();
@@ -115,10 +115,10 @@ public class AppTest {
     }
 
     @Test
-    public void deberiaCrearServicio() {
+    public void T7deberiaCrearServicio() {
         try {
             assertEquals(0, servicioService.findAll().size());
-            servicioService.register("Cambio de Aceitee", "Imagen Aceite Mobil", "Cambio de aceite para carro", 100000, "available", 1);
+            servicioService.register("Cambio de Aceitee", "Imagen Aceite Mobil", "Cambio de aceite para carro", 100000, "available", 3);
             assertEquals(1, servicioService.findAll().size());
         } catch (ServicioServiceException e) {
             e.printStackTrace();
@@ -128,14 +128,9 @@ public class AppTest {
 
 
     @Test
-    public void deberiaObtenerTodosProductos() {
+    public void T8deberiaObtenerTodosProductos() {
         try {
             assertEquals(1, productService.findAll().size());
-            /*mockMvc.perform(
-                    MockMvcRequestBuilders.get("/findproducts")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(""))
-                    .andExpect(status().isAccepted());*/
         } catch (Exception e) {
             e.printStackTrace();
         }
