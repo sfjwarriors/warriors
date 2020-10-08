@@ -33,7 +33,7 @@ public class User implements Serializable {
     
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fkUser")
-    private List<Order> orders;
+    private List<Orden> ordens;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fkMechanic")
@@ -148,7 +148,7 @@ public class User implements Serializable {
                 ", image='" + image + '\'' +
                 ", cash=" + cash +
                 ", cellphone=" + cellphone +
-                ", orders=" + orders +
+                ", ordens=" + ordens +
                 '}';
     }
 }

@@ -54,11 +54,11 @@ public class AppTest {
     @Test
     public void deberiaRegistrar() {
         try {
-//            assertEquals(0 ,userService.findAll().size());
+            assertEquals(0 ,userService.findAll().size());
             userService.register("santiago", "lopez", "santiago@mail.com", "1234", "MECA", "Carrera 123", "img", 10000000, 32454234);
-//            assertEquals(1 ,userService.findAll().size());
+            assertEquals(1 ,userService.findAll().size());
             userService.register("juan", "munoz", "juan@mail.com", "1234", "MECA", "Carrera 130", "img", 10000000, 32454432);
-//            assertEquals(2 ,userService.findAll().size());
+            assertEquals(2 ,userService.findAll().size());
         } catch (UserServiceException e) {
             e.printStackTrace();
         }
@@ -67,9 +67,8 @@ public class AppTest {
     @Test
     public void deberiaHacerLogin() {
         try {
-            assertEquals(true, userService.login("felipe@mail.com", "felipe456"));
+            assertEquals(true, userService.login("juan@mail.com", "1234"));
         } catch (Exception e) {
-            fail();
             e.printStackTrace();
         }
     }
@@ -97,7 +96,7 @@ public class AppTest {
     public void deberiaCrearStore() {
         try {
             assertEquals(0, storeService.findAll().size());
-            storeService.registerStore("Donde Alan Brito", 96);
+            storeService.registerStore("Donde Alan Brito", 1);
             assertEquals(1, storeService.findAll().size());
         } catch (StoreServiceException | UserServiceException e) {
             e.printStackTrace();
@@ -108,9 +107,9 @@ public class AppTest {
     public void deberiaCrearProducto() {
         try {
             assertEquals(0, productService.findAll().size());
-            productService.register("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", storeService.findAll().get(0).getId());
+            productService.register("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", 1);
             assertEquals(1, productService.findAll().size());
-        } catch (ProductServiceException | StoreServiceException e) {
+        } catch (ProductServiceException e) {
             e.printStackTrace();
         }
     }
@@ -119,9 +118,9 @@ public class AppTest {
     public void deberiaCrearServicio() {
         try {
             assertEquals(0, servicioService.findAll().size());
-            servicioService.register("Cambio de Aceitee", "Imagen Aceite Mobil", "Cambio de aceite para carro", 100000, "available", storeService.findAll().get(0).getId());
+            servicioService.register("Cambio de Aceitee", "Imagen Aceite Mobil", "Cambio de aceite para carro", 100000, "available", 1);
             assertEquals(1, servicioService.findAll().size());
-        } catch (ServicioServiceException | StoreServiceException e) {
+        } catch (ServicioServiceException e) {
             e.printStackTrace();
         }
     }

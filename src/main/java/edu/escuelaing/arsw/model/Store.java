@@ -15,7 +15,7 @@ public class Store {
     private long fkMechanic;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fkStore")
-    private List<Order> orders;
+    private List<Orden> ordens;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fkStoreProduct")
     private List<Product> products;
@@ -55,12 +55,12 @@ public class Store {
         this.fkMechanic = fkMechanic;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<Orden> getOrders() {
+        return ordens;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setOrders(List<Orden> ordens) {
+        this.ordens = ordens;
     }
 
     public List<Product> getProducts() {
