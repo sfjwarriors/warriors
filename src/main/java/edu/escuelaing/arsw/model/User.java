@@ -30,6 +30,9 @@ public class User implements Serializable {
     private long cash;
     @Column (length = 10)
     private long cellphone;
+    @Column
+    private String token;
+
     
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fkUser")
@@ -133,6 +136,18 @@ public class User implements Serializable {
 
     public void setCellphone(int cellphone) {
         this.cellphone = cellphone;
+    }
+
+    public void setCellphone(long cellphone) {
+        this.cellphone = cellphone;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

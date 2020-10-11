@@ -1,12 +1,12 @@
 edu\escuelaing\arsw\App.class
 edu\escuelaing\arsw\services\StoreService.class
+edu\escuelaing\arsw\model\Orden.class
 edu\escuelaing\arsw\Exceptions\UserServiceException.class
 edu\escuelaing\arsw\Exceptions\ServicioServiceException.class
 edu\escuelaing\arsw\services\impl\ServicioService.class
 edu\escuelaing\arsw\services\UserService.class
 edu\escuelaing\arsw\model\Cart.class
 edu\escuelaing\arsw\model\Store.class
-edu\escuelaing\arsw\model\Order.class
 edu\escuelaing\arsw\controllers\LoginController.class
 edu\escuelaing\arsw\controllers\ProductController.class
 edu\escuelaing\arsw\controllers\UserController.class
