@@ -63,33 +63,33 @@ public class AppTest {
         }
     }
 
-    @Test
-    public void T2deberiaHacerLogin() {
-        try {
-            assertEquals(true, userService.login("juan@mail.com", "1234"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    public void T2deberiaHacerLogin() {
+//        try {
+//            assertEquals(true, userService.login("juan@mail.com", "1234"));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//
+//    @Test
+//    public void T3noDeberiaHacerLoginIncorrectEmail() {
+//        try {
+//            userService.login("santi@mail.com", "154234");
+//        } catch (Exception e) {
+//            assertEquals("Email doesn't found", e.getMessage());
+//        }
+//    }
 
-
-    @Test
-    public void T3noDeberiaHacerLoginIncorrectEmail() {
-        try {
-            userService.login("santi@mail.com", "154234");
-        } catch (Exception e) {
-            assertEquals("Email doesn't found", e.getMessage());
-        }
-    }
-
-    @Test
-    public void T4noDeberiaHacerLoginIncorrectPassword() {
-        try {
-            userService.login("santiago@mail.com", "154asf4");
-        } catch (Exception e) {
-            assertEquals("Incorrect password", e.getMessage());
-        }
-    }
+//    @Test
+//    public void T4noDeberiaHacerLoginIncorrectPassword() {
+//        try {
+//            userService.login("santiago@mail.com", "154asf4");
+//        } catch (Exception e) {
+//            assertEquals("Incorrect password", e.getMessage());
+//        }
+//    }
 
     @Test
     public void T5deberiaCrearStore() {

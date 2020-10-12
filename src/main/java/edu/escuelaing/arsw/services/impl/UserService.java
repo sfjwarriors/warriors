@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService implements edu.escuelaing.arsw.services.UserService {
@@ -21,16 +23,18 @@ public class UserService implements edu.escuelaing.arsw.services.UserService {
     private UserPersistence userPersistence;
 
     @Override
-    public boolean login(String email, String password) throws UserServiceException {
+    public String login(String email, String password) throws UserServiceException {
         boolean login = false;
         try {
             Pbkdf2PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder("salt");
             User user = userPersistence.findByEmail(email);
+//            user.setToken(token);
+//            userPersistence.save(user);
             login = passwordEncoder.matches(password,user.getPassword());
             if (!login) {
                 throw new UserServiceException("Incorrect password");
             }
-            return login;
+            return getToken(user);
         } catch (NullPointerException e) {
             /*if (e.getMessage()==null) {
                 login = false;
@@ -77,6 +81,34 @@ public class UserService implements edu.escuelaing.arsw.services.UserService {
     @Override
     public Optional<User> findById(long id) throws UserServiceException {
         return Optional.empty();
+    }
+
+    @Override
+    public User findByToken(String token) throws UserServiceException {
+        try {
+            return userPersistence.findByToken(token);
+        } catch (Exception e) {
+            throw new UserServiceException("Please login again");
+        }
+    }
+
+    @Override
+    public String getToken(User user) throws UserServiceException {
+        String tokenU = user.getToken();
+        String token;
+        if(tokenU==null) {
+//            String[] strings = tokenU.split("userid");
+//            System.out.println(LocalDateTime.now().compareTo(LocalDateTime.parse(strings[2])));
+//            System.out.println(strings[1].substring(1));
+            token = UUID.randomUUID().toString().toUpperCase()
+                    + "userid"
+                    + LocalDateTime.now();
+            user.setToken(token);
+            userPersistence.save(user);
+        } else {
+            token = tokenU;
+        }
+        return token;
     }
 
 

@@ -1,12 +1,16 @@
 var login = (function () {
-    var logged = false;
 
     function isLogged() {
-        console.log("Esta logueado:", logged, window.sessionStorage.token);
-        if(logged) {
-            $("#userbtn").text("Perfil");
-        }
-        return logged;
+        axios.get('http://localhost:8080/login/'+window.sessionStorage.token
+        ).then(function f (res){
+            if(window.sessionStorage.token==res.data.token){
+                $("#userbtn").text("Cerrar Sesión");
+                document.getElementById("userbtn").onclick = closeSession;
+                console.log("Esta logueado:", window.sessionStorage.token);
+            }
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
     }
 
     function login(){
@@ -14,12 +18,10 @@ var login = (function () {
             email: $("#email").val(),
             password: $("#password").val()
         }).then(function f (res){
-            if (res.data=="Success") {
-                logged = true;
-                window.sessionStorage.token = "765376253736";
-                console.log(window.sessionStorage.token);
-                window.location.replace("index.html");
-            }
+            console.log(res.data);
+            window.sessionStorage.token = res.data;
+            console.log(window.sessionStorage.token);
+            window.location.replace("index.html");
         }).catch(function (error) {
             alert(error.response.data);
             if (error.response.data == "Incorrect password") {
@@ -33,14 +35,31 @@ var login = (function () {
     }
 
     function validate() {
-        if (logged) {
-            window.location.replace("index.html");
-        }
+        axios.get('http://localhost:8080/login/'+window.sessionStorage.token
+        ).then(function f (res){
+            if(window.sessionStorage.token==res.data.token){
+                window.location.replace("index.html");
+            }
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function loginPage() {
+        window.location.replace("login.html");
+    }
+
+    function closeSession() {
+        window.sessionStorage.token=null;
+        console.log("cierra", window.sessionStorage.token);
+        loginPage();
     }
 
     return {
         isLogged: isLogged,
         login: login,
-        validate: validate
+        validate: validate,
+        loginPage: loginPage,
+        closeSession: closeSession
     }
 })();

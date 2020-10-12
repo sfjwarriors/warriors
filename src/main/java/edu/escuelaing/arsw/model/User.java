@@ -16,7 +16,7 @@ public class User implements Serializable {
     private String name;
     @Column(name = "lastname")
     private String lastName;
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
     @Column(name = "password")
     private String password;
@@ -30,7 +30,7 @@ public class User implements Serializable {
     private long cash;
     @Column (length = 10)
     private long cellphone;
-    @Column
+    @Column(unique = true)
     private String token;
 
     
@@ -56,6 +56,7 @@ public class User implements Serializable {
         this.image = image;
         this.cash = cash;
         this.cellphone = cellphone;
+        this.token = null;
     }
 
     public long getId() {
@@ -134,10 +135,6 @@ public class User implements Serializable {
         return cellphone;
     }
 
-    public void setCellphone(int cellphone) {
-        this.cellphone = cellphone;
-    }
-
     public void setCellphone(long cellphone) {
         this.cellphone = cellphone;
     }
@@ -148,6 +145,14 @@ public class User implements Serializable {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public List<Orden> getOrdens() {
+        return ordens;
+    }
+
+    public void setOrdens(List<Orden> ordens) {
+        this.ordens = ordens;
     }
 
     @Override
@@ -163,7 +168,7 @@ public class User implements Serializable {
                 ", image='" + image + '\'' +
                 ", cash=" + cash +
                 ", cellphone=" + cellphone +
-                ", ordens=" + ordens +
+                ", token='" + token + '\'' +
                 '}';
     }
 }

@@ -26,6 +26,8 @@
 
   <!-- Login script -->
   <script src="js/login.js"></script>
+  <!-- Axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 
@@ -73,9 +75,10 @@
         </ul>
 
         <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-          <a href="login.html" class="btn btn-solid-border btn-round-full" id="userbtn">Iniciar Sesión</a>
+          <a class="btn btn-solid-border btn-round-full" id="userbtn" onclick="login.loginPage()">Iniciar Sesión</a>
         </form>
-      </div>
+
+	  </div>
     </div>
   </nav>
 </header>

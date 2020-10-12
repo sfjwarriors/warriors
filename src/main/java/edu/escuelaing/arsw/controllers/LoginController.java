@@ -6,10 +6,12 @@ import edu.escuelaing.arsw.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.UUID;
 
 //Token
 //import io.jsonwebtoken.Jwts;
@@ -26,14 +28,23 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody User user) {
         try {
-            //String token = getJWTToken();
-            userService.login(user.getEmail(), user.getPassword());
-            return new ResponseEntity<>("Success", HttpStatus.ACCEPTED);
+            String token = userService.login(user.getEmail(), user.getPassword());
+            return new ResponseEntity<>(token, HttpStatus.ACCEPTED);
         } catch (UserServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
+    @RequestMapping(value = "/{token}", method = RequestMethod.GET)
+    public ResponseEntity<?> getByToken(@PathVariable String token) {
+        try {
+//            System.out.println(token);
+            User user = userService.findByToken(token);
+            return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+        } catch (UserServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
     /*private String getJWTToken(String username) {
         String secretKey = "mySecretKey";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
