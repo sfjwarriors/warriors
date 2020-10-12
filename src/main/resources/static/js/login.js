@@ -1,7 +1,8 @@
 var login = (function () {
-
+    var url = 'http://mecaclic.herokuapp.com';
+    //var url = 'http://localhost:8080';
     function isLogged() {
-        axios.get('http://mecaclic.herokuapp.com/login/'+window.sessionStorage.token
+        axios.get(url+'/login/'+window.sessionStorage.token
         ).then(function f (res){
             if(window.sessionStorage.token==res.data.token){
                 $("#userbtn").text("Cerrar Sesión");
@@ -14,7 +15,7 @@ var login = (function () {
     }
 
     function login(){
-        axios.post('http://mecaclic.herokuapp.com/login', {
+        axios.post(url+'/login', {
             email: $("#email").val(),
             password: $("#password").val()
         }).then(function f (res){
@@ -35,7 +36,7 @@ var login = (function () {
     }
 
     function validate() {
-        axios.get('http://mecaclic.herokuapp.com/login/'+window.sessionStorage.token
+        axios.get(url+'/login/'+window.sessionStorage.token
         ).then(function f (res){
             if(window.sessionStorage.token==res.data.token){
                 window.location.replace("index.html");
