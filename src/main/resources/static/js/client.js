@@ -1,6 +1,6 @@
 var client = (function () {
-    //var url = 'http://mecaclic.herokuapp.com';
-    var url = 'http://localhost:8080';
+    var url = 'http://mecaclic.herokuapp.com';
+    //var url = 'http://localhost:8080';
     function isLogged(callback) {
         axios.get(url+'/login/'+window.sessionStorage.token
         ).then(function f (res){
