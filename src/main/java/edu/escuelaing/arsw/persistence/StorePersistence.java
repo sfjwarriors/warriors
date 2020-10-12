@@ -8,4 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface StorePersistence extends CrudRepository<Store, Long> {
+    public Store findByFkMechanic(long idMechanic);
 }

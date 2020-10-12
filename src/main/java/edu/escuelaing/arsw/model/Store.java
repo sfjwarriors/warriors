@@ -11,7 +11,7 @@ public class Store {
     private long id;
     @Column(length = 50, updatable = true)
     private String storeName;
-    @Column
+    @Column(unique = true)
     private long fkMechanic;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fkStore")

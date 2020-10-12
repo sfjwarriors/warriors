@@ -27,6 +27,16 @@ public class StoreService implements edu.escuelaing.arsw.services.StoreService {
     }
 
     @Override
+    public Store findByIdMechanic(long idMechanic) throws StoreServiceException {
+        try {
+            return storePersistence.findByFkMechanic(idMechanic);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new StoreServiceException("The mechanic "+idMechanic+" don't have a store");
+        }
+    }
+
+    @Override
     public void registerStore(String store, long fk_mechanic) throws UserServiceException {
         Store store1 = new Store (store, fk_mechanic);
         try{
