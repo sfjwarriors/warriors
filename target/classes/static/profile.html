@@ -24,14 +24,16 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Login script -->
-    <script src="js/login.js"></script>
+    <!-- Client script -->
+    <script src="js/client.js"></script>
+    <!-- Profile script -->
+    <script src="js/profile.js"></script>
     <!-- Axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 
-<body onload="login.isLogged()">
+<body onload="profile.isLogged()">
 
 <!-- Header Start -->
 <header class="navigation">
@@ -57,7 +59,7 @@
                 </ul>
 
                 <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-                    <a class="btn btn-solid-border btn-round-full" id="userbtn" onclick="login.loginPage()">Iniciar Sesión</a>
+                    <a class="btn btn-solid-border btn-round-full" id="userbtn" onclick="client.loginPage()">Iniciar Sesión</a>
                 </form>
 
             </div>

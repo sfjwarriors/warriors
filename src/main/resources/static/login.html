@@ -21,10 +21,11 @@
         <!-- Axios -->
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <!-- Login -->
-        <script src="js/login.js"></script>
+        <script src="js/client.js"></script>
+        <script src="js/index.js"></script>
     </head>
 
-    <body class="my-login-page" onload="login.validate()">
+    <body class="my-login-page" onload="client.validate()">
     <!-- Header Start -->
     <header class="navigation">
         <nav class="navbar navbar-expand-lg  py-4" id="navbar">
@@ -65,7 +66,7 @@
                                             Introduzca contraseña
                                         </div>
                                     </div>
-                                    <div><a onclick="login.login()" class="btn btn-main">Iniciar Sesión<i
+                                    <div><a onclick="client.login()" class="btn btn-main">Iniciar Sesión<i
                                             class="btn-icon fa fa-angle-right ml-2"></i></a></div>
                                     <div class="preloader" id="preload"></div>
                                 </form>
