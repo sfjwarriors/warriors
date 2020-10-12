@@ -1,4 +1,4 @@
-var profile = (function () {
+var mystore = (function () {
     function isLogged() {
         client.isLogged(updateBtns);
     }
@@ -22,13 +22,28 @@ var profile = (function () {
 
     function setStore(store) {
         $("#storebtn").text(store.storeName);
+        document.getElementById("storetittle").value = store.storeName;
         document.getElementById("storebtn").style.visibility="visible";
         document.getElementById("storebtn").href = "mystore.html";
         var storeTmp = store;
         console.log("stmp", storeTmp);
     }
 
+    function habilitaCambioNombre() {
+        document.getElementById("storetittle").disabled = false;
+        $("#cambiarnombre").text("Guardar Nombre");
+        document.getElementById("cambiarnombre").onclick = saveNameStore;
+    }
+
+    function saveNameStore() {
+        document.getElementById("storetittle").disabled = true;
+        let newNameStore = document.getElementById("storetittle").value;
+        $("#cambiarnombre").text("Cambiar Nombre");
+        alert("El nuevo nombre de su tienda es: " + newNameStore);
+    }
+
     return {
-        isLogged: isLogged
+        isLogged: isLogged,
+        habilitaCambioNombre: habilitaCambioNombre
     }
 })();

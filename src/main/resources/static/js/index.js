@@ -13,7 +13,7 @@ var index = (function () {
         document.getElementById("promoregister").style.visibility="hidden";
         if(user.rol=='MECA') {
             client.getStore(user.id, setStore);
-            document.getElementById("servicebtn").href = "#";
+            document.getElementById("servicebtn").href = "myorders.html";
             $("#servicebtn").text("Mis Ordenes");
             $("#startbtn").text("Mi Taller");
             document.getElementById("startbtn").href = "mystore.html";

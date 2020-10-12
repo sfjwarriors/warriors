@@ -9,7 +9,7 @@
     <link rel="shortcut icon"  href="images/logo.png">
     <!--  <meta name="author" content="themefisher.com">-->
 
-    <title>Mi Taller</title>
+    <title>Mis Ordenes</title>
 
     <!-- bootstrap.min css -->
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
@@ -26,14 +26,14 @@
 
     <!-- Client script -->
     <script src="js/client.js"></script>
-    <!-- MyStore script -->
-    <script src="js/mystore.js"></script>
+    <!-- Profile script -->
+    <script src="js/profile.js"></script>
     <!-- Axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 
-<body onload="mystore.isLogged()">
+<body onload="profile.isLogged()">
 
 <!-- Header Start -->
 <header class="navigation">
@@ -71,98 +71,6 @@
 <!-- main wrapper start -->
 <div class="main-wrapper">
 
-    <section class="page-title bg-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="block text-center">
-                        <ul class="list-inline">
-                            <li class="list-inline-item"><input type="text" id="storetittle" align="center" disabled="false" style="text-align: center; width: 100%; padding: 30px; border: 0; font-size: 60px; background: transparent; color: white; "></li>
-                            <li class="list-inline-item"><a onclick="mystore.habilitaCambioNombre()" class="btn btn-small btn-main btn-round-full" id="cambiarnombre">Cambiar Nombre</a></li>
-                        </ul>
-                        <ul class="list-inline">
-                            <li class="list-inline-item"><a onclick="" class="btn btn-small btn-main btn-round-full">Productos</a></li>
-                            <li class="list-inline-item"><a onclick="" class="btn btn-small btn-main btn-round-full">Servicios</a></li>
-                            <li class="list-inline-item"><a onclick="" class="btn btn-small btn-main btn-round-full">Historial</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section blog-wrap bg-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 mb-5">
-                    <div class="blog-item">
-                        <img src="images/blog/1.jpg" alt="" class="img-fluid rounded">
-
-                        <div class="blog-item-content bg-white p-5">
-                            <h3 class="mt-3 mb-3"><a href="blog-single.html">Improve design with typography?</a></h3>
-                            <p class="mb-4">Non illo quas blanditiis repellendus laboriosam minima animi. Consectetur accusantium
-                                pariatur repudiandae!</p>
-
-                            <a href="blog-single.html" class="btn btn-small btn-main btn-round-full">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 mb-5">
-                    <div class="blog-item">
-                        <img src="images/blog/2.jpg" alt="" class="img-fluid rounded">
-
-                        <div class="blog-item-content bg-white p-5">
-                            <h3 class="mt-3 mb-3"><a href="blog-single.html">Interactivity connect consumer</a></h3>
-                            <p class="mb-4">Non illo quas blanditiis repellendus laboriosam minima animi. Consectetur accusantium
-                                pariatur repudiandae!</p>
-                            <a href="blog-single.html" class="btn btn-small btn-main btn-round-full">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 mb-5">
-                    <div class="blog-item">
-                        <img src="images/blog/3.jpg" alt="" class="img-fluid rounded">
-
-                        <div class="blog-item-content bg-white p-5">
-                            <h3 class="mt-3 mb-3"><a href="blog-single.html">Marketing Strategy to bring more affect</a></h3>
-                            <p class="mb-4">Non illo quas blanditiis repellendus laboriosam minima animi. Consectetur accusantium
-                                pariatur repudiandae!</p>
-
-                            <a href="blog-single.html" class="btn btn-small btn-main btn-round-full">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 mb-5">
-                    <div class="blog-item">
-                        <img src="images/blog/4.jpg" alt="" class="img-fluid rounded">
-
-                        <div class="blog-item-content bg-white p-5">
-                            <h3 class="mt-3 mb-3"><a href="blog-single.html">Marketing Strategy to bring more affect</a></h3>
-                            <p class="mb-4">Non illo quas blanditiis repellendus laboriosam minima animi. Consectetur accusantium
-                                pariatur repudiandae!</p>
-
-                            <a href="blog-single.html" class="btn btn-small btn-main btn-round-full">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center mt-5">
-                <div class="col-lg-6 text-center">
-                    <nav class="navigation pagination d-inline-block">
-                        <div class="nav-links">
-                            <a class="prev page-numbers" href="#">Prev</a>
-                            <span aria-current="page" class="page-numbers current">1</span>
-                            <a class="page-numbers" href="#">2</a>
-                            <a class="next page-numbers" href="#">Next</a>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <footer class="footer section">
         <div class="container">

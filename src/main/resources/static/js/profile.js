@@ -12,7 +12,7 @@ var profile = (function () {
         document.getElementById("perfilbtn").style.visibility="visible";
         if(user.rol=='MECA') {
             client.getStore(user.id, setStore);
-            document.getElementById("servicebtn").href = "#";
+            document.getElementById("servicebtn").href = "myorders.html";
             $("#servicebtn").text("Mis Ordenes");
         } else {
             document.getElementById("servicebtn").href = "#";
