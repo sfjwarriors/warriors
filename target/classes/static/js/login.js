@@ -20,14 +20,28 @@ var login = (function () {
         document.getElementById("userbtn").onclick = closeSession;
         $("#perfilbtn").text(user.name);
         console.log(user);
+        document.getElementById("perfilbtn").href = "profile.html";
         document.getElementById("perfilbtn").style.visibility="visible";
+        try {
+            document.getElementById("promoregister").style.visibility="hidden";
+        } catch(error) {
+
+        }
         if(user.rol=='MECA') {
             getStore(user.id);
-            $("#startbtn").text("Mi Taller");
-            //document.getElementById("startbtn").onclick = LodirigeAlTaller;
+            document.getElementById("servicebtn").href = "mystore.html";
+            $("#servicebtn").text("Mi Taller");
+            try {
+                $("#startbtn").text("Mi Taller");
+                document.getElementById("startbtn").href = "mystore.html";
+            } catch (error){}
         } else {
-            $("#startbtn").text("Pide Ya!");
-            //document.getElementById("startbtn").onclick = LoDirigeALasListasDeTalleres;
+            document.getElementById("servicebtn").href = "#";
+            $("#servicebtn").text("Pedir");
+            try {
+                $("#startbtn").text("Pide Ya!");
+                document.getElementById("startbtn").href = "#";
+            } catch(error){}
         }
     }
 
@@ -91,17 +105,11 @@ var login = (function () {
         loginPage();
     }
 
-    function goProfile() {
-        console.log("lo envío a su perfil");
-        //window.location.replace("profile.html");
-    }
-
     return {
         isLogged: isLogged,
         login: login,
         validate: validate,
         loginPage: loginPage,
-        closeSession: closeSession,
-        goProfile: goProfile
+        closeSession: closeSession
     }
 })();

@@ -1434,3 +1434,24 @@ h3.quote::before {
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+.preloader {
+    width: 70px;
+    height: 70px;
+    border: 10px solid #88876F;
+    border-top: 10px solid #F9F816;
+    border-radius: 50%;
+    animation-name: girar;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    visibility: hidden;
+}
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
