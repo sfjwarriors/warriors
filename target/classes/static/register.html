@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="megakit,business,company,agency,multipurpose,modern,bootstrap4">
     <!-- Icon -->
+    <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <link rel="shortcut icon"  href="images/logo.png">
     <!--  <meta name="author" content="themefisher.com">-->
 
@@ -20,13 +27,17 @@
     <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
-
+   
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/formuStyle.css">
+    <link rel="stylesheet" href="js/formuScript.js">
+    
     <!-- Client script -->
     <script src="js/client.js"></script>
+    
     <!-- Axios -->
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
@@ -46,10 +57,66 @@
 </header>
 <!-- Header Close -->
 
+<div class="containerForm">
+    
+        <div class="card-body">
+            <h2 class="header">Registrarse</h2>
+            
+            <form id="formulario" >
+                <div style="float: left; width: 45%; height: 100%;" >
+                <messages id="messages" closable="true"/>
+                <div class="form-group">
+                    <label>Nombre</label> 
+                    <input id="nombreR"  type="text" class="form-control"  name="nombre" value="" required="true" autofocus="true" />
+                </div>
+                </div>
+                <div style="float: right; width: 50%; height: 100%;" >
+                <div class="form-group">
+                    <label>Apellido</label> 
+                    <input id="apellidoR"  type="text" class="form-control"  name="nombre" value="" required="true" autofocus="true" />
+                </div>
+            </div>
+                <div class="form-group">
+                    <label>Correo</label>
+                    <input id="emailR" type="email" class="form-control" name="email" value="" required="true" autofocus="true" />
+                </div>
+                <div style="float: left; width: 45%; height: 100%;" >
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input id="passwordR" type="password" class="form-control" name="password" required="true" data-eye="true" autofocus="true" />
+                        <label>Dirección</label> 
+                        <input id="direccionR" class="form-control" type="text"  name="nombre" value="" required="true" autofocus="true" />
+                        <label for="registerType">Tipo de Usuario</label>
+                        <input type="text" name="Tipo" id="registerType" list="typeList">
+                            <datalist id="typeList">
+                            <option value="Usuario">
+                            <option value="Empresa">
+                            </datalist>
+                    </div>
+                </div>
+                <div style="float: right; width: 50%; height: 100%;" >
+                    <div class="form-group">
+                        <label>Confirmar Contraseña</label>
+                        <input id="passwordRC" type="password" class="form-control" name="password" required="true" data-eye="true" autofocus="true" />
+                        <label>Celular</label> 
+                         <input id="celularR" class="form-control" type="number"  name="nombre" value="" required="true" autofocus="true" />
+                        <br>
+                        
+                         <div style="text-align: center;"><a onclick="client.registrarse()" class="btn btn-main">Registrarse<i
+                            class="btn-icon fa fa-angle-right ml-2"></i></a></div>
+                    <div class="preloader" id="preload"></div>
+                    </div>
+                </div>  
+                
+                
+            </form>
+        </div>
+   
+</div>
 <!-- main wrapper start -->
 <div class="main-wrapper">
-
-
+    
+       
     <footer class="footer section">
         <div class="container">
             <div class="row">
