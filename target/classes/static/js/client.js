@@ -2,14 +2,17 @@ var client = (function () {
     //var url = 'http://mecaclic.herokuapp.com';
     var url = 'http://localhost:8080';
     function isLogged(callback) {
-        axios.get(url+'/login/'+window.sessionStorage.token
-        ).then(function f (res){
-            if(window.sessionStorage.token==res.data.token){
-                callback(res.data);
-            }
-        }).catch(function (error) {
-            alert(error.response.data);
-        })
+        if(window.sessionStorage.token!=null) {
+            axios.get(url+'/login/'+window.sessionStorage.token
+            ).then(function f (res){
+                console.log(window.sessionStorage.token, res.data.token);
+                if(window.sessionStorage.token==res.data.token){
+                    callback(res.data);
+                }
+            }).catch(function (error) {
+                alert(error.response.data);
+            })
+        }
     }
 
     function getStore(idMechanic, callback) {
