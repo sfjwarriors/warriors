@@ -53,4 +53,14 @@ public class StoreController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<?> updateStore(@RequestBody Store store) {
+        try {
+            storeService.updateStore(store);
+            return new ResponseEntity<>("Success", HttpStatus.CREATED);
+        } catch (StoreServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
 }

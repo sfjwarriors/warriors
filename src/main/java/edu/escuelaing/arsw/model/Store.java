@@ -78,4 +78,13 @@ public class Store {
     public void setServicios(List<Servicio> servicios) {
         this.servicios = servicios;
     }
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + id +
+                ", storeName='" + storeName + '\'' +
+                ", fkMechanic=" + fkMechanic +
+                '}';
+    }
 }

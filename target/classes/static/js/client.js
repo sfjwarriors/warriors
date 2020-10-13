@@ -1,6 +1,6 @@
 var client = (function () {
-    var url = 'http://mecaclic.herokuapp.com';
-    //var url = 'http://localhost:8080';
+    //var url = 'http://mecaclic.herokuapp.com';
+    var url = 'http://localhost:8080';
     function isLogged(callback) {
         axios.get(url+'/login/'+window.sessionStorage.token
         ).then(function f (res){
@@ -19,13 +19,6 @@ var client = (function () {
         }).catch(function (error) {
             alert(error.response.data);
         })
-    }
-
-    function setStore(store) {
-        $("#storebtn").text(store.storeName);
-        document.getElementById("storebtn").style.visibility="visible";
-        var storeTmp = store;
-        console.log("stmp", storeTmp);
     }
 
     function login(callback){
@@ -72,12 +65,27 @@ var client = (function () {
         loginPage();
     }
 
+    function updateStore(store, callback){
+        var s = {id: store.id, storeName: store.storeName, fkMechanic: store.fkMechanic}
+        console.log("sap", s);
+        axios.put(url+'/stores', {
+            id: store.id,
+            storeName: store.storeName,
+            fkMechanic: store.fkMechanic
+        }).then(function f (res){
+            callback(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
     return {
         isLogged: isLogged,
         login: login,
         validate: validate,
         loginPage: loginPage,
         closeSession: closeSession,
-        getStore: getStore
+        getStore: getStore,
+        updateStore: updateStore
     }
 })();

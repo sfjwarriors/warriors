@@ -37,6 +37,16 @@ public class StoreService implements edu.escuelaing.arsw.services.StoreService {
     }
 
     @Override
+    public void updateStore(Store store) throws StoreServiceException {
+        try{
+            storePersistence.save(store);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            throw new StoreServiceException("The store name couldn't be update");
+        }
+    }
+
+    @Override
     public void registerStore(String store, long fk_mechanic) throws UserServiceException {
         Store store1 = new Store (store, fk_mechanic);
         try{

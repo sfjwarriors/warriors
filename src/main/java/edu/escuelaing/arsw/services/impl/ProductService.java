@@ -32,7 +32,6 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
         }catch (NullPointerException e){
             throw new ProductServiceException("The product couldn't be update");
         }
-
     }
 
     @Override

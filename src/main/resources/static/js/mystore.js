@@ -1,4 +1,5 @@
 var mystore = (function () {
+    var storeTmp;
     function isLogged() {
         client.isLogged(updateBtns);
     }
@@ -25,7 +26,7 @@ var mystore = (function () {
         document.getElementById("storetittle").value = store.storeName;
         document.getElementById("storebtn").style.visibility="visible";
         document.getElementById("storebtn").href = "mystore.html";
-        var storeTmp = store;
+        storeTmp = store;
         console.log("stmp", storeTmp);
     }
 
@@ -37,9 +38,16 @@ var mystore = (function () {
 
     function saveNameStore() {
         document.getElementById("storetittle").disabled = true;
-        let newNameStore = document.getElementById("storetittle").value;
+        var newNameStore = document.getElementById("storetittle").value;
         $("#cambiarnombre").text("Cambiar Nombre");
-        alert("El nuevo nombre de su tienda es: " + newNameStore);
+        storeTmp.storeName = newNameStore;
+        client.updateStore(storeTmp, showUpdateStore);
+    }
+
+    function showUpdateStore(data) {
+        if(data=="Success") {
+            alert("Se cambio el nombre de su tienda");
+        }
     }
 
     return {
