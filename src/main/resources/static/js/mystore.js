@@ -42,6 +42,7 @@ var mystore = (function () {
         $("#cambiarnombre").text("Cambiar Nombre");
         storeTmp.storeName = newNameStore;
         client.updateStore(storeTmp, showUpdateStore);
+        document.getElementById("cambiarnombre").onclick = habilitaCambioNombre;
     }
 
     function showUpdateStore(data) {
