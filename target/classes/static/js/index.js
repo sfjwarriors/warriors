@@ -3,7 +3,7 @@ var index = (function () {
         client.isLogged(updateBtns);
     }
 
-    function updateBtns(user) {
+    function updateBtns(user, bool) {
         $("#userbtn").text("Cerrar Sesión");
         document.getElementById("userbtn").onclick = client.closeSession;
         $("#perfilbtn").text(user.name);
