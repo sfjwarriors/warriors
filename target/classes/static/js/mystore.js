@@ -80,7 +80,6 @@ var mystore = (function () {
             s += "<h3 class='mt-3 mb-3'><a href='blog-single.html'>"+store.servicios[i].name+"</a></h3><p class='mb-4'>"+store.servicios[i].description+"</p><p class='mb-4'> Precio: $"+store.servicios[i].price+"</p>";
             s += "<a href='carrito.html' class='btn btn-small btn-main btn-round-full'>Agregar al Carrito</a></div></div></div>";
         }
-        //console.log("stmp", storeTmp);
         $("#lista").html(s);
     }
 
