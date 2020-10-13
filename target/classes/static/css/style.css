@@ -170,6 +170,10 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   background: #f5f8f9;
 }
 
+.bg-amar {
+  background: #C6C6B4;
+}
+
 .bg-primary {
   background: #F9F816;
 }
