@@ -47,14 +47,16 @@ var client = (function () {
     }
 
     function validate(callback) {
-        axios.get(url+'/login/'+window.sessionStorage.token
-        ).then(function f (res){
-            if(window.sessionStorage.token==res.data.token){
-                window.location.replace("index.html");
-            }
-        }).catch(function (error) {
-            alert(error.response.data);
-        })
+        if(window.sessionStorage.token!=null) {
+            axios.get(url+'/login/'+window.sessionStorage.token
+            ).then(function f (res){
+                if(window.sessionStorage.token==res.data.token){
+                    window.location.replace("index.html");
+                }
+            }).catch(function (error) {
+                alert(error.response.data);
+            })
+        }
     }
 
     function loginPage() {
