@@ -93,4 +93,17 @@ public class Product implements Serializable{
     public void setFkStoreProduct(long fkStoreProduct) {
         this.fkStoreProduct = fkStoreProduct;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                ", status='" + status + '\'' +
+                ", fkStoreProduct=" + fkStoreProduct +
+                '}';
+    }
 }

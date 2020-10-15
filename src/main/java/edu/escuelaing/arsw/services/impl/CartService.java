@@ -1,14 +1,13 @@
 package edu.escuelaing.arsw.services.impl;
 
 import edu.escuelaing.arsw.Exceptions.OrderServiceException;
-import edu.escuelaing.arsw.Exceptions.ProductServiceException;
 import edu.escuelaing.arsw.model.Cart;
-import edu.escuelaing.arsw.model.Product;
 import edu.escuelaing.arsw.persistence.CartPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartService implements edu.escuelaing.arsw.services.CartService {
@@ -40,6 +39,16 @@ public class CartService implements edu.escuelaing.arsw.services.CartService {
         } catch (Exception e) {
             e.printStackTrace();
             throw new OrderServiceException("There aren't Products");
+        }
+    }
+
+    @Override
+    public boolean existCartById(long id) throws OrderServiceException {
+        Optional<Cart> cart = cartPersistence.findById(id);
+        if(cart.isPresent()){
+            return true;
+        } else {
+            throw new OrderServiceException("The cart can't be found");
         }
     }
 }

@@ -43,12 +43,12 @@ public class OrdenService implements edu.escuelaing.arsw.services.OrdenService {
     }
 
     @Override
-    public Orden findById(long id) throws ProductServiceException {
-        try {
-            Optional<Orden> orden = ordenPersistence.findById(id);
+    public Orden findById(long id) throws OrderServiceException {
+        Optional<Orden> orden = ordenPersistence.findById(id);
+        if (orden.isPresent()) {
             return orden.get();
-        } catch (Exception e) {
-            throw new ProductServiceException("The product can't be found");
+        } else {
+            throw new OrderServiceException("The order can't be found");
         }
     }
 }

@@ -20,18 +20,18 @@ public class ServicioService implements edu.escuelaing.arsw.services.ServicioSer
     @Override
     public void register(String name, String image, String description, long price, String status, long fkStoreService) throws ServicioServiceException {
         Servicio servicio = new Servicio(name, image, description, price, status, fkStoreService);
-        try{
+        try {
             servicioPersistence.save(servicio);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new ServicioServiceException("The servcice couldn't be registred");
         }
     }
 
     @Override
     public void updateService(Servicio service) throws ServicioServiceException {
-        try{
+        try {
             servicioPersistence.save(service);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             throw new ServicioServiceException("The service couldn't be update");
         }
     }
@@ -45,7 +45,7 @@ public class ServicioService implements edu.escuelaing.arsw.services.ServicioSer
         }
     }
 
-   @Override
+    @Override
     public List<Servicio> findAll() throws ServicioServiceException {
         try {
             return (List<Servicio>) servicioPersistence.findAll();
@@ -57,19 +57,19 @@ public class ServicioService implements edu.escuelaing.arsw.services.ServicioSer
 
     @Override
     public List<Servicio> findByStatusAndFkStoreService(String status, Long fkStoreService) throws ServicioServiceException {
-        try{
+        try {
             return servicioPersistence.findByStatusAndFkStoreService(status, fkStoreService);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             throw new ServicioServiceException("Service doesn't found");
         }
     }
 
     @Override
     public Servicio findById(long id) throws ServicioServiceException {
-        try {
-            Optional<Servicio> servicio = servicioPersistence.findById(id);
+        Optional<Servicio> servicio = servicioPersistence.findById(id);
+        if(servicio.isPresent()) {
             return servicio.get();
-        } catch (Exception e) {
+        } else {
             throw new ServicioServiceException("The service can't be found");
         }
     }

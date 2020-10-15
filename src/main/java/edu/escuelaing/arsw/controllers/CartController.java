@@ -69,4 +69,30 @@ public class CartController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteFromTheCart(@RequestBody Cart cart) {
+        try {
+            if(cartService.existCartById(cart.getId())) {
+                Orden orden = ordenService.findById(cart.getFkOrderCart());
+                if (cart.getFkProductCart() != null && cart.getFkServicesCart() == null && cart.getFkOrderCart() != null && cart.getId() != null) {
+                    Product product = productService.findById(cart.getFkProductCart());
+                    orden.setTotalValue(orden.getTotalValue() - product.getPrice());
+                    cartService.deleteFromCart(cart);
+                    return new ResponseEntity<>("Success", HttpStatus.ACCEPTED);
+                } else if (cart.getFkProductCart() == null && cart.getFkServicesCart() != null && cart.getFkOrderCart() != null && cart.getId() != null) {
+                    Servicio servicio = servicioService.findById(cart.getFkServicesCart());
+                    orden.setTotalValue(orden.getTotalValue() - servicio.getPrice());
+                    cartService.deleteFromCart(cart);
+                    return new ResponseEntity<>("Success", HttpStatus.ACCEPTED);
+                } else {
+                    return new ResponseEntity<>("You don't delete any product or service", HttpStatus.NOT_ACCEPTABLE);
+                }
+            } else {
+                return new ResponseEntity<>("You don't delete any product or service", HttpStatus.NOT_ACCEPTABLE);
+            }
+        } catch (OrderServiceException | ProductServiceException | ServicioServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
 }

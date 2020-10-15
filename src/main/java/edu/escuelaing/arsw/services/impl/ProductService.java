@@ -70,10 +70,10 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
 
     @Override
     public Product findById(long id) throws ProductServiceException {
-        try {
-            Optional<Product> product = productPersistence.findById(id);
+        Optional<Product> product = productPersistence.findById(id);
+        if (product.isPresent()) {
             return product.get();
-        } catch (Exception e) {
+        } else {
             throw new ProductServiceException("The product can't be found");
         }
     }

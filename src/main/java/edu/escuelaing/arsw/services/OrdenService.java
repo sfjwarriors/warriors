@@ -14,5 +14,5 @@ public interface OrdenService {
     public void updateOrden(Orden orden) throws OrderServiceException;
     public void deleteOrden(Orden orden) throws OrderServiceException;
     public List<Orden> findAll() throws OrderServiceException;
-    public Orden findById(long id) throws ProductServiceException;
+    public Orden findById(long id) throws OrderServiceException;
 }

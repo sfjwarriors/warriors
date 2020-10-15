@@ -107,4 +107,16 @@ public class Orden implements Serializable {
     public void setCarts(List<Cart> carts) {
         this.carts = carts;
     }
+
+    @Override
+    public String toString() {
+        return "Orden{" +
+                "id=" + id +
+                ", dateOrder=" + dateOrder +
+                ", deliveryDate=" + deliveryDate +
+                ", totalValue=" + totalValue +
+                ", statusOrder='" + statusOrder + '\'' +
+                ", fkStore=" + fkStore +
+                '}';
+    }
 }
