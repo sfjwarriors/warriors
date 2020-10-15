@@ -18,18 +18,18 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
     @Override
     public void register(String name, String description, long price, String image, String status, long fkStoreProduct) throws ProductServiceException {
         Product product = new Product(name, description, price, image, status, fkStoreProduct);
-        try{
+        try {
             productPersistence.save(product);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new ProductServiceException("The product couldn't be registred");
         }
     }
 
     @Override
     public void updateProduct(Product product) throws ProductServiceException {
-        try{
+        try {
             productPersistence.save(product);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             throw new ProductServiceException("The product couldn't be update");
         }
     }
@@ -61,10 +61,20 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
 
     @Override
     public List<Product> findByStatusAndFkStoreProduct(String status, Long fkStoreProduct) throws ProductServiceException {
-        try{
+        try {
             return productPersistence.findByStatusAndFkStoreProduct(status, fkStoreProduct);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             throw new ProductServiceException("Product doesn't found");
+        }
+    }
+
+    @Override
+    public Product findById(long id) throws ProductServiceException {
+        try {
+            Optional<Product> product = productPersistence.findById(id);
+            return product.get();
+        } catch (Exception e) {
+            throw new ProductServiceException("The product can't be found");
         }
     }
 }

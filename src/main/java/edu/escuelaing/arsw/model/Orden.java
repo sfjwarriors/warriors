@@ -28,8 +28,9 @@ public class Orden implements Serializable {
     private Date deliveryDate;
     
     @Column (name = "totalValue")
-    private int totalValue;
-    
+    private long totalValue;
+
+    //Se debe poder ver la fase del servicio (Creado, aceptado, en camino, en tu lugar y finalizado).
     @Column
     private String statusOrder;
 
@@ -43,7 +44,7 @@ public class Orden implements Serializable {
     public Orden() {
     }
 
-    public Orden(Date dateOrder, Date deliveryDate, int totalValue, String statusOrder, long fkStore) {
+    public Orden(Date dateOrder, Date deliveryDate, long totalValue, String statusOrder, long fkStore) {
         this.dateOrder = dateOrder;
         this.deliveryDate = deliveryDate;
         this.totalValue = totalValue;
@@ -75,11 +76,11 @@ public class Orden implements Serializable {
         this.deliveryDate = deliveryDate;
     }
 
-    public int getTotalValue() {
+    public long getTotalValue() {
         return totalValue;
     }
 
-    public void setTotalValue(int totalValue) {
+    public void setTotalValue(long totalValue) {
         this.totalValue = totalValue;
     }
 

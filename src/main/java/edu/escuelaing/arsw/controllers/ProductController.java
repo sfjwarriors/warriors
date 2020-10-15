@@ -29,7 +29,6 @@ public class ProductController {
             List<Product> productList = productService.findAll();
             return new ResponseEntity<>(productList, HttpStatus.ACCEPTED);
         } catch (ProductServiceException e) {
-            e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
@@ -40,7 +39,6 @@ public class ProductController {
             List<Product> productList = productService.findByStatusAndFkStoreProduct(status, fkStoreProduct);
             return new ResponseEntity<>(productList, HttpStatus.ACCEPTED);
         } catch (ProductServiceException e) {
-            e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }

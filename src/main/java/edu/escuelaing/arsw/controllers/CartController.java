@@ -1,0 +1,72 @@
+package edu.escuelaing.arsw.controllers;
+
+import edu.escuelaing.arsw.Exceptions.OrderServiceException;
+import edu.escuelaing.arsw.Exceptions.ProductServiceException;
+import edu.escuelaing.arsw.Exceptions.ServicioServiceException;
+import edu.escuelaing.arsw.model.Cart;
+import edu.escuelaing.arsw.model.Orden;
+import edu.escuelaing.arsw.model.Product;
+import edu.escuelaing.arsw.model.Servicio;
+import edu.escuelaing.arsw.services.CartService;
+import edu.escuelaing.arsw.services.OrdenService;
+import edu.escuelaing.arsw.services.ProductService;
+import edu.escuelaing.arsw.services.ServicioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/carts")
+public class CartController {
+    @Autowired
+    CartService cartService;
+
+    @Autowired
+    ProductService productService;
+
+    @Autowired
+    ServicioService servicioService;
+
+    @Autowired
+    OrdenService ordenService;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> findAllCarts() {
+        try {
+            List<Cart> cartList = cartService.findAll();
+            return new ResponseEntity<>(cartList, HttpStatus.ACCEPTED);
+        } catch (OrderServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> addToTheCart(@RequestBody Cart cart) {
+        //System.out.println(cart.toString());
+        try {
+            Orden orden = ordenService.findById(cart.getFkOrderCart());
+            if(cart.getFkProductCart()!=null && cart.getFkServicesCart()==null && cart.getFkOrderCart()!=null){
+                Product product = productService.findById(cart.getFkProductCart());
+                orden.setTotalValue(orden.getTotalValue()+product.getPrice());
+                cartService.addToCart(cart);
+                return new ResponseEntity<>("Success", HttpStatus.CREATED);
+            } else if(cart.getFkProductCart()==null && cart.getFkServicesCart()!=null && cart.getFkOrderCart()!=null){
+                Servicio servicio = servicioService.findById(cart.getFkServicesCart());
+                orden.setTotalValue(orden.getTotalValue()+servicio.getPrice());
+                cartService.addToCart(cart);
+                return new ResponseEntity<>("Success", HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>("You don't add any product or service", HttpStatus.NOT_ACCEPTABLE);
+            }
+        } catch (OrderServiceException | ProductServiceException | ServicioServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
+}

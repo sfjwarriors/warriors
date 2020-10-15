@@ -16,4 +16,5 @@ public interface ProductService {
 //    public void orderProduct(long idProduct, long idUser) throws ProductServiceException;
     public List<Product> findAll() throws ProductServiceException;
     public List <Product> findByStatusAndFkStoreProduct(String status, Long fkStoreProduct) throws ProductServiceException;
+    public Product findById(long id) throws ProductServiceException;
 }

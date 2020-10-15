@@ -2,12 +2,14 @@ package edu.escuelaing.arsw.services.impl;
 
 import edu.escuelaing.arsw.Exceptions.ProductServiceException;
 import edu.escuelaing.arsw.Exceptions.ServicioServiceException;
+import edu.escuelaing.arsw.model.Product;
 import edu.escuelaing.arsw.model.Servicio;
 import edu.escuelaing.arsw.persistence.ServicioPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServicioService implements edu.escuelaing.arsw.services.ServicioService {
@@ -59,6 +61,16 @@ public class ServicioService implements edu.escuelaing.arsw.services.ServicioSer
             return servicioPersistence.findByStatusAndFkStoreService(status, fkStoreService);
         }catch (NullPointerException e){
             throw new ServicioServiceException("Service doesn't found");
+        }
+    }
+
+    @Override
+    public Servicio findById(long id) throws ServicioServiceException {
+        try {
+            Optional<Servicio> servicio = servicioPersistence.findById(id);
+            return servicio.get();
+        } catch (Exception e) {
+            throw new ServicioServiceException("The service can't be found");
         }
     }
 }
