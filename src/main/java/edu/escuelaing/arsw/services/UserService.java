@@ -19,6 +19,7 @@ public interface UserService {
     public Optional<User> findById(long id) throws UserServiceException;
     public User findByToken(String token) throws UserServiceException;
     public String getToken(User user) throws UserServiceException;
+	public void registerStore(String store, long fk_mechanic) throws UserServiceException;
 
 //    public void registerStore(String store, long fk_mechanic) throws  UserServiceException;
 }
