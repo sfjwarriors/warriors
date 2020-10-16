@@ -38,10 +38,12 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/formuStyle.css">
-    <link rel="stylesheet" href="js/formuScript.js">
+ 
 
     <!-- Client script -->
+    <script src="js/formuScript.js"></script>
     <script src="js/client.js"></script>
+    
 
     <!-- Axios -->
 
@@ -49,7 +51,7 @@
 
 </head>
 
-<body onload="client.validate()">
+<body>
 
 <!-- Header Start -->
 <!-- Header Start -->
@@ -77,54 +79,51 @@
                                 <messages id="messages" closable="true"/>
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input id="nombreR" type="text" class="form-control" name="nombre" value=""
+                                    <input id="nombre" type="text" class="form-control" name="nombre" value=""
                                            required="true" autofocus="true"/>
                                 </div>
                             </div>
                             <div style="float: right; width: 50%; height: 100%;">
                                 <div class="form-group">
                                     <label>Apellido</label>
-                                    <input id="apellidoR" type="text" class="form-control" name="nombre"
+                                    <input id="apellido" type="text" class="form-control" name="nombre"
                                            value=""
                                            required="true" autofocus="true"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Correo</label>
-                                <input id="emailR" type="email" class="form-control" name="email" value=""
+                                <input id="email" type="text" class="form-control" name="email" value=""
                                        required="true" autofocus="true"/>
                             </div>
                             <div style="float: left; width: 45%; height: 100%;">
                                 <div class="form-group">
                                     <label>Contraseña</label>
-                                    <input id="passwordR" type="password" class="form-control" name="password"
+                                    <input id="password1" type="password" class="form-control" name="password"
                                            required="true" data-eye="true" autofocus="true"/>
                                     <label>Dirección</label>
-                                    <input id="direccionR" class="form-control" type="text" name="nombre"
+                                    <input id="direccion" class="form-control" type="text" name="nombre"
                                            value=""
                                            required="true" autofocus="true"/>
-                                    <label for="registerType">Tipo de Usuario</label>
-                                    <input type="text" name="Tipo" id="registerType" list="typeList">
-                                    <datalist id="typeList">
-                                        <option value="Usuario">
-                                        <option value="Empresa">
-                                    </datalist>
+                                    <label for="registerType">¿Eres Mecanico?</label>
+                                    <br>
+                                    <input type="checkbox" id="mecanico" onclick="formuScript.uncheck()" name="mecanico"> Si. Soy Mecanico<br>
+                                    <input type="checkbox" id="usuario" onclick="formuScript.uncheck()" name="usuario"> No. Soy Usuario<br>
                                 </div>
                             </div>
                             <div style="float: right; width: 50%; height: 100%;">
                                 <div class="form-group">
                                     <label>Confirmar Contraseña</label>
-                                    <input id="passwordRC" type="password" class="form-control" name="password"
+                                    <input id="password2" type="password" class="form-control" name="password"
                                            required="true" data-eye="true" autofocus="true"/>
                                     <label>Celular</label>
-                                    <input id="celularR" class="form-control" type="number" name="nombre"
+                                    <input id="celular" class="form-control" type="text" name="nombre"
                                            value=""
                                            required="true" autofocus="true"/>
                                     <br>
 
-                                    <div style="text-align: center;"><a onclick="client.registrarse()"
-                                                                        class="btn btn-main">Registrarse<i
-                                            class="btn-icon fa fa-angle-right ml-2"></i></a></div>
+                                    <div><a type="submit" onclick="formuScript.crearFormulario()" class="btn btn-main">Resgistrar<i
+                                        class="btn-icon fa fa-angle-right ml-2"></i></a></div>
                                     <div class="preloader" id="preload"></div>
                                 </div>
                             </div>

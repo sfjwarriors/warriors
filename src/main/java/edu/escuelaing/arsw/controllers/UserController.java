@@ -20,7 +20,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> registerUser(@RequestBody User user) {
         try {
-            userService.register(user.getName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getRol(), user.getAddress(), user.getImage(), 0, user.getCellphone());
+            userService.register(user.getName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getRol(), user.getAddress(), "Image", 0, user.getCellphone());
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
         } catch (UserServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
