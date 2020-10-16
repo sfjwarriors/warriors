@@ -60,6 +60,10 @@ var mystore = (function () {
         client.getStore(storeTmp.fkMechanic, listServices);
     }
 
+    function getOrders() {
+            client.getStore(storeTmp.fkMechanic, listOrders);
+        }
+
     function listProducts(store) {
         console.log("List Products", store.products);
         s = "";
@@ -83,10 +87,36 @@ var mystore = (function () {
         $("#lista").html(s);
     }
 
+    function listOrders(store) {
+        //console.log("List Orders", store.orders);
+        console.log("List Carros", store.orders[0].carts);
+        s = "";
+        for(var j=0; j<store.orders[0].carts.length; j++){
+            if(store.orders[0].carts[j].fkProductCart==null && store.orders[0].carts[j].fkServicesCart!=null){
+                client.getServiceById(store.orders[0].carts[j].fkServicesCart, outProduct);
+            } else if(store.orders[0].carts[j].fkProductCart!=null && store.orders[0].carts[j].fkServicesCart==null){
+                client.getProductById(store.orders[0].carts[j].fkProductCart, outProduct);
+            }
+        }
+//        for(var i=0; i<store.servicios.length; i++) {
+//            s += "<div class='col-lg-6 col-md-6 mb-5'><div class='blog-item'><img src='imagen/bateria.jpg' alt='' class='img-fluid rounded'> <div class='blog-item-content bg-white p-5'>";
+//            s += "<h3 class='mt-3 mb-3'><a href='blog-single.html'>"+store.servicios[i].name+"</a></h3><p class='mb-4'>"+store.servicios[i].description+"</p><p class='mb-4'> Precio: $"+store.servicios[i].price+"</p>";
+//            s += "<a href='carrito.html' class='btn btn-small btn-main btn-round-full'>Agregar al Carrito</a></div></div></div>";
+//        }
+//        $("#lista").html(s);
+    }
+
+    function outProduct(datos){
+        s+=datos.name;
+        s+= " ";
+    }
+
     return {
         isLogged: isLogged,
         habilitaCambioNombre: habilitaCambioNombre,
         getProducts: getProducts,
-        getServices, getServices
+        getServices, getServices,
+        getOrders: getOrders,
+        outProduct: outProduct
     }
 })();

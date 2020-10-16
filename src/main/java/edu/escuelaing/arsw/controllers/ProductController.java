@@ -72,4 +72,14 @@ public class ProductController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
     }
+
+    @RequestMapping(value = "{idProduct}", method = RequestMethod.GET)
+    public ResponseEntity<?> getProductById(@PathVariable long idProduct) {
+        try {
+            Product product = productService.findById(idProduct);
+            return new ResponseEntity<>(product, HttpStatus.ACCEPTED);
+        } catch (ProductServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
 }

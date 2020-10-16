@@ -61,10 +61,20 @@ public class ServiceController {
     }
 
     @RequestMapping(value = "{idService}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteProduct(@PathVariable long idService) {
+    public ResponseEntity<?> deleteService(@PathVariable long idService) {
         try {
             servicioService.deleteService(idService);
             return new ResponseEntity<>("Success", HttpStatus.ACCEPTED);
+        } catch (ServicioServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
+    @RequestMapping(value = "{idService}", method = RequestMethod.GET)
+    public ResponseEntity<?> getServiceById(@PathVariable long idService) {
+        try {
+            Servicio servicio = servicioService.findById(idService);
+            return new ResponseEntity<>(servicio, HttpStatus.ACCEPTED);
         } catch (ServicioServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }

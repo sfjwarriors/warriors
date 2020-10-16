@@ -1,6 +1,6 @@
 var client = (function () {
-    var url = 'http://mecaclic.herokuapp.com';
-    //var url = 'http://localhost:8080';
+    //var url = 'http://mecaclic.herokuapp.com';
+    var url = 'http://localhost:8080';
     function isLogged(callback) {
         if(window.sessionStorage.token!=null) {
             axios.get(url+'/login/'+window.sessionStorage.token
@@ -71,12 +71,29 @@ var client = (function () {
 
     function updateStore(store, callback){
         var s = {id: store.id, storeName: store.storeName, fkMechanic: store.fkMechanic}
-        console.log("sap", s);
         axios.put(url+'/stores', {
             id: store.id,
             storeName: store.storeName,
             fkMechanic: store.fkMechanic
         }).then(function f (res){
+            callback(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function getProductById(idProduct, callback) {
+        axios.get(url+'/products/'+idProduct
+        ).then(function f (res){
+            callback(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function getServiceById(idService, callback) {
+        axios.get(url+'/services/'+idService
+        ).then(function f (res){
             callback(res.data);
         }).catch(function (error) {
             alert(error.response.data);
@@ -90,6 +107,8 @@ var client = (function () {
         loginPage: loginPage,
         closeSession: closeSession,
         getStore: getStore,
-        updateStore: updateStore
+        updateStore: updateStore,
+        getProductById: getProductById,
+        getServiceById: getServiceById
     }
 })();
