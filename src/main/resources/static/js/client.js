@@ -97,6 +97,7 @@ var client = (function () {
     function getProductById(idProduct, callback) {
         axios.get(url+'/products/'+idProduct
         ).then(function f (res){
+            console.log(res.data);
             callback(res.data);
         }).catch(function (error) {
             alert(error.response.data);
@@ -106,7 +107,8 @@ var client = (function () {
     function getServiceById(idService, callback) {
         axios.get(url+'/services/'+idService
         ).then(function f (res){
-            callback(res.data);
+            console.log(res.data);
+             callback(res.data);
         }).catch(function (error) {
             alert(error.response.data);
         })

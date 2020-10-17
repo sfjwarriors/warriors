@@ -1,6 +1,10 @@
 var profile = (function () {
     function isLogged() {
-        client.isLogged(updateBtns);
+        if(window.sessionStorage.token!=null) {
+            client.isLogged(updateBtns);
+        } else {
+            window.location.replace("login.html");
+        }
     }
 
     function updateBtns(user) {

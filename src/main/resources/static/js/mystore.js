@@ -9,7 +9,6 @@ var mystore = (function () {
         $("#userbtn").text("Cerrar Sesión");
         document.getElementById("userbtn").onclick = client.closeSession;
         $("#perfilbtn").text(user.name);
-        console.log(user);
         document.getElementById("perfilbtn").href = "profile.html";
         document.getElementById("perfilbtn").style.visibility="visible";
         if(user.rol=='MECA') {
@@ -89,26 +88,36 @@ var mystore = (function () {
 
     function listOrders(store) {
         //console.log("List Orders", store.orders);
-        console.log("List Carros", store.orders[0].carts);
+        //console.log("List Carros", store.orders[0].carts);
         s = "";
-        for(var j=0; j<store.orders[0].carts.length; j++){
-            if(store.orders[0].carts[j].fkProductCart==null && store.orders[0].carts[j].fkServicesCart!=null){
-                client.getServiceById(store.orders[0].carts[j].fkServicesCart, outProduct);
-            } else if(store.orders[0].carts[j].fkProductCart!=null && store.orders[0].carts[j].fkServicesCart==null){
-                client.getProductById(store.orders[0].carts[j].fkProductCart, outProduct);
+//        var rs = [];
+//        client.getProductById(store.orders[0].carts[2].fkProductCart, outProduct);
+//        client.getServiceById(store.orders[0].carts[0].fkServicesCart, outProduct);
+//        console.log(rs);
+        for(var o=0; o<store.orders.length; o++){
+            console.log("store", storeTmp);
+            s+= "<div class='blog-item-content bg-white p-5'><h3 class='mt-3 mb-3'><a href='blog-single.html'>Orden No. "+store.orders[o].id+"</a></h3>";
+            for(var j=0; j<store.orders[o].carts.length; j++){
+                for(var k=0; k<storeTmp.servicios.length; k++){
+                    if(store.servicios[k].id==store.orders[o].carts[j].fkServicesCart){
+                        s += "<p class='mb-4'>Servicio: "+store.servicios[k].name+"  Precio: $"+store.servicios[k].price+"</p>";
+                        console.log(store.servicios[k]);
+                    } else if(store.products[k].id==store.orders[o].carts[j].fkProductCart){
+                        s += "<p class='mb-4'>Producto: "+store.products[k].name+"  Precio: $"+store.products[k].price+"</p>";
+                        console.log(store.products[k]);
+                    }
+                }
             }
+            s += "<p class='mb-4'>Valor Total: "+store.orders[o].totalValue+"</p>";
+            s += "<p class='mb-4'>Estado de la orden: "+store.orders[o].statusOrder+"</p>";
+            s += "<a href='carrito.html' class='btn btn-small btn-main btn-round-full'>Avanzar Estado</a></div>";
         }
-//        for(var i=0; i<store.servicios.length; i++) {
-//            s += "<div class='col-lg-6 col-md-6 mb-5'><div class='blog-item'><img src='imagen/bateria.jpg' alt='' class='img-fluid rounded'> <div class='blog-item-content bg-white p-5'>";
-//            s += "<h3 class='mt-3 mb-3'><a href='blog-single.html'>"+store.servicios[i].name+"</a></h3><p class='mb-4'>"+store.servicios[i].description+"</p><p class='mb-4'> Precio: $"+store.servicios[i].price+"</p>";
-//            s += "<a href='carrito.html' class='btn btn-small btn-main btn-round-full'>Agregar al Carrito</a></div></div></div>";
-//        }
-//        $("#lista").html(s);
+        $("#lista").html(s);
     }
 
     function outProduct(datos){
-        s+=datos.name;
-        s+= " ";
+        s += "<h3 class='mt-3 mb-3'><a href='blog-single.html'>"+datos.name+"</a></h3><p class='mb-4'> Precio: $"+datos.price+"</p>";
+        console.log(datos);
     }
 
     return {
@@ -116,7 +125,6 @@ var mystore = (function () {
         habilitaCambioNombre: habilitaCambioNombre,
         getProducts: getProducts,
         getServices, getServices,
-        getOrders: getOrders,
-        outProduct: outProduct
+        getOrders: getOrders
     }
 })();

@@ -9,7 +9,6 @@ var mystore = (function () {
         $("#userbtn").text("Cerrar Sesión");
         document.getElementById("userbtn").onclick = client.closeSession;
         $("#perfilbtn").text(user.name);
-        console.log(user);
         document.getElementById("perfilbtn").href = "profile.html";
         document.getElementById("perfilbtn").style.visibility="visible";
         if(user.rol=='MECA') {
@@ -60,6 +59,10 @@ var mystore = (function () {
         client.getStore(storeTmp.fkMechanic, listServices);
     }
 
+    function getOrders() {
+            client.getStore(storeTmp.fkMechanic, listOrders);
+        }
+
     function listProducts(store) {
         console.log("List Products", store.products);
         s = "";
@@ -83,10 +86,45 @@ var mystore = (function () {
         $("#lista").html(s);
     }
 
+    function listOrders(store) {
+        //console.log("List Orders", store.orders);
+        //console.log("List Carros", store.orders[0].carts);
+        s = "";
+//        var rs = [];
+//        client.getProductById(store.orders[0].carts[2].fkProductCart, outProduct);
+//        client.getServiceById(store.orders[0].carts[0].fkServicesCart, outProduct);
+//        console.log(rs);
+        for(var o=0; o<store.orders.length; o++){
+            console.log("store", storeTmp);
+            s+= "<div class='blog-item-content bg-white p-5'><h3 class='mt-3 mb-3'><a href='blog-single.html'>Orden No. "+store.orders[o].id+"</a></h3>";
+            for(var j=0; j<store.orders[o].carts.length; j++){
+                for(var k=0; k<storeTmp.servicios.length; k++){
+                    if(store.servicios[k].id==store.orders[o].carts[j].fkServicesCart){
+                        s += "<p class='mb-4'>Servicio: "+store.servicios[k].name+"  Precio: $"+store.servicios[k].price+"</p>";
+                        console.log(store.servicios[k]);
+                    } else if(store.products[k].id==store.orders[o].carts[j].fkProductCart){
+                        s += "<p class='mb-4'>Producto: "+store.products[k].name+"  Precio: $"+store.products[k].price+"</p>";
+                        console.log(store.products[k]);
+                    }
+                }
+            }
+            s += "<p class='mb-4'>Valor Total: "+store.orders[o].totalValue+"</p>";
+            s += "<p class='mb-4'>Estado de la orden: "+store.orders[o].statusOrder+"</p>";
+            s += "<a href='carrito.html' class='btn btn-small btn-main btn-round-full'>Avanzar Estado</a></div>";
+        }
+        $("#lista").html(s);
+    }
+
+    function outProduct(datos){
+        s += "<h3 class='mt-3 mb-3'><a href='blog-single.html'>"+datos.name+"</a></h3><p class='mb-4'> Precio: $"+datos.price+"</p>";
+        console.log(datos);
+    }
+
     return {
         isLogged: isLogged,
         habilitaCambioNombre: habilitaCambioNombre,
         getProducts: getProducts,
-        getServices, getServices
+        getServices, getServices,
+        getOrders: getOrders
     }
 })();

@@ -84,11 +84,31 @@ var client = (function () {
     }
     function registerUsers(nombre,apellido,email,celular,direccion,password,tipoUsuario,callback){
         var envio = {name: nombre, lastName:apellido,email:email,cellphone:celular,rol:tipoUsuario,address:direccion,password:password}
- 
+
         axios.post(url+'/users',
             envio
           ).then(function f (res){
             callback(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function getProductById(idProduct, callback) {
+        axios.get(url+'/products/'+idProduct
+        ).then(function f (res){
+            console.log(res.data);
+            callback(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function getServiceById(idService, callback) {
+        axios.get(url+'/services/'+idService
+        ).then(function f (res){
+            console.log(res.data);
+             callback(res.data);
         }).catch(function (error) {
             alert(error.response.data);
         })
@@ -101,6 +121,9 @@ var client = (function () {
         loginPage: loginPage,
         closeSession: closeSession,
         getStore: getStore,
+        updateStore: updateStore,
+        getProductById: getProductById,
+        getServiceById: getServiceById,
         updateStore: updateStore,
         registerUsers:registerUsers
     }
