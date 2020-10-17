@@ -82,6 +82,17 @@ var client = (function () {
             alert(error.response.data);
         })
     }
+    function registerUsers(nombre,apellido,email,celular,direccion,password,tipoUsuario,callback){
+        var envio = {name: nombre, lastName:apellido,email:email,cellphone:celular,rol:tipoUsuario,address:direccion,password:password}
+ 
+        axios.post(url+'/users',
+            envio
+          ).then(function f (res){
+            callback(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
 
     return {
         isLogged: isLogged,
@@ -90,6 +101,7 @@ var client = (function () {
         loginPage: loginPage,
         closeSession: closeSession,
         getStore: getStore,
-        updateStore: updateStore
+        updateStore: updateStore,
+        registerUsers:registerUsers
     }
 })();
