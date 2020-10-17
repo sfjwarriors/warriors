@@ -29,9 +29,7 @@ var client = (function () {
             email: $("#email").val(),
             password: $("#password").val()
         }).then(function f (res){
-            console.log(res.data);
             window.sessionStorage.token = res.data;
-            console.log(window.sessionStorage.token);
             window.location.replace("index.html");
         }).catch(function (error) {
             document.getElementById("preload").style.visibility = "hidden";
@@ -65,13 +63,11 @@ var client = (function () {
 
     function closeSession() {
         window.sessionStorage.token=null;
-        console.log("cierra", window.sessionStorage.token);
         loginPage();
     }
 
     function updateStore(store, callback){
         var s = {id: store.id, storeName: store.storeName, fkMechanic: store.fkMechanic}
-        console.log("sap", s);
         axios.put(url+'/stores', {
             id: store.id,
             storeName: store.storeName,
@@ -97,7 +93,6 @@ var client = (function () {
     function getProductById(idProduct, callback) {
         axios.get(url+'/products/'+idProduct
         ).then(function f (res){
-            console.log(res.data);
             callback(res.data);
         }).catch(function (error) {
             alert(error.response.data);
@@ -107,8 +102,71 @@ var client = (function () {
     function getServiceById(idService, callback) {
         axios.get(url+'/services/'+idService
         ).then(function f (res){
-            console.log(res.data);
              callback(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function updateProduct(data, callback){
+        axios.put(url+'/products',
+            data
+          ).then(function f (res){
+            callback(res.data);
+            alert("Se actualizo el Producto: "+data.name);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function updateService(data, callback){
+        axios.put(url+'/services',
+            data
+          ).then(function f (res){
+            callback(res.data);
+            alert("Se actualizo el Servicio: "+data.name);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function createProduct(data, callback){
+        axios.post(url+'/products',
+            data
+          ).then(function f (res){
+            callback(res.data);
+            alert("Se creo el Producto");
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function createService(data, callback){
+        axios.post(url+'/services',
+            data
+          ).then(function f (res){
+            callback(res.data);
+            alert("Se creo el Servicio");
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function deleteProduct(data, callback){
+        axios.delete(url+'/products/'+data.id
+        ).then(function f (res){
+            callback(res.data);
+            alert("Se elimino el Producto");
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function deleteService(data, callback){
+        axios.delete(url+'/services/'+data.id
+        ).then(function f (res){
+            callback(res.data);
+            alert("Se elimino el Servicio");
         }).catch(function (error) {
             alert(error.response.data);
         })
@@ -125,6 +183,12 @@ var client = (function () {
         getProductById: getProductById,
         getServiceById: getServiceById,
         updateStore: updateStore,
-        registerUsers:registerUsers
+        registerUsers:registerUsers,
+        updateProduct: updateProduct,
+        updateService: updateService,
+        createProduct: createProduct,
+        createService: createService,
+        deleteProduct: deleteProduct,
+        deleteService: deleteService
     }
 })();

@@ -10,9 +10,9 @@ public class Product implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @Column(length = 25, updatable = true)
-    private String name;
     @Column(length = 250, updatable = true)
+    private String name;
+    @Column(length = 300, updatable = true)
     private String description;
     @Column(length = 25, updatable = true)
     private long price;

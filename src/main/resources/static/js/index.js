@@ -7,7 +7,6 @@ var index = (function () {
         $("#userbtn").text("Cerrar Sesión");
         document.getElementById("userbtn").onclick = client.closeSession;
         $("#perfilbtn").text(user.name);
-        console.log(user);
         document.getElementById("perfilbtn").href = "profile.html";
         document.getElementById("perfilbtn").style.visibility="visible";
         document.getElementById("promoregister").style.visibility="hidden";
@@ -30,7 +29,6 @@ var index = (function () {
             document.getElementById("storebtn").style.visibility="visible";
             document.getElementById("storebtn").href = "mystore.html";
             var storeTmp = store;
-            console.log("stmp", storeTmp);
         }
 
     return {

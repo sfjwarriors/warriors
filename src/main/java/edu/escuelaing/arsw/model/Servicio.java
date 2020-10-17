@@ -19,7 +19,7 @@ public class Servicio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @Column(length = 100, updatable = true)
+    @Column(length = 250, updatable = true)
     private String name;
     @Column(name = "image")
     private String image;
