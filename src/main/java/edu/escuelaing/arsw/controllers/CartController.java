@@ -54,12 +54,12 @@ public class CartController {
             if(cart.getFkProductCart()!=null && cart.getFkServicesCart()==null && cart.getFkOrderCart()!=null){
                 Product product = productService.findById(cart.getFkProductCart());
                 orden.setTotalValue(orden.getTotalValue()+product.getPrice());
-                cartService.addToCart(cart);
+                cartService.addToCart(cart.getFkProductCart(), cart.getFkOrderCart(), cart.getFkServicesCart());
                 return new ResponseEntity<>("Success", HttpStatus.CREATED);
             } else if(cart.getFkProductCart()==null && cart.getFkServicesCart()!=null && cart.getFkOrderCart()!=null){
                 Servicio servicio = servicioService.findById(cart.getFkServicesCart());
                 orden.setTotalValue(orden.getTotalValue()+servicio.getPrice());
-                cartService.addToCart(cart);
+                cartService.addToCart(cart.getFkProductCart(), cart.getFkOrderCart(), cart.getFkServicesCart());
                 return new ResponseEntity<>("Success", HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>("You don't add any product or service", HttpStatus.NOT_ACCEPTABLE);
