@@ -56,5 +56,7 @@ Para Poder realizar una retroalimentacion.
 * Como Usuario Registrado.
 Quiero saber el historial de servicios
 Para: Poder tener un listado de los servicios que he pedido
+## Manual de Usuario
+Para ver el manual de Usuario para la aplicacion MecaClick, click [Acá](https://github.com/sfjwarriors/warriors/blob/master/ManualDeUsuario.md)
 ## Mockups
 Para ver los mockups click [Aqui](https://github.com/sfjwarriors/warriors/blob/master/Mockups.pdf)
