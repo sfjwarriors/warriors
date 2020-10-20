@@ -100,6 +100,7 @@ var mystore = (function () {
     function listOrders(store) {
         storeTmp = store;
         s = "";
+//        console.log(store.orders);
         for(var o=0; o<store.orders.length; o++){
             s+= "<div class='blog-item-content bg-white p-5'><h3 class='mt-3 mb-3'><a href='blog-single.html'>Orden No. "+store.orders[o].id+"</a></h3>";
             for(var j=0; j<store.orders[o].carts.length; j++){
@@ -113,7 +114,7 @@ var mystore = (function () {
             }
             s += "<p class='mb-4'>Valor Total: "+store.orders[o].totalValue+"</p>";
             s += "<p class='mb-4'>Estado de la orden: "+store.orders[o].statusOrder+"</p>";
-            s += "<a href='carrito.html' class='btn btn-small btn-main btn-round-full'>Avanzar Estado</a></div>";
+            s += "<a href='#' class='btn btn-small btn-main btn-round-full'>Avanzar Estado</a></div>";
         }
         $("#lista").html(s);
     }

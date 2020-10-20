@@ -9,6 +9,7 @@ import edu.escuelaing.arsw.persistence.OrdenPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,14 @@ public class OrdenService implements edu.escuelaing.arsw.services.OrdenService {
     OrdenPersistence ordenPersistence;
 
     @Override
-    public void createOrden(Orden orden) throws OrderServiceException {
+    public void createOrden(Date dateOrder, Date deliveryDate, long totalValue, String statusOrder, long fkStore) throws OrderServiceException {
+        Orden orden = new Orden(dateOrder, deliveryDate, totalValue, statusOrder, fkStore);
+        try{
+            ordenPersistence.save(orden);
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new OrderServiceException("The order couldn't be registred");
+        }
 
     }
 
