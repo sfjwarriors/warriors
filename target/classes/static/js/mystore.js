@@ -80,7 +80,7 @@ var mystore = (function () {
         s = "";
         for(var i=0; i<store.products.length; i++) {
             s += "<div class='col-lg-6 col-md-6 mb-5'><div class='blog-item'><img src='images/notavailable.jpg' alt='' class='img-fluid rounded'> <div class='blog-item-content bg-white p-5'>";
-            s += "<h3 class='mt-3 mb-3'><a href='blog-single.html'>"+store.products[i].name+"</a></h3><p class='mb-4'>"+store.products[i].description+"</p><p class='mb-4'> Precio: $"+store.products[i].price+"</p>";
+            s += "<h3 class='mt-3 mb-3'><a href='#'>"+store.products[i].name+"</a></h3><p class='mb-4'>"+store.products[i].description+"</p><p class='mb-4'> Precio: $"+store.products[i].price+"</p>";
             s += "<a href='#forms' onclick='mystore.editProduct("+i+")' class='btn btn-small btn-main btn-round-full'>Editar</a> <a onclick='mystore.deleteProduct("+i+")' class='btn btn-small btn-main btn-round-full'>Eliminar</a></div></div></div>";
         }
         $("#lista").html(s);
@@ -91,7 +91,7 @@ var mystore = (function () {
         s = "";
         for(var i=0; i<store.servicios.length; i++) {
             s += "<div class='col-lg-6 col-md-6 mb-5'><div class='blog-item'><img src='images/notavailable.jpg' alt='' class='img-fluid rounded'> <div class='blog-item-content bg-white p-5'>";
-            s += "<h3 class='mt-3 mb-3'><a href='blog-single.html'>"+store.servicios[i].name+"</a></h3><p class='mb-4'>"+store.servicios[i].description+"</p><p class='mb-4'> Precio: $"+store.servicios[i].price+"</p>";
+            s += "<h3 class='mt-3 mb-3'><a href='#'>"+store.servicios[i].name+"</a></h3><p class='mb-4'>"+store.servicios[i].description+"</p><p class='mb-4'> Precio: $"+store.servicios[i].price+"</p>";
             s += "<a href='#forms' onclick='mystore.editService("+i+")'class='btn btn-small btn-main btn-round-full'>Editar</a> <a onclick='mystore.deleteService("+i+")' class='btn btn-small btn-main btn-round-full'>Eliminar</a></div></div></div>";
         }
         $("#lista").html(s);

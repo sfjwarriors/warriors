@@ -1,5 +1,5 @@
 var client = (function () {
-//    var url = 'http://mecaclic.herokuapp.com';
+    //var url = 'http://mecaclic.herokuapp.com';
     var url = 'http://localhost:8080';
     function isLogged(callback) {
         if(window.sessionStorage.token!=null) {

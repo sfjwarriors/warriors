@@ -19,8 +19,7 @@ public class OrdenService implements edu.escuelaing.arsw.services.OrdenService {
     OrdenPersistence ordenPersistence;
 
     @Override
-    public void createOrden(Date dateOrder, Date deliveryDate, long totalValue, String statusOrder, long fkStore) throws OrderServiceException {
-        Orden orden = new Orden(dateOrder, deliveryDate, totalValue, statusOrder, fkStore);
+    public void createOrden(Orden orden) throws OrderServiceException {
         try{
             ordenPersistence.save(orden);
         }catch (Exception e) {

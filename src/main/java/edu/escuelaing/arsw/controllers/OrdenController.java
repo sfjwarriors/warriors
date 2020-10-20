@@ -25,7 +25,7 @@ public class OrdenController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> registerOrder(@RequestBody Orden orden) {
         try {
-            ordenService.createOrden(orden.getDateOrder(), orden.getDeliveryDate(), orden.getTotalValue(), orden.getStatusOrder(), orden.getFkStore());
+            ordenService.createOrden(orden);
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
         } catch (OrderServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
