@@ -15,8 +15,7 @@ public class CartService implements edu.escuelaing.arsw.services.CartService {
     CartPersistence cartPersistence;
 
     @Override
-    public void addToCart(Long fkProductCart, Long fkOrderCart, Long fkServicesCart) throws OrderServiceException {
-        Cart cart = new Cart(fkProductCart, fkOrderCart, fkServicesCart);
+    public void addToCart(Cart cart) throws OrderServiceException {
         try {
             cartPersistence.save(cart);
         } catch (Exception e) {

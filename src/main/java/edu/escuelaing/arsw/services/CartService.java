@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public interface CartService {
-    public void addToCart(Long fkProductCart, Long fkOrderCart, Long fkServicesCart) throws OrderServiceException;
+    public void addToCart(Cart cart) throws OrderServiceException;
     public void deleteFromCart(Cart cart) throws OrderServiceException;
     public List<Cart> findAll() throws OrderServiceException;
     public boolean existCartById(long id) throws OrderServiceException;

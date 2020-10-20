@@ -7,6 +7,7 @@ import edu.escuelaing.arsw.Exceptions.ServicioServiceException;
 import edu.escuelaing.arsw.Exceptions.StoreServiceException;
 import edu.escuelaing.arsw.Exceptions.UserServiceException;
 import edu.escuelaing.arsw.model.Cart;
+import edu.escuelaing.arsw.model.Orden;
 import edu.escuelaing.arsw.model.Servicio;
 import edu.escuelaing.arsw.services.*;
 import org.junit.FixMethodOrder;
@@ -162,7 +163,8 @@ public class AppTest {
         Date dateF = new java.sql.Date(30/12/2020);
         try {
             assertEquals(0, ordenService.findAll().size());
-            ordenService.createOrden(dateI, dateF, 95000, "aceptado", 4);
+            Orden orden = new Orden(dateI, dateF, 95000, "aceptado", 4);
+            ordenService.createOrden(orden);
             assertEquals(1, ordenService.findAll().size());
         } catch (Exception e) {
             e.printStackTrace();
@@ -183,7 +185,8 @@ public class AppTest {
     public void T12deberiaAgregarCart() {
         try {
             assertEquals(0, cartService.findAll().size());
-            cartService.addToCart(Long.valueOf(7),Long.valueOf(9),Long.valueOf(8));
+            Cart cart = new Cart(Long.valueOf(7),Long.valueOf(9),Long.valueOf(8));
+            cartService.addToCart(cart);
             assertEquals(1, cartService.findAll().size());
         } catch (Exception e) {
             e.printStackTrace();

@@ -29,18 +29,20 @@ El objetivo de la aplicación es conectar a proveedores de servicios automotrice
 ![Diagrama de despliegue](https://i.ibb.co/KqJmsq6/despliegue.png)
 
 ## Historias de Usuario:
-![Diagrama casos de uso Mecanico](https://i.ibb.co/XsQ2dTm/historia-Mecanico.png)
+![Diagrama casos de uso Mecanico](https://i.ibb.co/hX7B75d/casos-Proyecto.png)
 * Como mecanico 
 Quiero Agregar y modificar productos
 Para Poder tener un catalogo mas amplio y actualizado 
 
 * Como Mecanico
-Quiero ver servicios 
+Quiero ver mis ordenes 
 Para poder saber cuantos he hecho y cuales podre hacer o no 
 
 * Como Mecanico 
 Quiero Ver ganancias obtenidas 
 Para Poder Saber si he mejorado mis ganancias con ayuda de la app
+
+
 
 ![Diagrama casos de uso Usuario Registrado](https://i.ibb.co/LdhyWQb/historia-Usuario.png)
 
