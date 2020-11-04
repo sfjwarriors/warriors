@@ -44,6 +44,7 @@ var mystore = (function () {
         var newNameStore = document.getElementById("storetittle").value;
         $("#cambiarnombre").text("Cambiar Nombre");
         storeTmp.storeName = newNameStore;
+//        console.log(storeTmp);
         client.updateStore(storeTmp, showUpdateStore);
         document.getElementById("cambiarnombre").onclick = habilitaCambioNombre;
     }
@@ -78,10 +79,13 @@ var mystore = (function () {
     function listProducts(store) {
         storeTmp = store;
         s = "";
+        //console.log(store.products);
         for(var i=0; i<store.products.length; i++) {
-            s += "<div class='col-lg-6 col-md-6 mb-5'><div class='blog-item'><img src='images/notavailable.jpg' alt='' class='img-fluid rounded'> <div class='blog-item-content bg-white p-5'>";
-            s += "<h3 class='mt-3 mb-3'><a href='#'>"+store.products[i].name+"</a></h3><p class='mb-4'>"+store.products[i].description+"</p><p class='mb-4'> Precio: $"+store.products[i].price+"</p>";
-            s += "<a href='#forms' onclick='mystore.editProduct("+i+")' class='btn btn-small btn-main btn-round-full'>Editar</a> <a onclick='mystore.deleteProduct("+i+")' class='btn btn-small btn-main btn-round-full'>Eliminar</a></div></div></div>";
+            if(store.products[i].status=="available"){
+                s += "<div class='col-lg-6 col-md-6 mb-5'><div class='blog-item'><img src='images/notavailable.jpg' alt='' class='img-fluid rounded'> <div class='blog-item-content bg-white p-5'>";
+                s += "<h3 class='mt-3 mb-3'><a href='#'>"+store.products[i].name+"</a></h3><p class='mb-4'>"+store.products[i].description+"</p><p class='mb-4'> Precio: $"+store.products[i].price+"</p>";
+                s += "<a href='#forms' onclick='mystore.editProduct("+i+")' class='btn btn-small btn-main btn-round-full'>Editar</a> <a onclick='mystore.deleteProduct("+i+")' class='btn btn-small btn-main btn-round-full'>Eliminar</a></div></div></div>";
+            }
         }
         $("#lista").html(s);
     }
@@ -100,20 +104,24 @@ var mystore = (function () {
     function listOrders(store) {
         storeTmp = store;
         s = "";
-//        console.log(store.orders);
-        for(var o=0; o<store.orders.length; o++){
-            s+= "<div class='blog-item-content bg-white p-5'><h3 class='mt-3 mb-3'><a href='blog-single.html'>Orden No. "+store.orders[o].id+"</a></h3>";
-            for(var j=0; j<store.orders[o].carts.length; j++){
+//        console.log(store.ordens[0].carts);
+        for(var o=0; o<store.ordens.length; o++){
+            s+= "<div class='blog-item-content bg-white p-5'><h3 class='mt-3 mb-3'><a href='blog-single.html'>Orden No. "+store.ordens[o].id+"</a></h3>";
+            for(var j=0; j<store.ordens[o].carts.length; j++){
                 for(var k=0; k<storeTmp.servicios.length; k++){
-                    if(store.servicios[k].id==store.orders[o].carts[j].fkServicesCart){
+                    if(store.servicios[k].id==store.ordens[o].carts[j].fkServicesCart){
                         s += "<p class='mb-4'>Servicio: "+store.servicios[k].name+"  Precio: $"+store.servicios[k].price+"</p>";
-                    } else if(store.products[k].id==store.orders[o].carts[j].fkProductCart){
+                    }
+                }
+                for(var k=0; k<storeTmp.products.length; k++){
+                    //console.log(store.products[k]);
+                    if(store.products[k].id==store.ordens[o].carts[j].fkProductCart){
                         s += "<p class='mb-4'>Producto: "+store.products[k].name+"  Precio: $"+store.products[k].price+"</p>";
                     }
                 }
             }
-            s += "<p class='mb-4'>Valor Total: "+store.orders[o].totalValue+"</p>";
-            s += "<p class='mb-4'>Estado de la orden: "+store.orders[o].statusOrder+"</p>";
+            s += "<p class='mb-4'>Valor Total: "+store.ordens[o].totalValue+"</p>";
+            s += "<p class='mb-4'>Estado de la orden: "+store.ordens[o].statusOrder+"</p>";
             s += "<a href='#' class='btn btn-small btn-main btn-round-full'>Avanzar Estado</a></div>";
         }
         $("#lista").html(s);
