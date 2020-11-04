@@ -31,6 +31,15 @@ public class Store {
         this.fkMechanic = fkMechanic;
     }
 
+    public Store(long id, String storeName, long fkMechanic, List<Orden> ordens, List<Product> products, List<Servicio> servicios) {
+        this.id = id;
+        this.storeName = storeName;
+        this.fkMechanic = fkMechanic;
+        this.ordens = ordens;
+        this.products = products;
+        this.servicios = servicios;
+    }
+
     public long getId() {
         return id;
     }
@@ -55,14 +64,6 @@ public class Store {
         this.fkMechanic = fkMechanic;
     }
 
-    public List<Orden> getOrders() {
-        return ordens;
-    }
-
-    public void setOrders(List<Orden> ordens) {
-        this.ordens = ordens;
-    }
-
     public List<Product> getProducts() {
         return products;
     }
@@ -79,12 +80,23 @@ public class Store {
         this.servicios = servicios;
     }
 
+    public List<Orden> getOrdens() {
+        return ordens;
+    }
+
+    public void setOrdens(List<Orden> ordens) {
+        this.ordens = ordens;
+    }
+
     @Override
     public String toString() {
         return "Store{" +
                 "id=" + id +
                 ", storeName='" + storeName + '\'' +
                 ", fkMechanic=" + fkMechanic +
+                ", ordens=" + ordens +
+                ", products=" + products +
+                ", servicios=" + servicios +
                 '}';
     }
 }

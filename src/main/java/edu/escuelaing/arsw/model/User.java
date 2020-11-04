@@ -34,11 +34,11 @@ public class User implements Serializable {
     private String token;
 
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "fkUser")
     private List<Orden> ordens;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "fkMechanic")
     private List<Store> store;
     

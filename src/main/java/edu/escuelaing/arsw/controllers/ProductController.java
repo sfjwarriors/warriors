@@ -46,7 +46,7 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> registerProduct(@RequestBody Product product) {
         try {
-            productService.register(product.getName(), product.getDescription(), product.getPrice(), product.getImage(), product.getStatus(), product.getFkStoreProduct());
+            productService.register(product);
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
         } catch (ProductServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
@@ -56,6 +56,7 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<?> updateProduct(@RequestBody Product product) {
         try {
+            System.out.println(product);
             productService.updateProduct(product);
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
         } catch (ProductServiceException e) {

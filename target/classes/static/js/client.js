@@ -1,11 +1,6 @@
 var client = (function () {
-<<<<<<< HEAD
-    var url = 'http://mecaclic.herokuapp.com';
-//    var url = 'http://localhost:8080';
-=======
     //var url = 'http://mecaclic.herokuapp.com';
     var url = 'http://localhost:8080';
->>>>>>> b6fdb748999ce9b192da2a80969b4f7677b37a1d
     function isLogged(callback) {
         if(window.sessionStorage.token!=null) {
             axios.get(url+'/login/'+window.sessionStorage.token
@@ -76,7 +71,10 @@ var client = (function () {
         axios.put(url+'/stores', {
             id: store.id,
             storeName: store.storeName,
-            fkMechanic: store.fkMechanic
+            fkMechanic: store.fkMechanic,
+            products: store.products,
+            servicios: store.servicios,
+            ordens: store.ordens
         }).then(function f (res){
             callback(res.data);
         }).catch(function (error) {
@@ -187,7 +185,6 @@ var client = (function () {
         updateStore: updateStore,
         getProductById: getProductById,
         getServiceById: getServiceById,
-        updateStore: updateStore,
         registerUsers:registerUsers,
         updateProduct: updateProduct,
         updateService: updateService,

@@ -52,6 +52,16 @@ public class Orden implements Serializable {
         this.fkStore = fkStore;
     }
 
+    public Orden(long id, Date dateOrder, Date deliveryDate, long totalValue, String statusOrder, long fkStore, List<Cart> carts) {
+        this.id = id;
+        this.dateOrder = dateOrder;
+        this.deliveryDate = deliveryDate;
+        this.totalValue = totalValue;
+        this.statusOrder = statusOrder;
+        this.fkStore = fkStore;
+        this.carts = carts;
+    }
+
     public long getId() {
         return id;
     }
@@ -117,6 +127,7 @@ public class Orden implements Serializable {
                 ", totalValue=" + totalValue +
                 ", statusOrder='" + statusOrder + '\'' +
                 ", fkStore=" + fkStore +
+                ", carts=" + carts +
                 '}';
     }
 }

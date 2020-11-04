@@ -18,8 +18,7 @@ public class ServicioService implements edu.escuelaing.arsw.services.ServicioSer
     private ServicioPersistence servicioPersistence;
 
     @Override
-    public void register(String name, String image, String description, long price, String status, long fkStoreService) throws ServicioServiceException {
-        Servicio servicio = new Servicio(name, image, description, price, status, fkStoreService);
+    public void register(Servicio servicio) throws ServicioServiceException {
         try {
             servicioPersistence.save(servicio);
         } catch (IllegalArgumentException e) {

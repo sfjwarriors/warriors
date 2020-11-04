@@ -32,7 +32,7 @@ public class Servicio implements Serializable {
     @Column(name = "fkStoreService")
     private long fkStoreService;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fkServicesCart", nullable = true)
+    @JoinColumn(name = "fkServicesCart")
     private List<Cart> carts;
 
     public Servicio(){

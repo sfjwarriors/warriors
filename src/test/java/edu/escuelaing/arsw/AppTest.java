@@ -6,9 +6,7 @@ import edu.escuelaing.arsw.Exceptions.ProductServiceException;
 import edu.escuelaing.arsw.Exceptions.ServicioServiceException;
 import edu.escuelaing.arsw.Exceptions.StoreServiceException;
 import edu.escuelaing.arsw.Exceptions.UserServiceException;
-import edu.escuelaing.arsw.model.Cart;
-import edu.escuelaing.arsw.model.Orden;
-import edu.escuelaing.arsw.model.Servicio;
+import edu.escuelaing.arsw.model.*;
 import edu.escuelaing.arsw.services.*;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -64,9 +62,11 @@ public class AppTest {
     public void T01deberiaRegistrar() {
         try {
             assertEquals(0 ,userService.findAll().size());
-            userService.register("santiago", "lopez", "santiago@mail.com", "1234", "MECA", "Carrera 123", "img", 10000000, 32454234);
+            User user1 = new User("santiago", "lopez", "santiago@mail.com", "1234", "MECA", "Carrera 123", "img", 10000000, 32454234);
+            userService.register(user1);
             assertEquals(1 ,userService.findAll().size());
-            userService.register("juan", "munoz", "juan@mail.com", "1234", "MECA", "Carrera 130", "img", 10000000, 32454432);
+            User user2 = new User("juan", "munoz", "juan@mail.com", "1234", "MECA", "Carrera 130", "img", 10000000, 32454432);
+            userService.register(user2);
             assertEquals(2 ,userService.findAll().size());
 //            System.out.println(userService.findAll());
         } catch (UserServiceException e) {
@@ -107,7 +107,8 @@ public class AppTest {
         try {
 //            System.out.println(storeService.findAll());
             assertEquals(2, storeService.findAll().size());
-            userService.register("Daniel", "Hernandez", "daniel@mail.com", "1234", "MECA", "Carrera 250", "img", 14500000, 32458832);
+            User user = new User("Daniel", "Hernandez", "daniel@mail.com", "1234", "MECA", "Carrera 250", "img", 14500000, 32458832);
+            userService.register(user);
             assertEquals(3, storeService.findAll().size());
         } catch (StoreServiceException | UserServiceException e) {
             e.printStackTrace();
@@ -118,7 +119,8 @@ public class AppTest {
     public void T06deberiaCrearProducto() {
         try {
             assertEquals(0, productService.findAll().size());
-            productService.register("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", 4);
+            Product product = new Product("Aceitee", "Aceite Mobil", 80000, "image aceite", "available", 4);
+            productService.register(product);
             assertEquals(1, productService.findAll().size());
         } catch (ProductServiceException e) {
             e.printStackTrace();
@@ -129,7 +131,8 @@ public class AppTest {
     public void T07deberiaCrearServicio() {
         try {
             assertEquals(0, servicioService.findAll().size());
-            servicioService.register("Cambio de Aceitee", "Imagen Aceite Mobil", "Cambio de aceite para carro", 100000, "available", 4);
+            Servicio servicio = new Servicio("Cambio de Aceitee", "Imagen Aceite Mobil", "Cambio de aceite para carro", 100000, "available", 4);
+            servicioService.register(servicio);
             assertEquals(1, servicioService.findAll().size());
         } catch (ServicioServiceException e) {
             e.printStackTrace();

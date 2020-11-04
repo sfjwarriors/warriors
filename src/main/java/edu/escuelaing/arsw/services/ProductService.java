@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public interface ProductService {
-    public void register(String name, String description, long price, String image, String status, long fkStoreProduct) throws ProductServiceException;
+    public void register(Product product) throws ProductServiceException;
     public void updateProduct(Product product) throws ProductServiceException;
     public void deleteProduct(long idProduct) throws ProductServiceException;
 //    public void orderProduct(long idProduct, long idUser) throws ProductServiceException;

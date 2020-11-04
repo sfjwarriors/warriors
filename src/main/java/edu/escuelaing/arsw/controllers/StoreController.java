@@ -1,11 +1,12 @@
 package edu.escuelaing.arsw.controllers;
 
-import edu.escuelaing.arsw.Exceptions.ProductServiceException;
-import edu.escuelaing.arsw.Exceptions.ServicioServiceException;
-import edu.escuelaing.arsw.Exceptions.StoreServiceException;
-import edu.escuelaing.arsw.Exceptions.UserServiceException;
+import edu.escuelaing.arsw.Exceptions.*;
+import edu.escuelaing.arsw.model.Cart;
+import edu.escuelaing.arsw.model.Orden;
 import edu.escuelaing.arsw.model.Product;
 import edu.escuelaing.arsw.model.Store;
+import edu.escuelaing.arsw.services.CartService;
+import edu.escuelaing.arsw.services.OrdenService;
 import edu.escuelaing.arsw.services.StoreService;
 import edu.escuelaing.arsw.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +44,9 @@ public class StoreController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> registerProduct(@RequestBody Store store) {
+    public ResponseEntity<?> registerStore(@RequestBody Store store) {
         try {
-            System.out.println(store.toString());
-            storeService.registerStore(store.getStoreName(), store.getFkMechanic());
+            storeService.registerStore(store);
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
         } catch (UserServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);

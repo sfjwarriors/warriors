@@ -31,12 +31,22 @@ public class OrdenService implements edu.escuelaing.arsw.services.OrdenService {
 
     @Override
     public void updateOrden(Orden orden) throws OrderServiceException {
-
+        try{
+            ordenPersistence.save(orden);
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new OrderServiceException("The order couldn't be updated");
+        }
     }
 
     @Override
     public void deleteOrden(Orden orden) throws OrderServiceException {
-
+        try{
+            ordenPersistence.delete(orden);
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new OrderServiceException("The order couldn't be deleted");
+        }
     }
 
     @Override

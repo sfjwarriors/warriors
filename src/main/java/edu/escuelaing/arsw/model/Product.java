@@ -23,7 +23,7 @@ public class Product implements Serializable{
     @Column(name = "fkStoreProduct")
     private long fkStoreProduct;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fkProductCart", nullable = true)
+    @JoinColumn(name = "fkProductCart")
     private List<Cart> carts;
 
     public Product() {

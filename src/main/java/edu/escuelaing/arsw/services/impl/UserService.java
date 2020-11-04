@@ -21,10 +21,9 @@ import java.util.UUID;
 public class UserService implements edu.escuelaing.arsw.services.UserService {
     @Autowired
     private UserPersistence userPersistence;
+
     @Autowired
     StorePersistence storePersistence;
-    
-    
 
     @Override
     public String login(String email, String password) throws UserServiceException {
@@ -61,14 +60,14 @@ public class UserService implements edu.escuelaing.arsw.services.UserService {
     }
 
     @Override
-    public void register(String name, String lastName, String email, String password, String rol, String address, String image, long cash, long cellphone) throws UserServiceException {
+    public void register(User user) throws UserServiceException {
         Pbkdf2PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder("salt");
-        password = passwordEncoder.encode(password);
-        User user = new User(name,  lastName, email, password, rol, address, image, cash, cellphone);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //User user = new User(name,  lastName, email, password, rol, address, image, cash, cellphone);
         try{
             userPersistence.save(user);
             if (user.getRol().equals("MECA")) {
-            	registerStore(user.getName()+"Store", user.getId());
+            	registerStore(user.getName()+" Store", user.getId());
             }
                       
         }catch (IllegalArgumentException e){

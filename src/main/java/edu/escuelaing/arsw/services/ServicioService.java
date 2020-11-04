@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public interface ServicioService {
-    public void register(String name, String image, String description, long price, String status, long fkStoreService) throws ServicioServiceException;
+    public void register(Servicio servicio) throws ServicioServiceException;
     public void updateService(Servicio service) throws ServicioServiceException;
     public void deleteService(long idService) throws ServicioServiceException;
 //    public void orderService(long idService, long idUser) throws ServiceServiceException;

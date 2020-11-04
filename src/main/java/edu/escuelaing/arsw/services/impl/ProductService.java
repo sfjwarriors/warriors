@@ -16,8 +16,7 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
     private ProductPersistence productPersistence;
 
     @Override
-    public void register(String name, String description, long price, String image, String status, long fkStoreProduct) throws ProductServiceException {
-        Product product = new Product(name, description, price, image, status, fkStoreProduct);
+    public void register(Product product) throws ProductServiceException {
         try {
             productPersistence.save(product);
         } catch (IllegalArgumentException e) {
@@ -37,7 +36,15 @@ public class ProductService implements edu.escuelaing.arsw.services.ProductServi
     @Override
     public void deleteProduct(long idProduct) throws ProductServiceException {
         try {
-            productPersistence.deleteById(idProduct);
+            //productPersistence.deleteById(idProduct);
+            Optional<Product> present = productPersistence.findById(idProduct);
+            if(present.isPresent()){
+                Product product = present.get();
+                product.setStatus("unavailable");
+                productPersistence.save(product);
+            } else {
+                throw new ProductServiceException("The product couldn't be deleted or doesn't exist");
+            }
         } catch (Exception e) {
             throw new ProductServiceException("The product couldn't be deleted or doesn't exist");
         }

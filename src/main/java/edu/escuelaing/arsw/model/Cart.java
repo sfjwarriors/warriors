@@ -25,6 +25,13 @@ public class Cart implements Serializable {
         this.fkServicesCart = fkServicesCart;
     }
 
+    public Cart(Long id, Long fkProductCart, Long fkOrderCart, Long fkServicesCart) {
+        this.id = id;
+        this.fkProductCart = fkProductCart;
+        this.fkOrderCart = fkOrderCart;
+        this.fkServicesCart = fkServicesCart;
+    }
+
     public Long getId() {
         return id;
     }

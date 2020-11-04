@@ -12,5 +12,5 @@ public interface StoreService {
     public List<Store> findAll() throws StoreServiceException;
     public Store findByIdMechanic(long idMechanic) throws StoreServiceException;
     public void updateStore(Store store) throws StoreServiceException;
-    public void registerStore(String store, long fk_mechanic) throws UserServiceException;
+    public void registerStore(Store store) throws UserServiceException;
 }

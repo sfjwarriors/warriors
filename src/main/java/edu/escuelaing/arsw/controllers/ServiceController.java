@@ -43,7 +43,7 @@ public class ServiceController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> registerService(@RequestBody Servicio servicio) {
         try {
-            servicioService.register(servicio.getName(), servicio.getImage(), servicio.getDescription(), servicio.getPrice(), servicio.getStatus(), servicio.getFkStoreService());
+            servicioService.register(servicio);
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
         } catch (ServicioServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
@@ -53,6 +53,7 @@ public class ServiceController {
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<?> updateService(@RequestBody Servicio servicio) {
         try {
+            System.out.println(servicio);
             servicioService.updateService(servicio);
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
         } catch (ServicioServiceException e) {
