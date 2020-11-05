@@ -3,6 +3,7 @@ var mystore = (function () {
     var s = "";
     var edit = false;
     var editing = null;
+    // var stomp = 'js/stomp.js';
 
     function isLogged() {
         client.isLogged(updateBtns);
@@ -60,6 +61,7 @@ var mystore = (function () {
             fixForm();
         }
         client.getStore(storeTmp.fkMechanic, listProducts);
+
     }
 
     function getServices() {
@@ -79,7 +81,7 @@ var mystore = (function () {
     function listProducts(store) {
         storeTmp = store;
         s = "";
-        //console.log(store.products);
+        console.log(store.storeName);
         for(var i=0; i<store.products.length; i++) {
             if(store.products[i].status=="available"){
                 s += "<div class='col-lg-6 col-md-6 mb-5'><div class='blog-item'><img src='images/notavailable.jpg' alt='' class='img-fluid rounded'> <div class='blog-item-content bg-white p-5'>";
@@ -88,6 +90,11 @@ var mystore = (function () {
             }
         }
         $("#lista").html(s);
+        stomp.connectAndSubscribe(imprime, store.storeName);
+    }
+
+    function imprime(mensaje){
+        console.log(mensaje);
     }
 
     function listServices(store) {
@@ -252,6 +259,7 @@ var mystore = (function () {
         createService: createService,
         createProduct, createProduct,
         deleteProduct: deleteProduct,
-        deleteService: deleteService
+        deleteService: deleteService,
+        imprime: imprime
     }
 })();
