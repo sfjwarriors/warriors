@@ -2,7 +2,6 @@ var stomp = (function () {
   var connected = false;
   var stompClient = null;
   var connectAndSubscribe = function (callback, storeName) {
-    console.log("hello");
     disconnect();
     console.info("Connecting to WS...");
     var socket = new SockJS("/stompendpoint");
@@ -22,6 +21,13 @@ var stomp = (function () {
     });
   };
 
+  function sends(ruta, objeto){
+    stompClient.send("/store."+ruta, {}, "newStore");
+    stompClient.send("/app."+ruta, {}, "newStore");
+    // stompClient.send("/app/buyticket."+cinema + '.' + fecha + fechaHora + '.' + movieSelected, {}, JSON.stringify(st));
+    // stompClient.send("/topic/buyticket."+cinema + '.' + fecha + fechaHora + '.' + movieSelected, {}, JSON.stringify(st));
+  }
+
   function setConnected(con) {
     connected = con;
   }
@@ -31,11 +37,12 @@ var stomp = (function () {
       stompClient.disconnect();
     }
     setConnected(false);
-    console.log("Disconnected");
+    // console.log("Disconnected");
   };
 
   return {
     connectAndSubscribe: connectAndSubscribe,
     disconnect: disconnect,
+    sends: sends
   };
 })();

@@ -100,6 +100,15 @@ public class UserService implements edu.escuelaing.arsw.services.UserService {
     }
 
     @Override
+    public List<User> findByRol(String rol) throws UserServiceException {
+        try {
+            return userPersistence.findByRol(rol);
+        } catch (Exception e) {
+            throw new UserServiceException("Please login again");
+        }
+    }
+
+    @Override
     public String getToken(User user) throws UserServiceException {
         String tokenU = user.getToken();
         String token;

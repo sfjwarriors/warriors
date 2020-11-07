@@ -34,24 +34,22 @@
     <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
-
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/formuStyle.css">
- 
-
     <!-- Client script -->
     <script src="js/formuScript.js"></script>
     <script src="js/client.js"></script>
-    
-
     <!-- Axios -->
-
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <!-- STOMP CLIENT -->
+    <script src="js/stomp.js"></script>
+    <!-- STOMP -->
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 </head>
 
-<body>
+<body onload="formuScript.isLogged()">
 
 <!-- Header Start -->
 <!-- Header Start -->

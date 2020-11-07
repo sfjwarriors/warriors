@@ -3,6 +3,17 @@ var formuScript = (function(){
 	expresion = /\w+@\w+\.+[a-z]/;
 	lista = [];
 	//archivo = client;
+
+	function isLogged() {
+        if(window.sessionStorage.token!=null) {
+			// client.isLogged(updateBtns);
+			window.location.replace("index.html");
+        } else {
+			stomp.connectAndSubscribe(imprime, 'all');
+            // window.location.replace("login.html");
+        }
+    }
+
 	var crearFormulario = function(){
 		nombre = $("#nombre").val();
 		apellido = $("#apellido").val();
@@ -13,11 +24,6 @@ var formuScript = (function(){
 		password2 = $("#password2").val();
 		mecanico = document.getElementById("mecanico");
 		usuario = document.getElementById("usuario"); 
-		
-		
-		
-		
-		
 		if (nombre==="" ||apellido==="" ||email==="" || direccion==="" ||celular==="" ||password1==="" ||password2==="" ){
 			alert("Todos los campos son requeridos");
 			return false;
@@ -35,14 +41,18 @@ var formuScript = (function(){
 			return false 
 		}else if(mecanico.checked){
 			tipoUsuario = 'MECA';
+			// stomp.sends('all');
+			// stomp.stompClient.send("/store/all", {}, "newStore");
+            // stomp.stompClient.send("/app/all", {}, "newStore");
 		}else if(usuario.checked){
 			tipoUsuario = 'USER';
 		}
 		client.registerUsers(nombre,apellido,email,celular,direccion,password2,tipoUsuario,showRegisterUser);
-		
-		
 	};
 
+	function imprime(mensaje){
+        console.log(mensaje);
+    }
 	
 	var uncheck = function(){
 		var checkbox1 = document.getElementById("mecanico");
@@ -57,16 +67,21 @@ var formuScript = (function(){
 			}
 		} 
 	}
+
 	function showRegisterUser(data) {
         if(data=="Success") {
+			stomp.sends('all');
 			alert("Se registro el usuario");
+
 			location.href="login.html";
 		}
 	}
 
 	return {
 		crearFormulario:crearFormulario,
-		uncheck:uncheck
+		uncheck:uncheck,
+		imprime: imprime,
+		isLogged: isLogged
 	}
 
 

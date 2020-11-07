@@ -18,6 +18,7 @@ public interface UserService {
     public List<User> findAll() throws UserServiceException;
     public Optional<User> findById(long id) throws UserServiceException;
     public User findByToken(String token) throws UserServiceException;
+    public List<User> findByRol(String rol) throws UserServiceException;
     public String getToken(User user) throws UserServiceException;
 	public void registerStore(String store, long fk_mechanic) throws UserServiceException;
 

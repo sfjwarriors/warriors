@@ -6,19 +6,19 @@ var index = (function () {
     function updateBtns(user, bool) {
         $("#userbtn").text("Cerrar Sesión");
         document.getElementById("userbtn").onclick = client.closeSession;
-        $("#perfilbtn").text(user.name);
-        document.getElementById("perfilbtn").href = "profile.html";
-        document.getElementById("perfilbtn").style.visibility="visible";
+        $("#tiendasbtn").text("TIENDAS");
+        document.getElementById("tiendasbtn").href = "stores.html";
+        document.getElementById("tiendasbtn").style.visibility="visible";
         document.getElementById("promoregister").style.visibility="hidden";
         if(user.rol=='MECA') {
             client.getStore(user.id, setStore);
-            document.getElementById("servicebtn").href = "myorders.html";
-            $("#servicebtn").text("Mis Ordenes");
+            //document.getElementById("servicebtn").href = "myorders.html";
+            //$("#servicebtn").text("Mis Ordenes");
             $("#startbtn").text("Mi Taller");
             document.getElementById("startbtn").href = "mystore.html";
         } else {
-            document.getElementById("servicebtn").href = "#";
-            $("#servicebtn").text("Pedir");
+            // document.getElementById("servicebtn").href = "#";
+            // $("#servicebtn").text("Pedir");
             $("#startbtn").text("Pide Ya!");
             document.getElementById("startbtn").href = "#";
         }
