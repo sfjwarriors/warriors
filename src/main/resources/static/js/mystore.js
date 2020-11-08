@@ -54,11 +54,13 @@ var mystore = (function () {
     }
 
     function showUpdateStore(data) {
+        console.log("Data:", data);
         if(data=="Success") {
             stomp.sends('all');
             alert("Se cambio el nombre de su tienda");
-            getProducts();
+            //getProducts();
         }
+        stomp.connectAndSubscribe(imprime, store.storeName.replace(/ /g, ''));
     }
 
     function imprime(data){

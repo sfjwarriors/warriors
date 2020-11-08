@@ -66,8 +66,26 @@ var client = (function () {
         loginPage();
     }
 
+    function getStores(callback) {
+        axios.get(url+'/stores'
+        ).then(function f (res){
+            callback(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function getMechanics(callback) {
+        axios.get(url+'/users/mechanics'
+        ).then(function f (res){
+            callback(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
     function updateStore(store, callback){
-        var s = {id: store.id, storeName: store.storeName, fkMechanic: store.fkMechanic}
+        // var s = {id: store.id, storeName: store.storeName, fkMechanic: store.fkMechanic}
         axios.put(url+'/stores', {
             id: store.id,
             storeName: store.storeName,
@@ -81,6 +99,7 @@ var client = (function () {
             alert(error.response.data);
         })
     }
+
     function registerUsers(nombre,apellido,email,celular,direccion,password,tipoUsuario,callback){
         var envio = {name: nombre, lastName:apellido,email:email,cellphone:celular,rol:tipoUsuario,address:direccion,password:password}
 
@@ -191,6 +210,8 @@ var client = (function () {
         createProduct: createProduct,
         createService: createService,
         deleteProduct: deleteProduct,
-        deleteService: deleteService
+        deleteService: deleteService,
+        getStores: getStores,
+        getMechanics: getMechanics
     }
 })();

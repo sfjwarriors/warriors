@@ -12,17 +12,18 @@ var mystore = (function () {
     function updateBtns(user) {
         $("#userbtn").text("Cerrar Sesión");
         document.getElementById("userbtn").onclick = client.closeSession;
-        $("#perfilbtn").text(user.name);
-        document.getElementById("perfilbtn").href = "profile.html";
-        document.getElementById("perfilbtn").style.visibility="visible";
+        $("#tiendasbtn").text("TIENDAS");
+        document.getElementById("tiendasbtn").href = "stores.html";
+        document.getElementById("tiendasbtn").style.visibility="visible";
         if(user.rol=='MECA') {
             client.getStore(user.id, setStore);
-            document.getElementById("servicebtn").href = "myorders.html";
-            $("#servicebtn").text("Mis Ordenes");
-        } else {
-            document.getElementById("servicebtn").href = "#";
-            $("#servicebtn").text("Pedir");
-        }
+            // document.getElementById("servicebtn").href = "myorders.html";
+            // $("#servicebtn").text("Mis Ordenes");
+        } 
+        // else {
+        //     document.getElementById("servicebtn").href = "#";
+        //     $("#servicebtn").text("Pedir");
+        // }
     }
 
     function setStore(store) {
@@ -46,14 +47,23 @@ var mystore = (function () {
         $("#cambiarnombre").text("Cambiar Nombre");
         storeTmp.storeName = newNameStore;
 //        console.log(storeTmp);
+        stomp.disconnect;
+        stomp.connectAndSubscribe(imprime, 'all');
         client.updateStore(storeTmp, showUpdateStore);
         document.getElementById("cambiarnombre").onclick = habilitaCambioNombre;
     }
 
     function showUpdateStore(data) {
         if(data=="Success") {
+            stomp.sends('all');
             alert("Se cambio el nombre de su tienda");
+            //getProducts();
         }
+        stomp.connectAndSubscribe(imprime, store.storeName.replace(/ /g, ''));
+    }
+
+    function imprime(data){
+        console.log(data);
     }
 
     function getProducts() {
@@ -61,7 +71,6 @@ var mystore = (function () {
             fixForm();
         }
         client.getStore(storeTmp.fkMechanic, listProducts);
-
     }
 
     function getServices() {
@@ -90,7 +99,9 @@ var mystore = (function () {
             }
         }
         $("#lista").html(s);
-        stomp.connectAndSubscribe(imprime, store.storeName);
+        var temp = store.storeName.replace(/ /g, '');
+        // console.log(temp);
+        stomp.connectAndSubscribe(imprime, temp);
     }
 
     function imprime(mensaje){
