@@ -47,19 +47,20 @@ var mystore = (function () {
         $("#cambiarnombre").text("Cambiar Nombre");
         storeTmp.storeName = newNameStore;
 //        console.log(storeTmp);
-        stomp.disconnect;
+        //stomp.disconnect;
         stomp.connectAndSubscribe(imprime, 'all');
         client.updateStore(storeTmp, showUpdateStore);
         document.getElementById("cambiarnombre").onclick = habilitaCambioNombre;
     }
 
     function showUpdateStore(data) {
+        console.log("Data:", data);
         if(data=="Success") {
             stomp.sends('all');
             alert("Se cambio el nombre de su tienda");
             //getProducts();
         }
-        stomp.connectAndSubscribe(imprime, store.storeName.replace(/ /g, ''));
+        //stomp.connectAndSubscribe(imprime, store.storeName.replace(/ /g, ''));
     }
 
     function imprime(data){
