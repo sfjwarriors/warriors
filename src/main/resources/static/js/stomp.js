@@ -21,9 +21,9 @@ var stomp = (function () {
     });
   };
 
-  function sends(ruta, objeto){
-    stompClient.send("/store."+ruta, {}, "newStore");
-    stompClient.send("/app."+ruta, {}, "newStore");
+  function sends(ruta, mensaje){
+    stompClient.send("/store."+ruta, {}, mensaje);
+    stompClient.send("/app."+ruta, {}, mensaje);
     // stompClient.send("/app/buyticket."+cinema + '.' + fecha + fechaHora + '.' + movieSelected, {}, JSON.stringify(st));
     // stompClient.send("/topic/buyticket."+cinema + '.' + fecha + fechaHora + '.' + movieSelected, {}, JSON.stringify(st));
   }

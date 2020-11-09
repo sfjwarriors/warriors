@@ -32,6 +32,7 @@ var mystore = (function () {
         document.getElementById("storebtn").style.visibility="visible";
         document.getElementById("storebtn").href = "mystore.html";
         storeTmp = store;
+        stomp.connectAndSubscribe(imprime, store.storeName.replace(/ /g, ''));
         getProducts();
     }
 
@@ -56,7 +57,7 @@ var mystore = (function () {
     function showUpdateStore(data) {
         console.log("Data:", data);
         if(data=="Success") {
-            stomp.sends('all');
+            stomp.sends('all', 'newStore');
             alert("Se cambio el nombre de su tienda");
             //getProducts();
         }
@@ -91,7 +92,7 @@ var mystore = (function () {
     function listProducts(store) {
         storeTmp = store;
         s = "";
-        console.log(store.storeName);
+        // console.log(store.storeName);
         for(var i=0; i<store.products.length; i++) {
             if(store.products[i].status=="available"){
                 s += "<div class='col-lg-6 col-md-6 mb-5'><div class='blog-item'><img src='images/notavailable.jpg' alt='' class='img-fluid rounded'> <div class='blog-item-content bg-white p-5'>";
@@ -102,7 +103,7 @@ var mystore = (function () {
         $("#lista").html(s);
         var temp = store.storeName.replace(/ /g, '');
         // console.log(temp);
-        stomp.connectAndSubscribe(imprime, temp);
+        // stomp.connectAndSubscribe(imprime, temp);
     }
 
     function imprime(mensaje){
@@ -199,7 +200,17 @@ var mystore = (function () {
             let service = {"id":storeTmp.servicios[editing].id,"name":document.getElementById("namepos").value, "image":"Not available", "description":document.getElementById("descriptionpos").value, "price":document.getElementById("pricepos").value, "status":"available", "fkStoreService":storeTmp.id};
             client.updateService(service, getServices);
             fixForm();
+            stomp.disconnect();
+            let temp = storeTmp.storeName.replace(/ /g, '')+'servs';
+            stomp.connectAndSubscribe(imprime, temp);
+            setTimeout(function(){
+                stomp.sends(temp, 'update service');
+            }, 2000);
         }
+    }
+
+    function imprime(data){
+        console.log(data);
     }
 
     function updateProduct() {
@@ -208,6 +219,13 @@ var mystore = (function () {
             let producto = {"id":storeTmp.products[editing].id,"name":document.getElementById("namepos").value, "image":"Not available", "description":document.getElementById("descriptionpos").value, "price":document.getElementById("pricepos").value, "status":"available", "fkStoreProduct":storeTmp.id};
             client.updateProduct(producto, getProducts);
             fixForm();
+            stomp.disconnect();
+            let temp = storeTmp.storeName.replace(/ /g, '')+'prods';
+            stomp.connectAndSubscribe(imprime, temp);
+            setTimeout(function(){
+                stomp.sends(temp, 'update product');
+            }, 2000);
+
         }
     }
 

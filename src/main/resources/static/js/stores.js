@@ -1,4 +1,4 @@
-var profile = (function () {
+var storeScript = (function () {
 
     var stores = null;
     var mechanics = null;
@@ -30,17 +30,43 @@ var profile = (function () {
         // }
     }
 
+    function viewProductStore(indexStore){
+        console.log(indexStore, stores[indexStore]);
+        stomp.disconnect();
+        stomp.connectAndSubscribe(updateProducts, stores[indexStore].storeName.replace(/ /g, '')+'prods');
+        // client.getStore(idMechanic, showProducts);
+    }
+
+    function updateProducts(data){
+        console.log(data);
+    }
+
+    function viewServiceStore(indexStore){
+        console.log(indexStore, stores[indexStore]);
+        stomp.disconnect();
+        stomp.connectAndSubscribe(updateServices, stores[indexStore].storeName.replace(/ /g, '')+'servs');
+    }
+
+    function updateServices(data){
+        console.log(data);
+    }
+
+    function getStores(){
+        return stores;
+    }
+
     function listStores(){
-        // console.log("saved", stores);
+        console.log("saved", stores);
         var s = '';
         for(var i=0; i<stores.length; i++){
             s += '<div class="col-md-4"> <div class="card text-center mb-md-0 mb-3"> <div class="card-body py-5"> <h1>'+stores[i].storeName+'</h1><h3>Direccion: ';
             for(var j=0; j<mechanics.length; j++){
                 if(stores[i].fkMechanic==mechanics[j].id){
                     s += mechanics[j].address;
+                    s += '</h3> <a onclick="storeScript.viewProductStore('+i+')" class="btn btn-small btn-main mt-3 btn-round-full">VER PRODUCTOS</a> <a onclick="storeScript.viewServiceStore('+i+')" class="btn btn-small btn-main mt-3 btn-round-full">VER SERVICIOS</a> </div> </div> </div>';
                 }
             }
-            s += '</h3> <a href="#" class="btn btn-small btn-main mt-3 btn-round-full">VER TALLER</a> </div> </div> </div>';
+            // s += '</h3> <a onclick="stores.getStores()" class="btn btn-small btn-main mt-3 btn-round-full">VER TALLER</a> </div> </div> </div>';
         }
         // console.log(mechanics);
         stomp.connectAndSubscribe(imprime, "all");
@@ -73,6 +99,11 @@ var profile = (function () {
         isLogged: isLogged,
         listStores: listStores,
         showStores: showStores,
-        imprime: imprime
+        imprime: imprime,
+        viewProductStore: viewProductStore,
+        viewServiceStore: viewServiceStore,
+        updateProducts: updateProducts,
+        updateServices: updateServices,
+        getStores: getStores
     }
 })();
