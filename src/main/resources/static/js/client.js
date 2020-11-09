@@ -62,7 +62,7 @@ var client = (function () {
     }
 
     function closeSession() {
-        window.sessionStorage.token=null;
+        window.sessionStorage.token= undefined;
         loginPage();
     }
 

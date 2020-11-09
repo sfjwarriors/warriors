@@ -5,13 +5,18 @@ var formuScript = (function(){
 	//archivo = client;
 
 	function isLogged() {
-        if(window.sessionStorage.token!=null) {
+		// console.log(window.sessionStorage.token);
+		stomp.connectAndSubscribe(imprime, 'all');
+        // if(window.sessionStorage.token==undefined) {
 			// client.isLogged(updateBtns);
-			window.location.replace("index.html");
-        } else {
-			stomp.connectAndSubscribe(imprime, 'all');
-            // window.location.replace("login.html");
-        }
+			// stomp.connectAndSubscribe(imprime, 'all');
+			// console.log(window.sessionStorage.token, "g");
+			// window.location.replace("index.html");
+        // } else {
+			//stomp.connectAndSubscribe(imprime, 'all');
+			// window.location.replace("index.html");
+		// 	console.log("no es igual");
+        // }
     }
 
 	var crearFormulario = function(){
