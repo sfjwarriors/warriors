@@ -75,7 +75,7 @@ var formuScript = (function(){
 
 	function showRegisterUser(data) {
         if(data=="Success") {
-			stomp.sends('all');
+			stomp.sends('all', 'nueva tienda');
 			alert("Se registro el usuario");
 
 			location.href="login.html";

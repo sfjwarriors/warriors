@@ -76,7 +76,7 @@ var storeScript = (function () {
     function imprime(mensaje){
         client.getMechanics(setMechanics);
         client.getStores(showStores);
-        console.log("Nueva Tienda", mensaje);
+        // console.log("Nueva Tienda", mensaje);
     }
 
     function showStores(storesclient){
