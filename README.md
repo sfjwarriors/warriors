@@ -62,6 +62,14 @@ Para: Poder tener un listado de los servicios que he pedido
 ## Pruebas Unitarias
 
 ![Pruebas Unitarias](img/Pruebas.png)
+## Requerimiento No Funcional 
+### Prueba de Carga con JMeter
+> JMeter es una herramienta que nos permite realizar pruebas de carga para analizar y medir el rendimiento de una variedad de servicios, con enfasis en aplicaciones web.
+- A continuacion mostramos una tabla con los datos analizados arrojados por la aplicacion y una grafica que nos indica el comportamiento de la aplicacion ante las diferentes peticiones realizadas por los usuarios en un minuto.
+![Tabla de analisis](https://i.ibb.co/r5WnhT8/prueba-carga1.png)
+
+![Grafica de la tabla de analisis](https://i.ibb.co/FbQjgCq/prueba-carga2.png)
+
 
 ## Manual de Usuario
 Para ver el manual de Usuario para la aplicacion MecaClick, click [Acá](https://github.com/sfjwarriors/warriors/blob/master/ManualDeUsuario.md)
