@@ -57,7 +57,10 @@ var mystore = (function () {
     function showUpdateStore(data) {
         console.log("Data:", data);
         if(data=="Success") {
-            stomp.sends('all', 'newStore');
+            // stomp.sends('all', 'newStore');
+            setTimeout(function(){
+                stomp.sends('all', 'update store');
+            }, 1000);
             alert("Se cambio el nombre de su tienda");
             //getProducts();
         }
