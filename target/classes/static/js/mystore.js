@@ -49,7 +49,7 @@ var mystore = (function () {
         storeTmp.storeName = newNameStore;
 //        console.log(storeTmp);
         //stomp.disconnect;
-        stomp.connectAndSubscribe(imprime, 'all');
+        
         client.updateStore(storeTmp, showUpdateStore);
         document.getElementById("cambiarnombre").onclick = habilitaCambioNombre;
     }
@@ -57,7 +57,11 @@ var mystore = (function () {
     function showUpdateStore(data) {
         console.log("Data:", data);
         if(data=="Success") {
-            stomp.sends('all', 'newStore');
+            console.log("cambio nombre tienda", data);
+            stomp.connectAndSubscribe(imprime, 'all');
+            setTimeout(function(){
+                stomp.sends('all', 'newStore');
+            }, 2000);
             alert("Se cambio el nombre de su tienda");
             //getProducts();
         }

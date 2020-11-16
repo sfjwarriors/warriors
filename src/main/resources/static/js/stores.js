@@ -30,10 +30,26 @@ var storeScript = (function () {
         // }
     }
 
+    function goBack() {
+        $("#tiendaTitle").html("NUESTROS TALLERES Y TIENDAS");
+        document.getElementById("volverbtn").style.visibility = "hidden";
+        listStores();
+    }
+
     function viewProductStore(indexStore){
-        console.log(indexStore, stores[indexStore]);
+        s = '';
+        $("#tiendaTitle").html(stores[indexStore].storeName);
+        for(var i=0; i<stores[indexStore].products.length;i++){
+            console.log(stores[indexStore].products[i])
+            s += '<div class="col-md-4"> <div class="card text-center mb-md-0 mb-3"> <div class="card-body py-5"> <h1>'+stores[indexStore].products[i].name+'</h1><h3>Precio: $'+stores[indexStore].products[i].price;
+            s += '</h3> <a onclick="" class="btn btn-small btn-main mt-3 btn-round-full">Agregar al Carrito</a>  </div> </div> </div>';
+        }
+        $("#tiendas").html(s);
+        document.getElementById("volverbtn").style.visibility = "visible";
+        // $("#volverbtn").html('<a onclick="storeScript.goBack()" class="btn btn-small btn-main mt-3 btn-round-full">Volver</a>');
         stomp.disconnect();
         stomp.connectAndSubscribe(updateProducts, stores[indexStore].storeName.replace(/ /g, '')+'prods');
+        console.log(s);
         // client.getStore(idMechanic, showProducts);
     }
 
@@ -43,6 +59,14 @@ var storeScript = (function () {
 
     function viewServiceStore(indexStore){
         console.log(indexStore, stores[indexStore]);
+        s = "";
+        for(var i=0; i<stores[indexStore].servicios.length;i++){
+            console.log(stores[indexStore].servicios[i])
+            s += '<div class="col-md-4"> <div class="card text-center mb-md-0 mb-3"> <div class="card-body py-5"> <h1>'+stores[indexStore].servicios[i].name+'</h1><h3>Precio: $'+stores[indexStore].servicios[i].price;
+            s += '</h3> <a onclick="" class="btn btn-small btn-main mt-3 btn-round-full">Agregar al Carrito</a>  </div> </div> </div>';
+        }
+        $("#tiendas").html(s);
+        document.getElementById("volverbtn").style.visibility = "visible";
         stomp.disconnect();
         stomp.connectAndSubscribe(updateServices, stores[indexStore].storeName.replace(/ /g, '')+'servs');
     }
@@ -104,6 +128,7 @@ var storeScript = (function () {
         viewServiceStore: viewServiceStore,
         updateProducts: updateProducts,
         updateServices: updateServices,
-        getStores: getStores
+        getStores: getStores,
+        goBack: goBack
     }
 })();
