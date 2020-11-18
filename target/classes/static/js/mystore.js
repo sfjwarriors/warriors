@@ -60,7 +60,7 @@ var mystore = (function () {
             // stomp.sends('all', 'newStore');
             setTimeout(function(){
                 stomp.sends('all', 'update store');
-            }, 1000);
+            }, 5000);
             alert("Se cambio el nombre de su tienda");
             //getProducts();
         }
