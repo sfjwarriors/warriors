@@ -37,42 +37,56 @@ var storeScript = (function () {
     }
 
     function viewProductStore(indexStore){
+        viewProductStoreAux(stores[indexStore])
+    }
+
+    function viewProductStoreAux(storeAux){
         s = '';
-        $("#tiendaTitle").html(stores[indexStore].storeName);
-        for(var i=0; i<stores[indexStore].products.length;i++){
-            console.log(stores[indexStore].products[i])
-            s += '<div class="col-md-4"> <div class="card text-center mb-md-0 mb-3"> <div class="card-body py-5"> <h1>'+stores[indexStore].products[i].name+'</h1><h3>Precio: $'+stores[indexStore].products[i].price;
-            s += '</h3> <a onclick="" class="btn btn-small btn-main mt-3 btn-round-full">Agregar al Carrito</a>  </div> </div> </div>';
+        $("#tiendaTitle").html(storeAux.storeName);
+        console.log(storeAux);
+        for(var i=0; i<storeAux.products.length;i++){
+            if(storeAux.products[i].status=='available'){
+                s += '<div class="col-md-4"> <div class="card text-center mb-md-0 mb-3"> <div class="card-body py-5"> <h1>'+storeAux.products[i].name+'</h1><h3>Precio: $'+storeAux.products[i].price;
+                s += '</h3> <a onclick="" class="btn btn-small btn-main mt-3 btn-round-full">Agregar al Carrito</a>  </div> </div> </div>';
+            }
         }
         $("#tiendas").html(s);
         document.getElementById("volverbtn").style.visibility = "visible";
         // $("#volverbtn").html('<a onclick="storeScript.goBack()" class="btn btn-small btn-main mt-3 btn-round-full">Volver</a>');
         stomp.disconnect();
-        stomp.connectAndSubscribe(updateProducts, stores[indexStore].storeName.replace(/ /g, '')+'prods');
-        console.log(s);
+        stomp.connectAndSubscribe(updateProducts, storeAux.storeName.replace(/ /g, '')+'prods');
+        // console.log(s);
         // client.getStore(idMechanic, showProducts);
     }
 
     function updateProducts(data){
-        console.log(data);
+        client.getStore(data.body, viewProductStoreAux);
+        console.log(data, "update products");
     }
 
     function viewServiceStore(indexStore){
-        console.log(indexStore, stores[indexStore]);
+        viewServiceStoreAux(stores[indexStore]);
+    }
+
+    function viewServiceStoreAux(storeAux){
+        console.log(storeAux);
         s = "";
-        for(var i=0; i<stores[indexStore].servicios.length;i++){
-            console.log(stores[indexStore].servicios[i])
-            s += '<div class="col-md-4"> <div class="card text-center mb-md-0 mb-3"> <div class="card-body py-5"> <h1>'+stores[indexStore].servicios[i].name+'</h1><h3>Precio: $'+stores[indexStore].servicios[i].price;
-            s += '</h3> <a onclick="" class="btn btn-small btn-main mt-3 btn-round-full">Agregar al Carrito</a>  </div> </div> </div>';
+        for(var i=0; i<storeAux.servicios.length;i++){
+            // console.log(storeAux.servicios[i])
+            if(storeAux.servicios[i].status=='available'){
+                s += '<div class="col-md-4"> <div class="card text-center mb-md-0 mb-3"> <div class="card-body py-5"> <h1>'+storeAux.servicios[i].name+'</h1><h3>Precio: $'+storeAux.servicios[i].price;
+                s += '</h3> <a onclick="" class="btn btn-small btn-main mt-3 btn-round-full">Agregar al Carrito</a>  </div> </div> </div>';
+            }
         }
         $("#tiendas").html(s);
         document.getElementById("volverbtn").style.visibility = "visible";
         stomp.disconnect();
-        stomp.connectAndSubscribe(updateServices, stores[indexStore].storeName.replace(/ /g, '')+'servs');
+        stomp.connectAndSubscribe(updateServices, storeAux.storeName.replace(/ /g, '')+'servs');
     }
 
     function updateServices(data){
-        console.log(data);
+        client.getStore(data.body, viewServiceStoreAux);
+        console.log(data, "update service");
     }
 
     function getStores(){
