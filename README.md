@@ -68,7 +68,7 @@ Para: Poder tener un listado de los servicios que he pedido
 - A continuacion mostramos una tabla con los datos analizados arrojados por la aplicacion y una grafica que nos indica el comportamiento de la aplicacion ante las diferentes peticiones realizadas por los usuarios en un minuto.
 ![Tabla de analisis](https://i.ibb.co/r5WnhT8/prueba-carga1.png)
 
-![Grafica de la tabla de analisis](https://i.ibb.co/FbQjgCq/prueba-carga2.png)
+![Grafica de la tabla de analisis](https://i.ibb.co/ZdfN1pn/no-Funcional.png)
 
 
 ## Manual de Usuario

@@ -203,12 +203,12 @@ var mystore = (function () {
             let service = {"id":storeTmp.servicios[editing].id,"name":document.getElementById("namepos").value, "image":"Not available", "description":document.getElementById("descriptionpos").value, "price":document.getElementById("pricepos").value, "status":"available", "fkStoreService":storeTmp.id};
             client.updateService(service, getServices);
             fixForm();
-            // stomp.disconnect();
+            stomp.disconnect();
             let temp = storeTmp.storeName.replace(/ /g, '')+'servs';
             stomp.connectAndSubscribe(imprime, temp);
             setTimeout(function(){
-                stomp.sends(temp, storeTmp.fkMechanic);
-            }, 3000);
+                stomp.sends(temp, 'update service');
+            }, 2000);
         }
     }
 
@@ -222,12 +222,12 @@ var mystore = (function () {
             let producto = {"id":storeTmp.products[editing].id,"name":document.getElementById("namepos").value, "image":"Not available", "description":document.getElementById("descriptionpos").value, "price":document.getElementById("pricepos").value, "status":"available", "fkStoreProduct":storeTmp.id};
             client.updateProduct(producto, getProducts);
             fixForm();
-            // stomp.disconnect();
+            stomp.disconnect();
             let temp = storeTmp.storeName.replace(/ /g, '')+'prods';
             stomp.connectAndSubscribe(imprime, temp);
             setTimeout(function(){
-                stomp.sends(temp, storeTmp.fkMechanic);
-            }, 3000);
+                stomp.sends(temp, 'update product');
+            }, 2000);
 
         }
     }
