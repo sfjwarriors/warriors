@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public interface OrdenService {
-    public void createOrden(Orden orden) throws OrderServiceException;
+    public Long createOrden(Orden orden) throws OrderServiceException;
     public void updateOrden(Orden orden) throws OrderServiceException;
     public void deleteOrden(Orden orden) throws OrderServiceException;
     public List<Orden> findAll() throws OrderServiceException;

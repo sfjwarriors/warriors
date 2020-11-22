@@ -19,9 +19,10 @@ public class OrdenService implements edu.escuelaing.arsw.services.OrdenService {
     OrdenPersistence ordenPersistence;
 
     @Override
-    public void createOrden(Orden orden) throws OrderServiceException {
+    public Long createOrden(Orden orden) throws OrderServiceException {
         try{
             ordenPersistence.save(orden);
+            return orden.getId();
         }catch (Exception e) {
             e.printStackTrace();
             throw new OrderServiceException("The order couldn't be registred");

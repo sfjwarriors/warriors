@@ -1,6 +1,6 @@
 var client = (function () {
-    var url = 'http://mecaclic.herokuapp.com';
-//    var url = 'http://localhost:8080';
+//    var url = 'http://mecaclic.herokuapp.com';
+    var url = 'http://localhost:8080';
     function isLogged(callback) {
         if(window.sessionStorage.token!=null) {
             axios.get(url+'/login/'+window.sessionStorage.token
@@ -112,6 +112,30 @@ var client = (function () {
         })
     }
 
+    function createOrden(orden, callback){
+        axios.post(url+'/orders',
+            orden
+          ).then(function f (res){
+            callback(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
+    function createCarts(carritos, callback){
+        console.log(carritos);
+        for(let i=0; i<carritos.length; i++){
+            axios.post(url+'/carts',
+                carritos[i]
+            ).then(function f (res){
+                // callback(res.data);
+            }).catch(function (error) {
+                alert(error.response.data);
+            })
+        }
+        callback();
+    }
+
     function getProductById(idProduct, callback) {
         axios.get(url+'/products/'+idProduct
         ).then(function f (res){
@@ -212,6 +236,8 @@ var client = (function () {
         deleteProduct: deleteProduct,
         deleteService: deleteService,
         getStores: getStores,
-        getMechanics: getMechanics
+        getMechanics: getMechanics,
+        createOrden: createOrden,
+        createCarts: createCarts
     }
 })();

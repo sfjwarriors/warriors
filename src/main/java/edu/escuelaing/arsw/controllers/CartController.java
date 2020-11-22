@@ -53,12 +53,20 @@ public class CartController {
             Orden orden = ordenService.findById(cart.getFkOrderCart());
             if(cart.getFkProductCart()!=null && cart.getFkServicesCart()==null && cart.getFkOrderCart()!=null){
                 Product product = productService.findById(cart.getFkProductCart());
-                orden.setTotalValue(orden.getTotalValue()+product.getPrice());
+//                Long temp = orden.getTotalValue();
+//                Long temp1 = product.getPrice();
+//                System.out.println(temp);
+//                System.out.println(temp1);
+//                orden.setTotalValue(temp+temp1);
                 cartService.addToCart(cart);
                 return new ResponseEntity<>("Success", HttpStatus.CREATED);
             } else if(cart.getFkProductCart()==null && cart.getFkServicesCart()!=null && cart.getFkOrderCart()!=null){
                 Servicio servicio = servicioService.findById(cart.getFkServicesCart());
-                orden.setTotalValue(orden.getTotalValue()+servicio.getPrice());
+//                Long temp = orden.getTotalValue();
+//                Long temp1 = servicio.getPrice();
+//                System.out.println(temp);
+//                System.out.println(temp1);
+//                orden.setTotalValue(temp+temp1);
                 cartService.addToCart(cart);
                 return new ResponseEntity<>("Success", HttpStatus.CREATED);
             } else {

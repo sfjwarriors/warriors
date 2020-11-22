@@ -41,6 +41,9 @@ public class Orden implements Serializable {
     @JoinColumn(name = "fkOrderCart")
     private List<Cart> carts;
 
+    @Column
+    private Long fkUser;
+
     public Orden() {
     }
 
@@ -118,6 +121,14 @@ public class Orden implements Serializable {
         this.carts = carts;
     }
 
+    public Long getFkUser() {
+        return fkUser;
+    }
+
+    public void setFkUser(Long fkUser) {
+        this.fkUser = fkUser;
+    }
+
     @Override
     public String toString() {
         return "Orden{" +
@@ -128,6 +139,7 @@ public class Orden implements Serializable {
                 ", statusOrder='" + statusOrder + '\'' +
                 ", fkStore=" + fkStore +
                 ", carts=" + carts +
+                ", fkUser=" + fkUser +
                 '}';
     }
 }
