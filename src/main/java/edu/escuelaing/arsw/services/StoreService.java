@@ -11,6 +11,7 @@ import java.util.List;
 public interface StoreService {
     public List<Store> findAll() throws StoreServiceException;
     public Store findByIdMechanic(long idMechanic) throws StoreServiceException;
+    public Store findById(long idStore) throws StoreServiceException;
     public void updateStore(Store store) throws StoreServiceException;
     public void registerStore(Store store) throws UserServiceException;
 }

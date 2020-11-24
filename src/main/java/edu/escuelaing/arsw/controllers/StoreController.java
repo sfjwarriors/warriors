@@ -33,6 +33,16 @@ public class StoreController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/id/{idStore}")
+    public ResponseEntity<?> findStoreById(@PathVariable Long idStore) {
+        try {
+            Store store = storeService.findById(idStore);
+            return new ResponseEntity<>(store, HttpStatus.ACCEPTED);
+        } catch (StoreServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "{idMechanic}", method = RequestMethod.GET)
     public ResponseEntity<?> getStoreByIdMechanic(@PathVariable long idMechanic) {
         try {

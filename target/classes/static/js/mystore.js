@@ -3,6 +3,7 @@ var mystore = (function () {
     var s = "";
     var edit = false;
     var editing = null;
+    var idU = -1;
     // var stomp = 'js/stomp.js';
 
     function isLogged() {
@@ -19,11 +20,12 @@ var mystore = (function () {
             client.getStore(user.id, setStore);
             // document.getElementById("servicebtn").href = "myorders.html";
             // $("#servicebtn").text("Mis Ordenes");
-        } 
-        // else {
-        //     document.getElementById("servicebtn").href = "#";
-        //     $("#servicebtn").text("Pedir");
-        // }
+        } else {
+            document.getElementById("servicebtn").style.display = "block";
+            document.getElementById("servicebtn").href = "myorders.html";
+            $("#servicebtn").text("Mis Ordenes");
+        }
+        idU = user.id;
     }
 
     function setStore(store) {
@@ -145,7 +147,8 @@ var mystore = (function () {
             }
             s += "<p class='mb-4'>Valor Total: "+store.ordens[o].totalValue+"</p>";
             s += "<p class='mb-4'>Estado de la orden: "+store.ordens[o].statusOrder+"</p>";
-            s += "<a href='#' class='btn btn-small btn-main btn-round-full'>Avanzar Estado</a></div>";
+            s += "<a href='#' class='btn btn-small btn-main btn-round-full'>Avanzar Estado</a>  ";
+            s += '  <button class="btn btn-small btn-main btn-round-full" onclick="chat.openForm('+store.ordens[o].id+', '+idU+')" style="background-color: #F9F816; color: black;">Chat</button></div>';
         }
         $("#lista").html(s);
     }
@@ -203,12 +206,12 @@ var mystore = (function () {
             let service = {"id":storeTmp.servicios[editing].id,"name":document.getElementById("namepos").value, "image":"Not available", "description":document.getElementById("descriptionpos").value, "price":document.getElementById("pricepos").value, "status":"available", "fkStoreService":storeTmp.id};
             client.updateService(service, getServices);
             fixForm();
-            stomp.disconnect();
+            // stomp.disconnect();
             let temp = storeTmp.storeName.replace(/ /g, '')+'servs';
             stomp.connectAndSubscribe(imprime, temp);
             setTimeout(function(){
-                stomp.sends(temp, 'update service');
-            }, 2000);
+                stomp.sends(temp, storeTmp.fkMechanic);
+            }, 3000);
         }
     }
 
@@ -222,12 +225,12 @@ var mystore = (function () {
             let producto = {"id":storeTmp.products[editing].id,"name":document.getElementById("namepos").value, "image":"Not available", "description":document.getElementById("descriptionpos").value, "price":document.getElementById("pricepos").value, "status":"available", "fkStoreProduct":storeTmp.id};
             client.updateProduct(producto, getProducts);
             fixForm();
-            stomp.disconnect();
+            // stomp.disconnect();
             let temp = storeTmp.storeName.replace(/ /g, '')+'prods';
             stomp.connectAndSubscribe(imprime, temp);
             setTimeout(function(){
-                stomp.sends(temp, 'update product');
-            }, 2000);
+                stomp.sends(temp, storeTmp.fkMechanic);
+            }, 3000);
 
         }
     }

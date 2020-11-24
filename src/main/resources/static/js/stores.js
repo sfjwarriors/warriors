@@ -24,6 +24,10 @@ var storeScript = (function () {
         document.getElementById("tiendasbtn").style.visibility="visible";
         if(user.rol=='MECA') {
             client.getStore(user.id, setStore);
+        } else {
+            document.getElementById("servicebtn").style.display = "block";
+            document.getElementById("servicebtn").href = "myorders.html";
+            $("#servicebtn").text("Mis Ordenes");
         }
         client.getMechanics(setMechanics);
         client.getStores(showStores);

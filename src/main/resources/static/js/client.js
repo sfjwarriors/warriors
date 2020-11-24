@@ -1,6 +1,6 @@
 var client = (function () {
-    var url = 'http://mecaclic.herokuapp.com';
-    // var url = 'http://localhost:8080';
+     var url = 'http://mecaclic.herokuapp.com';
+    //  var url = 'http://localhost:8080';
     function isLogged(callback) {
         if(window.sessionStorage.token!=null) {
             axios.get(url+'/login/'+window.sessionStorage.token
@@ -21,6 +21,20 @@ var client = (function () {
         }).catch(function (error) {
             alert(error.response.data);
         })
+    }
+
+    function getStoreById(idStore, callback) {
+        var s = [];
+        axios.get(url+'/stores/id/'+idStore
+        ).then(function f (res){
+            // return res.data;
+            // callback(res.data);
+            s.push(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+        console.log(s);
+        return s;
     }
 
     function login(callback){
@@ -218,6 +232,15 @@ var client = (function () {
         })
     }
 
+    function getOrdersClient(idUser, callback){
+        axios.get(url+'/users/'+idUser+'/orders'
+        ).then(function f (res){
+             callback(res.data);
+        }).catch(function (error) {
+            alert(error.response.data);
+        })
+    }
+
     return {
         isLogged: isLogged,
         login: login,
@@ -238,6 +261,8 @@ var client = (function () {
         getStores: getStores,
         getMechanics: getMechanics,
         createOrden: createOrden,
-        createCarts: createCarts
+        createCarts: createCarts,
+        getOrdersClient: getOrdersClient,
+        getStoreById: getStoreById
     }
 })();

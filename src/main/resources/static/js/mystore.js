@@ -3,6 +3,7 @@ var mystore = (function () {
     var s = "";
     var edit = false;
     var editing = null;
+    var idU = -1;
     // var stomp = 'js/stomp.js';
 
     function isLogged() {
@@ -19,11 +20,12 @@ var mystore = (function () {
             client.getStore(user.id, setStore);
             // document.getElementById("servicebtn").href = "myorders.html";
             // $("#servicebtn").text("Mis Ordenes");
-        } 
-        // else {
-        //     document.getElementById("servicebtn").href = "#";
-        //     $("#servicebtn").text("Pedir");
-        // }
+        } else {
+            document.getElementById("servicebtn").style.display = "block";
+            document.getElementById("servicebtn").href = "myorders.html";
+            $("#servicebtn").text("Mis Ordenes");
+        }
+        idU = user.id;
     }
 
     function setStore(store) {
@@ -145,7 +147,8 @@ var mystore = (function () {
             }
             s += "<p class='mb-4'>Valor Total: "+store.ordens[o].totalValue+"</p>";
             s += "<p class='mb-4'>Estado de la orden: "+store.ordens[o].statusOrder+"</p>";
-            s += "<a href='#' class='btn btn-small btn-main btn-round-full'>Avanzar Estado</a></div>";
+            s += "<a href='#' class='btn btn-small btn-main btn-round-full'>Avanzar Estado</a>  ";
+            s += '  <button class="btn btn-small btn-main btn-round-full" onclick="chat.openForm('+store.ordens[o].id+', '+idU+')" style="background-color: #F9F816; color: black;">Chat</button></div>';
         }
         $("#lista").html(s);
     }

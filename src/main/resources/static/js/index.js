@@ -17,8 +17,10 @@ var index = (function () {
             $("#startbtn").text("Mi Taller");
             document.getElementById("startbtn").href = "mystore.html";
         } else {
-            // document.getElementById("servicebtn").href = "#";
-            // $("#servicebtn").text("Pedir");
+            document.getElementById("servicebtn").style.display = "block";
+            document.getElementById("servicebtn").href = "myorders.html";
+            $("#servicebtn").text("Mis Ordenes");
+        
             $("#startbtn").text("Pide Ya!");
             document.getElementById("startbtn").href = "#";
         }

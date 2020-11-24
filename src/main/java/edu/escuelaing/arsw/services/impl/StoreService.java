@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StoreService implements edu.escuelaing.arsw.services.StoreService {
@@ -35,6 +36,21 @@ public class StoreService implements edu.escuelaing.arsw.services.StoreService {
         } catch (Exception e) {
             e.printStackTrace();
             throw new StoreServiceException("The mechanic "+idMechanic+" don't have a store");
+        }
+    }
+
+    @Override
+    public Store findById(long idStore) throws StoreServiceException {
+        try {
+            Optional<Store> storeOptional = storePersistence.findById(idStore);
+            if(storeOptional.isPresent()) {
+                return storeOptional.get();
+            } else {
+                throw new StoreServiceException("Store not found");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new StoreServiceException("The store with id "+idStore+" doesn't exist");
         }
     }
 

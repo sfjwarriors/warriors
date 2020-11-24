@@ -23,6 +23,8 @@
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Chat Css -->
+    <link rel="stylesheet" href="css/chat.css">
 
     <!-- Client script -->
     <script src="js/client.js"></script>
@@ -30,6 +32,8 @@
     <script src="js/mystore.js"></script>
     <!-- STOMP CLIENT -->
     <script src="js/stomp.js"></script>
+    <!-- Chat  -->
+    <script src="js/chat.js"></script>
     <!-- Axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- STOMP -->
@@ -58,7 +62,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="index.html">Inicio<span class="sr-only">(current)</span></a>
                     </li>
-                    <!-- <li class="nav-item"><a class="nav-link" href="#" id="servicebtn"></a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="#" id="servicebtn" style="display: none;"></a></li>
                     <li class="nav-item"><a class="nav-link" href="stores.html" id="tiendasbtn"></a></li>
                     <li class="nav-item"><a class="nav-link" href="#" id="storebtn"></a></li>
                 </ul>
@@ -130,7 +134,40 @@
                 </div>
             </div>
         </div>
+    <section class="section blog-wrap bg-gray">
+        <div class="container">
+            <!-- <button class="open-button" onclick="chat.openForm()" style="background-color: #F9F816; color: black;">Chat</button> -->
+            <div class="form-popup" id="myForm" style="display: none; position: fixed;">
+                <form class="form-container">
+                    <h1>Chat</h1>
+                    <!-- <section class="section blog-wrap bg-gray"> -->
+                        <div class="container" id="mensajes" style="overflow-y: scroll; height: 150px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- <div class="containerchat">
+                                        <img src="imagen/client.png" alt="Avatar">
+                                        <p>Hello. How are you today?</p>
+                                        <span class="time-right">11:00</span>
+                                    </div>
+                                    <div class="containerchat darker">
+                                        <img src="imagen/you.png" alt="Avatar" class="right">
+                                        <p>Hey! I'm fine. Thanks for asking!</p>
+                                        <span class="time-left">11:01</span>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                    <!-- </section> -->
+                    <!-- <label for="msg"><b>Message</b></label> -->
+                    <textarea placeholder="Escribe un mensaje.." name="msg" required id="mensaje"></textarea>
+                    <button type="button" class="btn btn-small btn-main btn-round-full" onclick="chat.sendMessage()" style="background-color: #F9F816; color: black;">Send</button>
+                    <button type="button" class="btn btn-small btn-main btn-round-full" onclick="chat.closeForm()" style="background-color: #bbbb29; color: black;">Close</button>
+                </form>
+            </div>
+        </div>
     </section>
+    
 
     <footer class="footer section">
         <div class="container">

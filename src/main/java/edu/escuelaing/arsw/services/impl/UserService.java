@@ -87,7 +87,11 @@ public class UserService implements edu.escuelaing.arsw.services.UserService {
 
     @Override
     public Optional<User> findById(long id) throws UserServiceException {
-        return Optional.empty();
+        try {
+            return userPersistence.findById(id);
+        } catch (Exception e) {
+            throw new UserServiceException("User not found");
+        }
     }
 
     @Override
