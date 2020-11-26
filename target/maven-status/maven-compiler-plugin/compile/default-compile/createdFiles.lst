@@ -1,12 +1,16 @@
 edu\escuelaing\arsw\App.class
 edu\escuelaing\arsw\model\Orden.class
+edu\escuelaing\arsw\model\Chat.class
 edu\escuelaing\arsw\Exceptions\UserServiceException.class
 edu\escuelaing\arsw\services\UserService.class
+edu\escuelaing\arsw\model\UserStateChat.class
 edu\escuelaing\arsw\controllers\UserController.class
 edu\escuelaing\arsw\controllers\CartController.class
 edu\escuelaing\arsw\persistence\UserPersistence.class
 edu\escuelaing\arsw\services\impl\UserService.class
 edu\escuelaing\arsw\services\ServicioService.class
+edu\escuelaing\arsw\controllers\WebSocketEvent.class
+edu\escuelaing\arsw\controllers\ChatController.class
 edu\escuelaing\arsw\services\OrdenService.class
 edu\escuelaing\arsw\services\impl\CartService.class
 edu\escuelaing\arsw\Exceptions\ServicioServiceException.class
@@ -30,6 +34,7 @@ edu\escuelaing\arsw\persistence\StorePersistence.class
 edu\escuelaing\arsw\persistence\OrdenPersistence.class
 edu\escuelaing\arsw\services\StoreService.class
 edu\escuelaing\arsw\controllers\WebSocketConfig.class
+edu\escuelaing\arsw\model\OrdenReturn.class
 edu\escuelaing\arsw\model\Cart.class
 edu\escuelaing\arsw\controllers\LoginController.class
 edu\escuelaing\arsw\services\impl\ProductService.class
