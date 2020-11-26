@@ -68,7 +68,7 @@ Para: Poder tener un listado de los servicios que he pedido
 - A continuacion mostramos una tabla con los datos analizados arrojados por la aplicacion y una grafica que nos indica el comportamiento de la aplicacion ante las diferentes peticiones realizadas por los usuarios en un minuto.
 ![Tabla de analisis](https://media.discordapp.net/attachments/781412743537491969/781413761205534730/unknown.png)
 
-![Grafica de la tabla de analisis](https://media.discordapp.net/attachments/781412743537491969/781412833195065354/unknown.png)
+![Grafica de la tabla de analisis](https://media.discordapp.net/attachments/781412743537491969/781412800408584232/unknown.png)
 
 > Ahora decidimos realizar un load balancer ya que queremos asegurar la disponibilidad del sitio web y que pueda responder a las diferentes peticiones por parte de los usuarios a la maxima velocidad posible.
 
