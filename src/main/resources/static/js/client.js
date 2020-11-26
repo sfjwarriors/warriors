@@ -1,4 +1,5 @@
 var client = (function () {
+
     // var url = 'https://mecaclicks.azurewebsites.net/';
     var url = 'http://mecaclic.herokuapp.com';
     //  var url = 'http://localhost:8080';
@@ -23,7 +24,6 @@ var client = (function () {
             alert(error.response.data);
         })
     }
-
     function getStoreById(idStore, callback) {
         var s = [];
         axios.get(url+'/stores/id/'+idStore
