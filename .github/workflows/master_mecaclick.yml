@@ -28,5 +28,5 @@ jobs:
       with:
         app-name: 'mecaclick'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ddba2ea2d7524db0b26e0c54ef169c10 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_151d4e4584cc4cc6935af739b0e6c1ef }}
         package: '${{ github.workspace }}/target/*.jar'
