@@ -2,21 +2,9 @@ var formuScript = (function(){
 	var nombre, apellido , email, direccion, celular, password1, password2, mecanico, usuario, expresion ;
 	expresion = /\w+@\w+\.+[a-z]/;
 	lista = [];
-	//archivo = client;
 
 	function isLogged() {
-		// console.log(window.sessionStorage.token);
 		stomp.connectAndSubscribe(imprime, 'all');
-        // if(window.sessionStorage.token==undefined) {
-			// client.isLogged(updateBtns);
-			// stomp.connectAndSubscribe(imprime, 'all');
-			// console.log(window.sessionStorage.token, "g");
-			// window.location.replace("index.html");
-        // } else {
-			//stomp.connectAndSubscribe(imprime, 'all');
-			// window.location.replace("index.html");
-		// 	console.log("no es igual");
-        // }
     }
 
 	var crearFormulario = function(){
@@ -46,9 +34,6 @@ var formuScript = (function(){
 			return false 
 		}else if(mecanico.checked){
 			tipoUsuario = 'MECA';
-			// stomp.sends('all');
-			// stomp.stompClient.send("/store/all", {}, "newStore");
-            // stomp.stompClient.send("/app/all", {}, "newStore");
 		}else if(usuario.checked){
 			tipoUsuario = 'USER';
 		}
@@ -56,7 +41,7 @@ var formuScript = (function(){
 	};
 
 	function imprime(mensaje){
-        console.log(mensaje);
+        // console.log(mensaje);
     }
 	
 	var uncheck = function(){
@@ -91,63 +76,3 @@ var formuScript = (function(){
 
 
 })();
-/** 
-form.addEventListener('Registrarse', e => {
-	e.preventDefault();
-	
-	checkInputs();
-});
-
-function checkInputs() {
-	console.log(usuario);
-	// trim to remove the whitespaces
-	const usuarioValue = usuario.value.trim();
-	const emailValue = email.value.trim();
-	const passwordValue = password.value.trim();
-	const password2Value = password2.value.trim();
-	
-	if(usuarioValue === '') {
-		setErrorFor(usuario, 'Noi puede dejar el usuairo en blanco');
-	} else {
-		setSuccessFor(usuario);
-	}
-	
-	if(emailValue === '') {
-		setErrorFor(email, 'No puede dejar el email en blanco');
-	} else if (!isEmail(emailValue)) {
-		setErrorFor(email, 'No ingreso un email válido');
-	} else {
-		setSuccessFor(email);
-	}
-	
-	if(passwordValue === '') {
-		setErrorFor(password, 'Password no debe ingresar en blanco.');
-	} else {
-		setSuccessFor(password);
-	}
-	
-	if(password2Value === '') {
-		setErrorFor(password2, 'Password2 no debe ngresar en blanco');
-	} else if(passwordValue !== password2Value) {
-		setErrorFor(password2, 'Passwords no coinciden');
-	} else{
-		setSuccessFor(password2);
-	}
-}
-
-function setErrorFor(input, message) {
-	const formControl = input.parentElement;
-	const small = formControl.querySelector('small');
-	formControl.className = 'form-control error';
-	small.innerText = message;
-}
-
-function setSuccessFor(input) {
-	const formControl = input.parentElement;
-	formControl.className = 'form-control success';
-}
-
-function isEmail(email) {
-	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-}
-*/

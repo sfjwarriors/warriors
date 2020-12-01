@@ -4,7 +4,6 @@ var mystore = (function () {
     var edit = false;
     var editing = null;
     var idU = -1;
-    // var stomp = 'js/stomp.js';
 
     function isLogged() {
         client.isLogged(updateBtns);
@@ -18,8 +17,6 @@ var mystore = (function () {
         document.getElementById("tiendasbtn").style.visibility="visible";
         if(user.rol=='MECA') {
             client.getStore(user.id, setStore);
-            // document.getElementById("servicebtn").href = "myorders.html";
-            // $("#servicebtn").text("Mis Ordenes");
         } else {
             document.getElementById("servicebtn").style.display = "block";
             document.getElementById("servicebtn").href = "myorders.html";
@@ -34,7 +31,7 @@ var mystore = (function () {
         document.getElementById("storebtn").style.visibility="visible";
         document.getElementById("storebtn").href = "mystore.html";
         storeTmp = store;
-        stomp.connectAndSubscribe(imprime, store.storeName.replace(/ /g, ''));
+        stomp.connectAndSubscribe(updateOrders, store.storeName.replace(/ /g, ''));
         getProducts();
     }
 
@@ -49,28 +46,26 @@ var mystore = (function () {
         var newNameStore = document.getElementById("storetittle").value;
         $("#cambiarnombre").text("Cambiar Nombre");
         storeTmp.storeName = newNameStore;
-//        console.log(storeTmp);
-        //stomp.disconnect;
         stomp.connectAndSubscribe(imprime, 'all');
         client.updateStore(storeTmp, showUpdateStore);
         document.getElementById("cambiarnombre").onclick = habilitaCambioNombre;
     }
 
     function showUpdateStore(data) {
-        console.log("Data:", data);
         if(data=="Success") {
-            // stomp.sends('all', 'newStore');
             setTimeout(function(){
                 stomp.sends('all', 'update store');
             }, 3000);
             alert("Se cambio el nombre de su tienda");
-            //getProducts();
         }
-        //stomp.connectAndSubscribe(imprime, store.storeName.replace(/ /g, ''));
+    }
+
+    function updateOrders(data){
+        getOrders();
     }
 
     function imprime(data){
-        console.log(data);
+        // console.log(data);
     }
 
     function getProducts() {
@@ -97,7 +92,6 @@ var mystore = (function () {
     function listProducts(store) {
         storeTmp = store;
         s = "";
-        // console.log(store.storeName);
         for(var i=0; i<store.products.length; i++) {
             if(store.products[i].status=="available"){
                 s += "<div class='col-lg-6 col-md-6 mb-5'><div class='blog-item'><img src='images/notavailable.jpg' alt='' class='img-fluid rounded'> <div class='blog-item-content bg-white p-5'>";
@@ -107,12 +101,6 @@ var mystore = (function () {
         }
         $("#lista").html(s);
         var temp = store.storeName.replace(/ /g, '');
-        // console.log(temp);
-        // stomp.connectAndSubscribe(imprime, temp);
-    }
-
-    function imprime(mensaje){
-        console.log(mensaje);
     }
 
     function listServices(store) {
@@ -129,9 +117,8 @@ var mystore = (function () {
     function listOrders(store) {
         storeTmp = store;
         s = "";
-//        console.log(store.ordens[0].carts);
         for(var o=0; o<store.ordens.length; o++){
-            s+= "<div class='blog-item-content bg-white p-5'><h3 class='mt-3 mb-3'><a href='blog-single.html'>Orden No. "+store.ordens[o].id+"</a></h3>";
+            s+= "<div class='blog-item-content bg-white p-5'><h3 class='mt-3 mb-3'>Orden No. "+store.ordens[o].id+"</a></h3>";
             for(var j=0; j<store.ordens[o].carts.length; j++){
                 for(var k=0; k<storeTmp.servicios.length; k++){
                     if(store.servicios[k].id==store.ordens[o].carts[j].fkServicesCart){
@@ -139,7 +126,6 @@ var mystore = (function () {
                     }
                 }
                 for(var k=0; k<storeTmp.products.length; k++){
-                    //console.log(store.products[k]);
                     if(store.products[k].id==store.ordens[o].carts[j].fkProductCart){
                         s += "<p class='mb-4'>Producto: "+store.products[k].name+"  Precio: $"+store.products[k].price+"</p>";
                     }
@@ -157,13 +143,11 @@ var mystore = (function () {
         edit = true;
         editing = position;
         fixForm();
-        //document.getElementById("saveservice").style.visibility = "hidden";
         $("#textform").text("Editar Producto");
         $("#saveproduct").text("Guardar Producto");
         $("#saveservice").text("Cancelar");
         document.getElementById("saveproduct").onclick = updateProduct;
         document.getElementById("saveservice").onclick = cancelEdit;
-        //console.log(storeTmp.products[position].name);
         fillForm(storeTmp.products[position]);
     }
 
@@ -171,26 +155,21 @@ var mystore = (function () {
         edit = true;
         editing = position;
         fixForm();
-        //document.getElementById("saveproduct").style.visibility = "hidden";
         $("#textform").text("Editar Servicio");
         $("#saveservice").text("Cancelar");
         $("#saveproduct").text("Guardar Servicio");
-        //console.log(storeTmp.servicios[position].name);
         document.getElementById("saveservice").onclick = cancelEdit;
         document.getElementById("saveproduct").onclick = updateService;
         fillForm(storeTmp.servicios[position]);
     }
 
     function fillForm(dataf){
-        //console.log(dataf);
         document.getElementById("namepos").value = dataf.name;
         document.getElementById("pricepos").value = dataf.price;
         document.getElementById("descriptionpos").value = dataf.description;
     }
 
     function fixForm(){
-        //document.getElementById("saveproduct").style.visibility = "visible";
-        //document.getElementById("saveservice").style.visibility = "visible";
         $("#textform").text("Nuevo Servicio o Producto");
         $("#saveservice").text("Crear Servicio");
         $("#saveproduct").text("Crear Producto");
@@ -206,7 +185,6 @@ var mystore = (function () {
             let service = {"id":storeTmp.servicios[editing].id,"name":document.getElementById("namepos").value, "image":"Not available", "description":document.getElementById("descriptionpos").value, "price":document.getElementById("pricepos").value, "status":"available", "fkStoreService":storeTmp.id};
             client.updateService(service, getServices);
             fixForm();
-            // stomp.disconnect();
             let temp = storeTmp.storeName.replace(/ /g, '')+'servs';
             stomp.connectAndSubscribe(imprime, temp);
             setTimeout(function(){
@@ -215,17 +193,11 @@ var mystore = (function () {
         }
     }
 
-    function imprime(data){
-        console.log(data);
-    }
-
     function updateProduct() {
-        //console.log("hey1", storeTmp.servicios[editing], validateForm());
         if(validateForm()){
             let producto = {"id":storeTmp.products[editing].id,"name":document.getElementById("namepos").value, "image":"Not available", "description":document.getElementById("descriptionpos").value, "price":document.getElementById("pricepos").value, "status":"available", "fkStoreProduct":storeTmp.id};
             client.updateProduct(producto, getProducts);
             fixForm();
-            // stomp.disconnect();
             let temp = storeTmp.storeName.replace(/ /g, '')+'prods';
             stomp.connectAndSubscribe(imprime, temp);
             setTimeout(function(){

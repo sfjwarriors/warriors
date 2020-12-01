@@ -1,8 +1,8 @@
 var client = (function () {
 
     // var url = 'https://mecaclicks.azurewebsites.net/';
-    var url = 'http://mecaclic.herokuapp.com';
-    //  var url = 'http://localhost:8080';
+//    var url = 'http://mecaclic.herokuapp.com';
+      var url = 'http://localhost:8080';``
     function isLogged(callback) {
         if(window.sessionStorage.token!=null) {
             axios.get(url+'/login/'+window.sessionStorage.token
@@ -28,13 +28,10 @@ var client = (function () {
         var s = [];
         axios.get(url+'/stores/id/'+idStore
         ).then(function f (res){
-            // return res.data;
-            // callback(res.data);
             s.push(res.data);
         }).catch(function (error) {
             alert(error.response.data);
         })
-        console.log(s);
         return s;
     }
 
@@ -100,7 +97,6 @@ var client = (function () {
     }
 
     function updateStore(store, callback){
-        // var s = {id: store.id, storeName: store.storeName, fkMechanic: store.fkMechanic}
         axios.put(url+'/stores', {
             id: store.id,
             storeName: store.storeName,
@@ -138,7 +134,6 @@ var client = (function () {
     }
 
     function createCarts(carritos, callback){
-        console.log(carritos);
         for(let i=0; i<carritos.length; i++){
             axios.post(url+'/carts',
                 carritos[i]

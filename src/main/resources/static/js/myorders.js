@@ -34,7 +34,7 @@ var myorders = (function () {
     function showOrders(orders){
         s = "";
         for(let o=0; o<orders.length; o++){
-            s+= "<div class='blog-item-content bg-white p-5'><h3 class='mt-3 mb-3'><a href='blog-single.html'>Orden No. "+orders[o].ordenId+"</a></h3>";
+            s+= "<div class='blog-item-content bg-white p-5'><h3 class='mt-3 mb-3'>Orden No. "+orders[o].ordenId+"</a></h3>";
             for(let k=0; k<orders[o].servicios.length; k++){
                 s += "<p class='mb-4'>Servicio: "+orders[o].servicios[k].name+"  Precio: $"+orders[o].servicios[k].price+"</p>";
             }

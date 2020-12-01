@@ -38,14 +38,13 @@ var storeScript = (function () {
         $("#tiendaTitle").html("NUESTROS TALLERES Y TIENDAS");
         $("#cart").html("");
         document.getElementById("volverbtn").style.visibility = "hidden";
-        // document.getElementById("carritobtn").style.visibility = "hidden";
         listStores();
     }
 
     function showCarrito(){
+        stomp.connectAndSubscribe(imprime, tiendaSele.storeName.replace(/ /g, ''));
         $("#tiendaTitle").html("Carrito");
         document.getElementById("volverbtn").style.visibility = "visible";
-        // $("#tiendas").html(carritos);
         console.log(carritos);
         st = '<div class="col-md-4"> <div class="blog-item-content bg-white p-5"><h3 class="mt-3 mb-3">Productos y Servicios</h3>';
         for(let i=0; i<carritos.length; i++){
@@ -64,7 +63,6 @@ var storeScript = (function () {
                     }
                 }
             }
-            // st+='<p class="mb-4">'+tiendaSele.products[j].name+'  Precio: $'+tiendaSele.products[j].price+'</p>';
         }
         st += '<p class="mb-4">Total: $'+precio+'</p> <a onclick="storeScript.createOrden()" class="btn btn-small btn-main btn-round-full">Pedir</a></div></div>';
         $("#tiendas").html("");
@@ -73,11 +71,11 @@ var storeScript = (function () {
 
     function createOrden(){
         let date = new Date();
-        let fechaOrden = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate();
-        let fechaEntrega = date.getFullYear()+'-'+date.getMonth()+'-'+(date.getDate()+1);
-        let orden = {"dateOrder":fechaOrden,"deliveryDate":fechaEntrega,"totalValue":precio,"statusOrder":"CREADA","fkStore":tiendaSele.id, "fkUser":userId};
-        client.createOrden(orden, sendCarts);
+        let date1 = new Date();
+        date1.setDate(date.getDay()+1);
+        let orden = {"dateOrder":date,"deliveryDate":date1,"totalValue":precio,"statusOrder":"CREADA","fkStore":tiendaSele.id, "fkUser":userId};
         console.log("crear orden", orden);
+        client.createOrden(orden, sendCarts);
     }
 
     function sendCarts(n){
@@ -88,8 +86,15 @@ var storeScript = (function () {
     }
     
     function ordenCreada(){
+        setTimeout(function(){
+            stomp.sends(tiendaSele.storeName.replace(/ /g, ''), "Nueva orden");
+        }, 500);
         alert("Orden Creada")
-        window.location.replace("index.html");
+        window.location.replace("myorders.html");
+    }
+
+    function imprime(data){
+        console.log(data);
     }
 
     function viewProductStore(indexStore){
@@ -112,7 +117,6 @@ var storeScript = (function () {
 
     function viewProductStoreAux(storeAux){
         s = '';
-        // document.getElementById("carritobtn").style.visibility = "visible";
         if(tiendaCarrito != storeAux.storeName){
             tiendaSele = storeAux;
             tiendaCarrito = storeAux.storeName;
@@ -150,7 +154,6 @@ var storeScript = (function () {
             carritos = [];
             $("#carritobtn").html("Carrito ("+carritos.length+")"+'<img src="imagen/carrito.png" style="width: 50%; height: 50%;">');
         }
-        // document.getElementById("carritobtn").style.visibility = "visible";
         for(var i=0; i<storeAux.servicios.length;i++){
             if(storeAux.servicios[i].status=='available'){
                 s += '<div class="col-md-4"> <div class="card text-center mb-md-0 mb-3"> <div class="card-body py-5"> <h1>'+storeAux.servicios[i].name+'</h1><h3>Precio: $'+storeAux.servicios[i].price;
