@@ -2,7 +2,7 @@ var client = (function () {
 
     // var url = 'https://mecaclicks.azurewebsites.net/';
    var url = 'http://mecaclic.herokuapp.com';
-    //   var url = 'http://localhost:8080';``
+    //   var url = 'http://localhost:8080';
     function isLogged(callback) {
         if(window.sessionStorage.token!=null) {
             axios.get(url+'/login/'+window.sessionStorage.token
