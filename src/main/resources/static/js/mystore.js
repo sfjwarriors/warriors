@@ -4,7 +4,7 @@ var mystore = (function () {
     var edit = false;
     var editing = null;
     var idU = -1;
-
+// asdf
     function isLogged() {
         client.isLogged(updateBtns);
     }

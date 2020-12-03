@@ -1,7 +1,10 @@
 var client = (function () {
 
+    //Azure
     // var url = 'https://mecaclicks.azurewebsites.net/';
+    //Heroku
    var url = 'http://mecaclic.herokuapp.com';
+    //Local
     //   var url = 'http://localhost:8080';
     function isLogged(callback) {
         if(window.sessionStorage.token!=null) {
